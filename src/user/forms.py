@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import PasswordResetForm,SetPasswordForm
+from django.contrib.auth.forms import PasswordResetForm,SetPasswordForm,PasswordChangeForm
 
 class RegisterForm(forms.ModelForm):
     username = forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class':'form-control','name':'username','placeholder':'User Name'}))
@@ -49,3 +49,10 @@ class PasswordResetForm(PasswordResetForm):
 class SetResetePasswordForm(SetPasswordForm):
     new_password1 = forms.CharField(min_length=8,label='New Password',widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'New Password'}))
     new_password2 = forms.CharField(min_length=8,label='New Password (agein)',widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'New Password(agein)'}))
+
+
+class MyPasswordChangeForm(PasswordChangeForm):
+    old_password = forms.CharField(min_length=8,label='Old Password',widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Old Password'}))
+    new_password1 = forms.CharField(min_length=8,label='New Password',widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'New Password'}))
+    new_password2 = forms.CharField(min_length=8,label='Re.New Password (agein)',widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Re.New Password (agein)'}))
+

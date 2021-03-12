@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth import views as auth_view
 from . import views
-from .forms import LoginForm,PasswordResetForm,SetResetePasswordForm
+from .forms import LoginForm,PasswordResetForm,SetResetePasswordForm,MyPasswordChangeForm
 urlpatterns = [
     path('register/', views.RegisterView.as_view(),name='register'),
     path('login/', views.login,name='login'),
@@ -18,4 +18,8 @@ urlpatterns = [
 
     path('passwordresetcomplete/', auth_view.PasswordResetCompleteView.as_view(template_name='user/password-reset-complete.html'),name='password_reset_complete'),
 
+
+    path('passwordchange',auth_view.PasswordChangeView.as_view(template_name='user/password-change.html',form_class=MyPasswordChangeForm),name='password_change'),
+
+    path('passwordchangedone',auth_view.PasswordChangeView.as_view(template_name='user/password-change-done.html',),name='password_change_done')
 ]
