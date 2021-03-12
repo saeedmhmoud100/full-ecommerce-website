@@ -12,20 +12,17 @@
             <div class="alert alert-{{message.tags}}">{{message}}</div>
           {% endfor %}
             {% endif %}
-          <div class="alert"></div>
 
           <h1 class="align-center">Returning Customer</h1>
           <br>
 
           <form class="signin" method="post">
             {% csrf_token %} 
-            {% for fm in form %}
-              {{fm}} <small class="text-danger">{{fm.errors}}</small><br>
-            {% endfor %}
+            {{form}}
               
 
             <button type="submit" class="btn btn-primary">Sign In</button>
-            <a href="#forgin-password" data-action="Forgot-Password" class="xs-margin">Password recovery ></a>
+            <a href="{% url 'password-reset' %}" data-action="Forgot-Password" class="xs-margin">Forget Password?</a>
             <br><br>
 
             <p>

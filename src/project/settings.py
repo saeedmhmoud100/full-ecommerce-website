@@ -31,14 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'user',
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'user',
     'ecommerce',
 ]
 
@@ -125,3 +125,16 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+EMAIL_HOST= 'smtp.gmail.com'
+EMAIL_PORT= 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' 
+EMAIL_HOST_USER = 'saeedtest109@gmail.com'
+EMAIL_HOST_PASSWORD = '01272260394'
+
+# EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+# EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
+
+# EMAIL_HOST = 'localhost'
+# EMAIL_PORT = 1025

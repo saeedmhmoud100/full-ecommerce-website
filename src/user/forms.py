@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import PasswordResetForm,SetPasswordForm
 
 class RegisterForm(forms.ModelForm):
     username = forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class':'form-control','name':'username','placeholder':'User Name'}))
@@ -36,9 +36,16 @@ class RegisterForm(forms.ModelForm):
         return cd['email']
 
 class LoginForm(forms.ModelForm):
-    username = forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class':'form-control','name':'username','placeholder':'User Name'}))
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control','name':'password1','placeholder':'Password'}))
+    username = forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class':'form-control mb-3','name':'username','placeholder':'User Name','style':'margin-bottom:15px'}))
+    password1 = forms.CharField(label='Password',widget=forms.PasswordInput(attrs={'class':'form-control mb-3','name':'password1','placeholder':'Password','style':'margin-bottom:15px'}))
     class Meta:
         model = User
         fields = ('username','password1')
     
+
+class PasswordResetForm(PasswordResetForm):
+    email = forms.EmailField(max_length=255, widget=forms.EmailInput(attrs={'class':'form-control','name':'email','placeholder':'E-mail'}))
+
+class SetResetePasswordForm(SetPasswordForm):
+    new_password1 = forms.CharField(min_length=8,label='New Password',widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'New Password'}))
+    new_password2 = forms.CharField(min_length=8,label='New Password (agein)',widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'New Password(agein)'}))

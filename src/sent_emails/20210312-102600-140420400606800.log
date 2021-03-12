@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: saeed@gmail.com
+Date: Fri, 12 Mar 2021 10:26:00 -0000
+Message-ID: <161554476067.66049.6751260127126377095@kali>
+
+
+You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
+
+Please go to the following page and choose a new password:
+
+http://127.0.0.1:8000/passwordresetconfirm/Nw/aje7nc-62f4cff7293130e14d8f36244358403a
+
+Your username, in case you’ve forgotten: saeed
+
+Thanks for using our site!
+
+The 127.0.0.1:8000 team
+
+
+
+-------------------------------------------------------------------------------
