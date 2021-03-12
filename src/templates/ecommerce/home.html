@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,14 +11,14 @@
     <meta name="description" content="Bootstrap template for you store - E-Commerce Bootstrap Template">
     <meta name="keywords" content="unistore, e-commerce bootstrap template, premium e-commerce bootstrap template, premium bootstrap template, bootstrap template, e-commerce, bootstrap template, sunrise digital">
     <meta name="author" content="Sunrise Digital">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/favicon.png' %}">
 
     <!-- Bootstrap -->
-    <link href="../assets/css/bootstrap.css" rel="stylesheet">
-    <link href="../assets/css/custom.css" rel="stylesheet">
-    <link href="../assets/css/carousel.css" rel="stylesheet">
-    <link href="../assets/css/carousel-recommendation.css" rel="stylesheet">
-    <link href="../assets/ionicons-2.0.1/css/ionicons.css" rel="stylesheet">
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/carousel-recommendation.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/ionicons-2.0.1/css/ionicons.css' %}" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Catamaran:400,100,300' rel='stylesheet' type='text/css'>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -78,7 +79,7 @@
 
         <div class="items">
           <div class="item" data-marker="1">
-            <img src="../assets/img/carousel/bckg.jpg" alt="Background" class="background"/>
+            <img src="{% static 'assets/img/carousel/bckg.jpg' %}" alt="Background" class="background"/>
 
             <div class="content">
               <div class="outside-content">
@@ -92,7 +93,7 @@
                         <br><br>
                       </div>
                       <div class="col-sm-6 col-sm-offset-3 align-center">
-                        <img src="../assets/img/carousel/newlaptops.jpg" alt="Laptops"/>
+                        <img src="{% static 'assets/img/carousel/newlaptops.jpg' %}" alt="Laptops"/>
                       </div>
                     </div>
                   </div>
@@ -101,7 +102,7 @@
             </div>
           </div>
           <div class="item active" data-marker="2">
-            <img src="../assets/img/carousel/bckg.jpg" alt="Background" class="background"/>
+            <img src="{% static 'assets/img/carousel/bckg.jpg' %}" alt="Background" class="background"/>
 
             <div class="content">
               <div class="outside-content">
@@ -109,12 +110,12 @@
                   <div class="container">
                     <div class="row">
                       <div class="col-sm-8 col-sm-offset-2 align-center">
-                        <img src="../assets/img/carousel/surfaces.jpg" alt="Surface Pro"/>
+                        <img src="{% static 'assets/img/carousel/surfaces.jpg' %}" alt="Surface Pro"/>
                       </div>
                       <div class="col-sm-12 align-center">
                         <h1>8 Windows Hybrid Laptops</h1>
                         <p>The laptop comes with an Intel i5 chip and 8GB of RAM.</p>
-                        <a href="../catalog/">View surfaces ></a>
+                        <a href="{% static 'catalog/">View surfaces ></a>
                       </div>
                     </div>
                   </div>
@@ -123,7 +124,7 @@
             </div>
           </div>
           <div class="item" data-marker="3">
-            <img src="../assets/img/carousel/bckg.jpg" alt="Background" class="background"/>
+            <img src="{% static 'assets/img/carousel/bckg.jpg' %}" alt="Background" class="background"/>
 
             <div class="content">
               <div class="outside-content">
@@ -131,8 +132,8 @@
                   <div class="container">
                     <div class="row">
                       <div class="col-sm-5 col-sm-offset-1 align-center">
-                        <img src="../assets/img/carousel/ipadair2.jpg" alt="iPad Air 2" class="hidden-xs hidden-sm"/>
-                        <img src="../assets/img/carousel/ipadair2m.jpg" alt="iPad Air 2" class="hidden-md hidden-lg"/>
+                        <img src="{% static 'assets/img/carousel/ipadair2.jpg' %}" alt="iPad Air 2" class="hidden-xs hidden-sm"/>
+                        <img src="{% static 'assets/img/carousel/ipadair2m.jpg' %}" alt="iPad Air 2" class="hidden-md hidden-lg"/>
                       </div>
                       <div class="col-sm-4 align-left">
                         <br class="hidden-xs hidden-sm"><br class="hidden-xs hidden-sm"><br class="hidden-xs hidden-sm">
@@ -155,9 +156,9 @@
         </div>
 
         <ul class="markers">
-          <li data-marker="1"><img src="../assets/img/carousel/newlaptops.jpg" alt="Background"/></li>
-          <li data-marker="2" class="active"><img src="../assets/img/carousel/surfaces.jpg" alt="Background"/></li>
-          <li data-marker="3"><img src="../assets/img/carousel/ipadair2.jpg" alt="Background"/></li>
+          <li data-marker="1"><img src="{% static 'assets/img/carousel/newlaptops.jpg' %}" alt="Background"/></li>
+          <li data-marker="2" class="active"><img src="{% static 'assets/img/carousel/surfaces.jpg' %}" alt="Background"/></li>
+          <li data-marker="3"><img src="{% static 'assets/img/carousel/ipadair2.jpg' %}" alt="Background"/></li>
         </ul>
       </div>
     </header>
@@ -167,7 +168,7 @@
       <div class="row">
         <div class="col-sm-3 align-center">
           <a href="../blog/">
-            <img src="../assets/img/tiles/blog.jpg" alt="Blog" class="image"/>
+            <img src="{% static 'assets/img/tiles/blog.jpg' %}" alt="Blog" class="image"/>
           </a>
           <br><br>
 
@@ -175,7 +176,7 @@
         </div>
         <div class="col-sm-3 align-center">
           <a href="#video" data-gallery="#video" data-source="vimeo" data-id="110691368" data-id="110691368" data-title="Apple iPad Air" data-description="So capable, you won’t want to put it down. So thin and light, you won’t have to.">
-            <img src="../assets/img/tiles/video-apple.jpg" alt="New devices" class="image"/>
+            <img src="{% static 'assets/img/tiles/video-apple.jpg' %}" alt="New devices" class="image"/>
           </a>
           <br><br>
 
@@ -183,7 +184,7 @@
         </div>
         <div class="col-sm-3 align-center">
           <a href="#video" data-gallery="#video" data-source="youtube" data-id="6g-ZIm0wge4" data-title="Best New Dell Laptops" data-description="Best of dell's laptops that you can consider buying in 2016. 4 Laptops are featured in the video and all of them has equal importance and there is no order that #1 is better than #2">
-            <img src="../assets/img/tiles/video-dell.jpg" alt="Del XPS" class="image"/>
+            <img src="{% static 'assets/img/tiles/video-dell.jpg' %}" alt="Del XPS" class="image"/>
           </a>
           <br><br>
 
@@ -191,7 +192,7 @@
         </div>
         <div class="col-sm-3 align-center">
           <a href="../blog/">
-            <img src="../assets/img/tiles/gallery.jpg" alt="Gallery" class="image"/>
+            <img src="{% static 'assets/img/tiles/gallery.jpg' %}" alt="Gallery" class="image"/>
           </a>
           <br><br>
           
@@ -209,7 +210,7 @@
       <div class="row products">
         <div class="col-sm-6 col-md-4 product">
           <a href="#favorites" class="favorites" data-favorite="inactive"><i class="ion-ios-heart-outline"></i></a>
-          <a href="./"><img src="../assets/img/products/surface-pro.jpg" alt="Surface Pro"/></a>
+          <a href="./"><img src="{% static 'assets/img/products/surface-pro.jpg' %}" alt="Surface Pro"/></a>
 
           <div class="content">
             <h1 class="h4">Surface Pro</h1>
@@ -223,7 +224,7 @@
 
         <div class="col-sm-6 col-md-4 product">
           <a href="#favorites" class="favorites" data-favorite="inactive"><i class="ion-ios-heart-outline"></i></a>
-          <a href="./"><img src="../assets/img/products/lenovo-yoga.jpg" alt="Lenovo Yoga"/></a>
+          <a href="./"><img src="{% static 'assets/img/products/lenovo-yoga.jpg' %}" alt="Lenovo Yoga"/></a>
 
           <div class="content">
             <h1 class="h4">Lenovo Yoga</h1>
@@ -237,7 +238,7 @@
 
         <div class="col-sm-6 col-md-4 product">
           <a href="#favorites" class="favorites" data-favorite="inactive"><i class="ion-ios-heart-outline"></i></a>
-          <a href="./"><img src="../assets/img/products/asus-transformer.jpg" alt="ASUS Transformer"/></a>
+          <a href="./"><img src="{% static 'assets/img/products/asus-transformer.jpg' %}" alt="ASUS Transformer"/></a>
 
           <div class="content">
             <h1 class="h4">ASUS Transformer</h1>
@@ -251,7 +252,7 @@
 
         <div class="col-sm-6 col-md-4 product hidden-md hidden-lg">
           <a href="#favorites" class="favorites" data-favorite="inactive"><i class="ion-ios-heart-outline"></i></a>
-          <a href="./"><img src="../assets/img/products/mi-pad-2.jpg" alt="Mi Pad 2/"></a>
+          <a href="./"><img src="{% static 'assets/img/products/mi-pad-2.jpg' %}" alt="Mi Pad 2/"></a>
 
           <div class="content">
             <h1 class="h4">Mi Pad 2</h1>
@@ -273,7 +274,7 @@
       <div class="row products">
         <div class="col-sm-6 col-md-3 product">
           <a href="#favorites" class="favorites" data-favorite="inactive"><i class="ion-ios-heart-outline"></i></a>
-          <a href="./"><img src="../assets/img/products/chrome-book-11.jpg" alt="HP Chromebook 11"/></a>
+          <a href="./"><img src="{% static 'assets/img/products/chrome-book-11.jpg'}" alt="HP Chromebook 11"/></a>
 
           <div class="content">
             <h1 class="h4">HP Chromebook 11</h1>
@@ -287,7 +288,7 @@
 
         <div class="col-sm-6 col-md-3 product">
           <a href="#favorites" class="favorites" data-favorite="inactive"><i class="ion-ios-heart-outline"></i></a>
-          <a href="./"><img src="../assets/img/products/chrome-book-14.jpg" alt="HP Chromebook 14"/></a>
+          <a href="./"><img src="{% static 'assets/img/products/chrome-book-14.jpg' %}" alt="HP Chromebook 14"/></a>
 
           <div class="content">
             <h1 class="h4">HP Chromebook 14</h1>
@@ -302,7 +303,7 @@
 
         <div class="col-sm-6 col-md-3 product">
           <a href="#favorites" class="favorites" data-favorite="inactive"><i class="ion-ios-heart-outline"></i></a>
-          <a href="./"><img src="../assets/img/products/chrome-book-asus.jpg" alt="HP Chromebook 14"/></a>
+          <a href="./"><img src="{% static 'assets/img/products/chrome-book-asus.jpg' %}" alt="HP Chromebook 14"/></a>
 
           <div class="content">
             <h1 class="h4">Asus Chromebook</h1>
@@ -316,7 +317,7 @@
 
         <div class="col-sm-6 col-md-3 product">
           <a href="#favorites" class="favorites" data-favorite="inactive"><i class="ion-ios-heart-outline"></i></a>
-          <a href="./"><img src="../assets/img/products/chrome-book-14.jpg" alt="HP Chromebook 14"/></a>
+          <a href="./"><img src="{% static 'assets/img/products/chrome-book-14.jpg' %}" alt="HP Chromebook 14"/></a>
 
           <div class="content">
             <h1 class="h4">HP Chromebook 14</h1>
@@ -343,7 +344,7 @@
             <a href="../blog/item-photo.html" class="view"><i class="ion-ios-book-outline"></i></a>
 
             <a href="../blog/item-photo.html">
-              <img src="../assets/img/blog/img1.jpg" title="Apple Devices" alt="Apple Devices">
+              <img src="{% static 'assets/img/blog/img1.jpg' %}" title="Apple Devices" alt="Apple Devices">
             </a>
 
             <div class="caption">
@@ -365,7 +366,7 @@
           <div class="body">
             <a href="../blog/item-video.html" class="view"><i class="ion-ios-book-outline"></i></a>
             <a href="../blog/item-video.html">
-              <img src="../assets/img/blog/img2.jpg" title="Coffee" alt="Coffee">
+              <img src="{% static 'assets/img/blog/img2.jpg' %}" title="Coffee" alt="Coffee">
             </a>
 
             <div class="caption">
@@ -499,10 +500,10 @@
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a href="#English"> <img src="../assets/img/flags/gb.png" alt="Eng"/> English</a></li>
-                <li><a href="#Spanish"> <img src="../assets/img/flags/es.png" alt="Spa"/> Spanish</a></li>
-                <li><a href="#Deutch"> <img src="../assets/img/flags/de.png" alt="De"/> Deutch</a></li>
-                <li><a href="#French"> <img src="../assets/img/flags/fr.png" alt="Fr"/> French</a></li>
+                <li><a href="#English"> <img src="{% static 'assets/img/flags/gb.png' %}" alt="Eng"/> English</a></li>
+                <li><a href="#Spanish"> <img src="{% static 'assets/img/flags/es.png' %}" alt="Spa"/> Spanish</a></li>
+                <li><a href="#Deutch"> <img src="{% static 'assets/img/flags/de.png' %}" alt="De"/> Deutch</a></li>
+                <li><a href="#French"> <img src="{% static 'assets/img/flags/fr.png' %}" alt="Fr"/> French</a></li>
               </ul>
             </div>
             <hr class="offset-xs">
@@ -547,11 +548,11 @@
             <p>Pay your order in the most convenient way</p>
 
             <div class="payment-icons">
-              <img src="../assets/img/payments/paypal.svg" alt="paypal">
-              <img src="../assets/img/payments/visa.svg" alt="visa">
-              <img src="../assets/img/payments/master-card.svg" alt="mc">
-              <img src="../assets/img/payments/discover.svg" alt="discover">
-              <img src="../assets/img/payments/american-express.svg" alt="ae">
+              <img src="{% static 'assets/img/payments/paypal.svg' %}" alt="paypal">
+              <img src="{% static 'assets/img/payments/visa.svg' %}" alt="visa">
+              <img src="{% static 'assets/img/payments/master-card.svg' %}" alt="mc">
+              <img src="{% static 'assets/img/payments/discover.svg' %}" alt="discover">
+              <img src="{% static 'assets/img/payments/american-express.svg' %}" alt="ae">
             </div>
             <br>
 
@@ -619,11 +620,11 @@
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="../assets/js/jquery-latest.min.js"></script>
+    <script src="{% static 'assets/js/jquery-latest.min.js' %}"></script>
     
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../assets/js/bootstrap.min.js"></script>
-    <script src="../assets/js/core.js"></script>
-    <script src="../assets/js/carousel.js"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/core.js' %}"></script>
+    <script src="{% static 'assets/js/carousel.js' %}"></script>
   </body>
 </html>
