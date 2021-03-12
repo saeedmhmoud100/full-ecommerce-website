@@ -1,0 +1,22 @@
+Unistore Bootstrap Responsive E-Commerce Template
+
+This template is the best solution for online stores and catalogs, computer shops, gadgets shops, fachion shops and etc.
+This premium template has simple, clean and lite look, which is so necessary for customers now.
+
+
+THEME FEATURES:
+
+Fully Responsive design
+Based on Bootstrap 3.3.6
+W3C Valid source code
+Few Different Themes
+Ionic Icons
+Built with HTML5 & CSS3
+Easy to customise
+Commented and clean code
+Real responsive Video Iframe
+Clean Design
+Products Carousel
+Checkout page
+Blog
+And much more...

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title> HP Chromebook review &middot; Unistore &middot; Responsive E-Commerce Template</title>
+
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="Sunrise.Digital">
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png">
+    
+    <!-- Bootstrap -->
+    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+    <link href="../assets/css/custom.css" rel="stylesheet">
+    <link href="../assets/css/carousel.css" rel="stylesheet">
+    <link href="../assets/ionicons-2.0.1/css/ionicons.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Catamaran:400,100,300' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-buy">
+        <div class="container">
+          <a class="btn btn-default btn-sm pull-right navbar-btn scroll-to" href="#products"> <i class="ion-android-done"></i> Buy now</a>
+          
+          <div class="navbar-header">
+            <a class="navbar-brand" href="./">  HP Chromebook</a>
+          </div>
+        </div><!--/.container-fluid -->
+    </nav>
+
+    <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../"> <i class="ion-cube"></i> Unistore</a>
+          </div>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="../">Home</a></li>
+              <li><a href="../catalog/">Catalog</a></li>
+              <li class="active"><a href="../blog/">Blog</a></li>
+              <li><a href="../gallery/">Gallery</a></li>
+              <li class="dropdown">
+                <a href="../catalog/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="../catalog/product.html">Product</a></li>
+                  <li><a href="../cart/">Cart</a></li>
+                  <li><a href="../checkout/">Checkout</a></li>
+                  <li><a href="../faq/">FAQ</a></li>
+                  <li><a href="../contacts/">Contacts</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li class="dropdown-header">Variations</li>
+                  <li><a href="../home">Home</a></li>
+                  <li><a href="../blog/item-photo.html">Article Photo</a></li>
+                  <li><a href="../blog/item-video.html">Article Video</a></li>
+                  <li><a href="../blog/item-review.html">Article Review</a></li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="../login/"> <i class="ion-android-person"></i> Login </a></li>
+              <li><a href="../signup/"> Sign Up</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+    </nav>
+    <br><br>
+
+    <div class="blog-item">
+    	<div class="container marketing">
+        <div class="row">
+          <div class="col-sm-12 align-center">
+            <h1>HP Chromebook laptops</h1>
+            <p>With the HP Chromebook running lightning-fast Chrome OS, <br> the best of Google is at hand on a colorfully sleek and stylish notebook.</p>
+            <a href="#video" data-gallery="#video" data-source="youtube" data-id="AqUjIs0pw_U" data-title="HP Chromebook review" data-description="Detailed unboxing and review of the new Google designed 11-inch HP Chromebook. 239$">
+              Video unboxing & review <i class="ion-ios-play"></i>
+            </a>
+            <br><br>
+          </div>
+          <div class="col-sm-6 col-sm-offset-3 align-center">
+            <img src="../assets/img/blog/item-review.jpg" alt="HP Chromebook" class="image" />
+            <h2>Starting at $199.99</h2>
+
+            <a href="#first-featurette" class="scroll-to"> <i class="ion-android-arrow-down"></i> <br> Scroll for more </a>
+          </div>
+        </div>
+        <br><br>
+
+        <div class="row featurette" id="first-featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">Anywhere, anytime mobility. <span class="text-muted"> Fast, simple, secure. </span></h2>
+            <p class="lead">
+              School, home, or on the road, the slim design, and latest Intel® processor give you everything you need to take on the world.
+              Conveniently store up to 100GB of your files and content with the included 2-years of Google Drive access.
+              With up to 9.5 hours of long lasting battery, search, stream, chat, and more for hours without recharging.
+            </p>
+          </div>
+          <div class="col-md-5">
+            <img class="featurette-image img-responsive center-block" alt="500x500" src="../assets/img/blog/review-2.jpg">
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row featurette" id="second-featurette">
+          <div class="col-md-7 col-md-push-5">
+            <h2 class="featurette-heading">Entertainment at your fingertips. <span class="text-muted"> HP TrueVision.</span></h2>
+            <p class="lead">
+              Capture all the details with vibrant clarity, even in low light. Enjoy the nuances of face-to-face conversations, thanks to the HP TrueVision HD Webcam.
+              Lay back and get comfortable with your favorite movies and shows. The 11.6-inch diagonal HD IPS screen (optional) delivers your entertainment in stunning quality, from any angle
+            </p>
+          </div>
+          <div class="col-md-5 col-md-pull-7">
+            <img class="featurette-image img-responsive center-block" alt="500x500" src="../assets/img/blog/review-1.jpg">
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row featurette" id="third-featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">Sleek and colorful. <span class="text-muted">Checkmate.</span></h2>
+            <p class="lead">
+              With the HP Chromebook running lightning-fast Chrome OS, the best of Google is at hand on a colorfully sleek and stylish notebook.
+              Express yourself with an HD 29.5 cm (11.6") diagonal screen in a slim package, styled in smoke silver or sky blue.
+            </p>
+          </div>
+          <div class="col-md-5">
+            <img class="featurette-image img-responsive center-block" alt="500x500" src="../assets/img/blog/review-3.jpg">
+          </div>
+        </div>
+      </div>
+
+      <br><br>
+
+      <div class="review-background">
+        <div class="container">
+          <h1> The stylish HP Chromebook provides <br> a speedy connection to your protected online content and <br> automatically updated apps</h1>
+          <br><br>
+
+          <p>All within an ultra-thin full-sized notebook, providing a comfortable gateway to surf, socialize and play.</p>
+        </div>
+      </div>
+    </div>
+    <br><br>
+
+    <div class="products" id="products">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-md-3 col-md-offset-3 product">
+                <a href="#favorites" class="favorites" data-favorite="inactive"><i class="ion-ios-heart-outline"></i></a>
+                <a href="./"><img src="../assets/img/products/chrome-book-11.jpg" alt="HP Chromebook 11"/></a>
+
+                <div class="content">
+                  <h1 class="h4">HP Chromebook 11</h1>
+                  <p class="price">$199.99</p>
+                  <label>Laptops</label>
+
+                  <a href="../catalog/product.html" class="btn btn-link"> Details</a>
+                  <button class="btn btn-primary btn-rounded btn-sm"> <i class="ion-bag"></i> Add to cart</button>
+                </div>
+              </div>
+
+              <div class="col-sm-6 col-md-3 product">
+                <a href="#favorites" class="favorites" data-favorite="inactive"><i class="ion-ios-heart-outline"></i></a>
+                <a href="./"><img src="../assets/img/products/chrome-book-14.jpg" alt="HP Chromebook 14"/></a>
+
+                <div class="content">
+                  <h1 class="h4">HP Chromebook 14</h1>
+                  <p class="sale">$209.99</p>
+                  <p class="price through">$249.99</p>
+                  <label>Laptops</label>
+
+                  <a href="../catalog/product.html" class="btn btn-link"> Details</a>
+                  <button class="btn btn-primary btn-rounded btn-sm"> <i class="ion-bag"></i> Add to cart</button>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="about">
+        <div class="container">
+          <div class="row">
+            <hr class="offset-md">
+
+            <div class="col-xs-6 col-sm-3">
+              <div class="item">
+                <i class="ion-ios-telephone-outline"></i>
+                <h1>24/7 free <br> <span>support</span></h1>
+              </div>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+              <div class="item">
+                <i class="ion-ios-star-outline"></i>
+                <h1>Low price <br> <span>guarantee</span></h1>
+              </div>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+              <div class="item">
+                <i class="ion-ios-gear-outline"></i>
+                <h1> Manufacturer’s <br> <span>warranty</span></h1>
+              </div>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+              <div class="item">
+                <i class="ion-ios-loop"></i>
+                <h1> Full refund <br> <span>guarantee</span> </h1>
+              </div>
+            </div>
+
+            <hr class="offset-md">
+          </div>
+        </div>
+      </div>
+
+      <div class="subscribe">
+        <div class="container align-center">
+            <hr class="offset-md">
+
+            <h1 class="h3 upp">Join our newsletter</h1>
+            <p>Get more information and receive special discounts for our products.</p>
+            <hr class="offset-sm">
+
+            <form action="index.php" method="post">
+              <div class="input-group">
+                <input type="email" name="email" value="" placeholder="E-mail" required="" class="form-control">
+                <span class="input-group-btn">
+                  <button type="submit" class="btn btn-primary"> Subscribe <i class="ion-android-send"></i> </button>
+                </span>
+              </div><!-- /input-group -->
+            </form>
+            <hr class="offset-lg">
+            <hr class="offset-md">
+
+            <div class="social">
+              <a href="#"><i class="ion-social-facebook"></i></a>
+              <a href="#"><i class="ion-social-twitter"></i></a>
+              <a href="#"><i class="ion-social-googleplus-outline"></i></a>
+              <a href="#"><i class="ion-social-instagram-outline"></i></a>
+              <a href="#"><i class="ion-social-linkedin-outline"></i></a>
+              <a href="#"><i class="ion-social-youtube-outline"></i></a>
+            </div>
+
+
+            <hr class="offset-md">
+            <hr class="offset-md">
+        </div>
+      </div>
+
+
+      <div class="container">
+        <hr class="offset-md">
+
+        <div class="row menu">
+          <div class="col-sm-3 col-md-2">
+            <h1 class="h4">Information <i class="ion-plus-round hidden-sm hidden-md hidden-lg"></i> </h1>
+
+            <div class="list-group">
+              <a href="#" class="list-group-item">About</a>
+              <a href="#" class="list-group-item">Terms</a>
+              <a href="#" class="list-group-item">How to order</a>
+              <a href="#" class="list-group-item">Delivery</a>
+            </div>
+          </div>
+          <div class="col-sm-3 col-md-2">
+            <h1 class="h4">Products <i class="ion-plus-round hidden-sm hidden-md hidden-lg"></i> </h1>
+
+            <div class="list-group">
+              <a href="#" class="list-group-item">Laptops</a>
+              <a href="#" class="list-group-item">Tablets</a>
+              <a href="#" class="list-group-item">Servers</a>
+            </div>
+          </div>
+          <div class="col-sm-3 col-md-2">
+            <h1 class="h4">Support <i class="ion-plus-round hidden-sm hidden-md hidden-lg"></i> </h1>
+
+            <div class="list-group">
+              <a href="#" class="list-group-item">Returns</a>
+              <a href="#" class="list-group-item">FAQ</a>
+              <a href="#" class="list-group-item">Contacts</a>
+            </div>
+          </div>
+          <div class="col-sm-3 col-md-2">
+            <h1 class="h4">Location</h1>
+
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Language
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="#English"> <img src="../assets/img/flags/gb.png" alt="Eng"/> English</a></li>
+                <li><a href="#Spanish"> <img src="../assets/img/flags/es.png" alt="Spa"/> Spanish</a></li>
+                <li><a href="#Deutch"> <img src="../assets/img/flags/de.png" alt="De"/> Deutch</a></li>
+                <li><a href="#French"> <img src="../assets/img/flags/fr.png" alt="Fr"/> French</a></li>
+              </ul>
+            </div>
+            <hr class="offset-xs">
+
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Currency
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <li><a href="#Euro"><i class="ion-social-euro"></i> Euro</a></li>
+                <li><a href="#Dollar"><i class="ion-social-usd"></i> Dollar</a></li>
+                <li><a href="#Yen"><i class="ion-social-yen"></i> Yen</a></li>
+                <li><a href="#Bitcoin"><i class="ion-social-bitcoin"></i> Bitcoin</a></li>
+              </ul>
+            </div>
+
+          </div>
+          <div class="col-sm-3 col-md-3 col-md-offset-1 align-right hidden-sm hidden-xs">
+            <h1 class="h4">Unistore, Inc.</h1>
+
+              <address>
+                1305 Market Street, Suite 800<br>
+                San Francisco, CA 94102<br>
+                <abbr title="Phone">P:</abbr> (123) 456-7890
+              </address>
+
+              <address>
+                <strong>Support</strong><br>
+                <a href="mailto:#">sup@example.com</a>
+              </address>
+
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 col-md-9 payments">
+            <p>Pay your order in the most convenient way</p>
+
+            <div class="payment-icons">
+              <img src="../assets/img/payments/paypal.svg" alt="paypal">
+              <img src="../assets/img/payments/visa.svg" alt="visa">
+              <img src="../assets/img/payments/master-card.svg" alt="mc">
+              <img src="../assets/img/payments/discover.svg" alt="discover">
+              <img src="../assets/img/payments/american-express.svg" alt="ae">
+            </div>
+            <br>
+
+          </div>
+          <div class="col-sm-4 col-md-3 align-right align-center-xs">
+            <hr class="offset-sm hidden-sm">
+            <hr class="offset-sm">
+            <p>Unistore Pro © 2016 <br> Designed By <a href="http://sunrise.ru.com/" target="_blank">Sunrise Digital</a></p>
+            <hr class="offset-lg visible-xs">
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal fade" id="Modal-ForgotPassword" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="ion-android-close"></i></span></button>
+          </div>
+          <div class="modal-body">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm-6">
+                  <h4 class="modal-title">Forgot Your Password?</h4>
+                  <br>
+
+                  <form class="join" action="index.php" method="post">
+                    <input type="email" name="email" value="" placeholder="E-mail" required="" class="form-control" />
+                    <br>
+
+                    <button type="submit" class="btn btn-primary btn-sm">Continue</button>
+                    <a href="#Sign-In" data-action="Sign-In">Back ></a>
+                  </form>
+                </div>
+                <div class="col-sm-6">
+                  <br><br>
+                  <p>
+                    Enter the e-mail address associated with your account. Click submit to have your password e-mailed to you.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="Modal-Gallery" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="ion-android-close"></i></span></button>
+            <h4 class="modal-title">Title</h4>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="Modal-Comment" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header align-center">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="ion-android-close"></i></span></button>
+            <h1 class="h4 modal-title">Add your comment</h1>
+          </div>
+          <div class="modal-body">
+            <div class="container-fluid">
+            <form class="join" action="index.php" method="post">
+              <div class="row">
+              	<div class="col-sm-12">
+                	<textarea name="comment" placeholder="Type here" required="" class="form-control" rows="5"></textarea>
+                	<br>
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" name="name" value="" placeholder="Name" required="" class="form-control" />
+                </div>
+                <div class="col-sm-6">
+                    <input type="email" name="email" value="" placeholder="E-mail" required="" class="form-control" />
+                </div>
+                <div class="col-sm-12">
+                	<div class="align-center">
+	                	<br>
+	                	<button type="submit" class="btn btn-primary btn-sm"> <i class="ion-android-send"></i> Send</button>
+                		<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal"> <i class="ion-android-share"></i> No, thanks </button>
+	                	<br><br>
+                	</div>
+                </div>
+              </div>
+             </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../assets/js/jquery-latest.min.js"></script>
+    
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/core.js"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,68 @@
+Unistore Bootstrap Responsive E-Commerce Template
+
+This template is the best solution for online stores and catalogs, computer shops, gadgets shops, fachion shops and etc.
+This premium template has simple, clean and lite look, which is so necessary for customers now.
+
+
+[THEME FEATURES:]
+
+Fully Responsive design
+Based on Bootstrap 3.3.6
+W3C Valid source code
+Few Different Themes
+Ionic Icons
+Built with HTML5 & CSS3
+Easy to customise
+Commented and clean code
+Real responsive Video Iframe
+Clean Design
+Products Carousel
+Checkout page
+Blog
+And much more...
+
+
+[HOW TO USE]
+
+Template consist of:
+Main Home Page 				/index.html
+Second Home Page 			/home/index.html
+Sign In/Join Page			/auth/index.html
+Blog Page					/blog/index.html
+Blog Article (Photo)		/blog/item-photo.html
+Blog Article (Video)		/blog/item-video.html
+Blog Article (Review)		/blog/item-review.html
+Catalog of Products			/catalog/index.html
+Product Page				/catalog/product.html
+Checkout Page 				/checkout/index.html
+Contacts Page 				/contacts/index.html
+FAQ Page 					/faq/index.html
+Gallery						/gallery/index.html
+
+-----------------------------------------------------------------------
+
+All pages use general CSS and JS files:
+/assets/js/jquery-latest.min.js
+/assets/js/bootstrap.min.js
+/assets/js/core.js
+
+/assets/css/bootstrap.css
+/assets/ionicons-2.0.1/css/ionicons.css
+/assets/css/custom.css 
+
+-----------------------------------------------------------------------
+
+Also each page require custom files:
+Catalog of Products			/assets/js/catalog.js
+Checkout Page				/assets/js/checkout.js
+
+-----------------------------------------------------------------------
+
+For use Main Carousel and Carousel of Recommendation You can plug in:
+/assets/css/carousel.css
+/assets/css/carousel.js
+
+/assets/css/carousel-recommendation.css
+/assets/css/carousel-recommendation.js
+
+-----------------------------------------------------------------------
