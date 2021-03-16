@@ -18,10 +18,14 @@
 
           <form class="signin" method="post">
             {% csrf_token %} 
-            {{form}}
-              
+            {% for fm in form %}
+              {{fm.label}}
+              {{fm}}
+              {{fm.errors}}
+            {% endfor %}
+            
 
-            <button type="submit" class="btn btn-primary">Sign In</button>
+            <button type="submit" class="btn btn-primary">Log In</button>
             <a href="{% url 'password-reset' %}" data-action="Forgot-Password" class="xs-margin">Forget Password?</a>
             <br><br>
 

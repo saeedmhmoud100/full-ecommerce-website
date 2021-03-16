@@ -16,12 +16,36 @@
             
               <div class="row">
                 
-                {% for fm in form %}
+                <!-- {% for fm in form %}
                 <div class="col-sm-12">
                   {{fm}} <small class="text-danger">{{fm.errors}}</small><br>
                 </div>
                 {% endfor %}
-                  
+                   -->
+                  <div class="mb-3" style="margin-bottom: 12px;">
+                    {{form.username.label}}
+                    {{form.username}}
+                    {{form.username.errors}}
+                  </div>
+                  <div class="" style="margin-bottom: 12px;">
+                    {{proform.phone.label}}
+                    {{proform.phone}}
+                    {{proform.phone.errors}}
+                  </div>
+                  <div class="" style="margin-bottom: 12px;">
+                    {{form.email.label}}
+                    {{form.email}}
+                    {{form.email.errors}}
+                  </div>
+                  <div class="" style="margin-bottom: 12px;">
+                    {{form.password1.label}}
+                    {{form.password1}}
+                    {{form.oassword1.errors}}
+                  </div><div class="" style="margin-bottom: 12px;">
+                    {{form.password2.label}}
+                    {{form.password2}}
+                    {{form.password2.errors}}
+                  </div>
               </div>
             </div>
             <br>

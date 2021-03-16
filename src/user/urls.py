@@ -21,5 +21,6 @@ urlpatterns = [
 
     path('passwordchange',auth_view.PasswordChangeView.as_view(template_name='user/password-change.html',form_class=MyPasswordChangeForm),name='password_change'),
 
-    path('passwordchangedone',auth_view.PasswordChangeView.as_view(template_name='user/password-change-done.html',),name='password_change_done')
+    path('passwordchangedone',auth_view.PasswordChangeView.as_view(template_name='user/password-change-done.html',),name='password_change_done'),
+    path('profile/', views.profile,name='profile')
 ]
