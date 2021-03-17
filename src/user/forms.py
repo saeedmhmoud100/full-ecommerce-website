@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordResetForm,SetPasswordForm,PasswordChangeForm
-from .models import UserProfile
+from .models import UserProfile,Customer
 class RegisterForm(forms.ModelForm):
     username = forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class':'form-control','name':'username','placeholder':'User Name'}))
     email = forms.CharField(max_length=200,widget=forms.EmailInput(attrs={'class':'form-control','name':'email','placeholder':'E-mail'}))
@@ -63,3 +63,12 @@ class MyPasswordChangeForm(PasswordChangeForm):
     new_password1 = forms.CharField(min_length=8,label='New Password',widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'New Password'}))
     new_password2 = forms.CharField(min_length=8,label='Re.New Password (agein)',widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Re.New Password (agein)'}))
 
+
+class AddLocationForm(forms.ModelForm):
+    CustCountry = forms.CharField(label='Country ',widget=forms.TextInput(attrs={'class':' mr-3','name':'country','placeholder':'Country','style':'margin-left:15px;margin-bottom:5px'}))
+    CustCity = forms.CharField(label='City',widget=forms.TextInput(attrs={'class':' mr-3','name':'city','placeholder':'City','style':'margin-left:39px;margin-bottom:5px'}))
+    CustLocality = forms.CharField(label='Locality',widget=forms.TextInput(attrs={'class':' mr-3','name':'locality','placeholder':'Locality','style':'margin-left:16px;margin-bottom:5px'}))
+    CustZipcode = forms.CharField(max_length=10,label='Zipcode ',widget=forms.NumberInput(attrs={'class':' mr-3','name':'Zipcode','placeholder':'zipcode','style':'margin-left:15px;margin-bottom:5px'}))
+    class Meta:
+        model = Customer
+        fields = ('CustCountry','CustCity','CustLocality','CustZipcode')

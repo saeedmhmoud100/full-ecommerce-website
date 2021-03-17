@@ -13,7 +13,7 @@ class UserProfile(models.Model):
         return f'{self.user} Profile'
 
 class Customer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='customer')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='customer')
     CustCountry = models.CharField(max_length=60,verbose_name='Country')
     CustCity = models.CharField(max_length=60,verbose_name='City')
     CustLocality= models.CharField(max_length=60,verbose_name='Locality')

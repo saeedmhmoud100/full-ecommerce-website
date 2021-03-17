@@ -1,9 +1,9 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponseRedirect,reverse
 from django.views import View
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login
-from.forms import RegisterForm,ProfileRegisterForm,LoginForm
+from.forms import RegisterForm,ProfileRegisterForm,LoginForm,AddLocationForm
 from .models import Customer,UserProfile
 # Create your views here.
 
@@ -37,10 +37,34 @@ def login(request):
         user = authenticate(request, username=username,password=password)
         if user is not None:
             auth_login(request,user)
-            return redirect('profile')
+            return redirect(reverse('profile', kwargs={'username': username}))
     else:
         form = LoginForm()
     return render(request,'user/login.html',{'form':form})
 
-def profile(request):
-    return render(request, 'user/profile.html')
+class ProfileView(View):
+    def get(self,request,username):
+        proform = UserProfile.objects.get(user=request.user)
+        locationform = AddLocationForm()
+        locations = Customer.objects.filter(user=request.user)
+        return render(request, 'user/profile.html',{'profile':proform,'locform':AddLocationForm,'locations':locations})
+    def post(self,request,username):
+        proform = UserProfile.objects.get(user=request.user)
+        locationform = AddLocationForm(request.POST)
+        locations = Customer.objects.filter(user=request.user)
+        user = User.objects.get(username=request.user)
+        if locationform.is_valid():
+            form_save = locationform.save(commit=False)
+            form_save.user = request.user
+            form_save.save()
+            messages.success(request, 'add location successfully!! ')
+            return HttpResponseRedirect(f'/profile/{user}')
+
+        return render(request, 'user/profile.html',{'profile':proform,'locform':AddLocationForm,'locations':locations})
+
+def locationdelete(request,pk,):
+    cust= Customer.objects.get(id=pk)
+    cust.delete()
+    return redirect(reverse('profile',kwargs={'username':request.user}))
+    return HttpResponseRedirect((f'profile/delete/{pk}'))
+

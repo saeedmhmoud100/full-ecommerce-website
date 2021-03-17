@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+
+
+{% block title %} Profile {% endblock title %}
+{% block content %}
+    <div class="container">
+      
+      
+        
+      <div class="row">
+        {% for message in massages %}
+        <div class="alert alert-{{message.tags}}">{{message}}</div>
+      {% endfor %}
+        <div class="col-md-4 col-md-offset-2" style="border: 1px solid #777;">
+          
+          <h1 style="border-bottom: 1px solid #777;display: inline-block;margin-bottom: 10px;" > Profile </h1>
+          <div class="text-left">
+            <p>Username: {{user}}</p>
+            <p>Email: {{user.email}}</p>
+            <p>Phone: {{ profile.CustPhone }}</p>
+          </div>
+          <div class="">
+            <h3>Add Location</h3>
+            <form method="POST">
+              {% csrf_token %}
+              {% for fm in locform %}
+                <div class="">
+                  {{fm.label}}
+                {{fm}}{{fm.errors}}
+                </div>
+              {% endfor %}
+              <button type="submit" class="btn btn-primary" style="margin:10px;">add Location</button>
+            </form>
+            </div>
+        </div>
+        <div class=" col-md-offset-1 col-md-4">
+          
+          {% if locations %}
+            {% for location in locations %}
+              <div style="border: 1px solid #777777;padding-left: 18px;margin-bottom: 10px;overflow: hidden;">
+                <h3 style="border-bottom: 1px solid #777;display: inline-block;">Location: {{forloop.counter}}</h3>
+                <p>countryt: {{location.CustCountry}},</p>
+                <p>city: {{location.CustCity}},</p>
+                <p>Locality: {{location.CustLocality}},</p>
+                <p>Zipcode: {{location.CustZipcode}},</p>
+                <a href="{% url 'profile-delete' location.id %}" style="float: right;" class="btn btn-secondary"><button>Remove</button></a>
+              </div>
+            {% endfor %}
+          {% else %}
+            <h2 class="text-center">You dont add any location yet</h2>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+      
+{% endblock content %}

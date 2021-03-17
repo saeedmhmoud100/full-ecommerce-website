@@ -67,7 +67,7 @@
             
             {% if user.is_authenticated %}
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="{% url 'logout' %}"> <i class="ion-android-person"></i> Profile</a></li>
+              <li><a href="{% url 'profile' request.user %}"> <i class="ion-android-person"></i> Profile</a></li>
               <li><a href="{% url 'logout' %}"> <i class="ion-log-out"></i> Logout </a></li>
             </ul>
             {% else %}

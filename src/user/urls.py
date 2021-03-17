@@ -13,14 +13,15 @@ urlpatterns = [
     path('passwordresetedone/', auth_view.PasswordResetDoneView.as_view(template_name='user/password-reset-done.html'),name='password_reset_done'),
 
 
-    path('passwordresetconfirm/<uidb64>/<token>', auth_view.PasswordResetConfirmView.as_view(template_name='user/password-reset-confirm.html',form_class=SetResetePasswordForm),name='password_reset_confirm'),
+    path('passwordresetconfirm/<uidb64>/<token>/', auth_view.PasswordResetConfirmView.as_view(template_name='user/password-reset-confirm.html',form_class=SetResetePasswordForm),name='password_reset_confirm'),
 
 
     path('passwordresetcomplete/', auth_view.PasswordResetCompleteView.as_view(template_name='user/password-reset-complete.html'),name='password_reset_complete'),
 
 
-    path('passwordchange',auth_view.PasswordChangeView.as_view(template_name='user/password-change.html',form_class=MyPasswordChangeForm),name='password_change'),
+    path('passwordchange/',auth_view.PasswordChangeView.as_view(template_name='user/password-change.html',form_class=MyPasswordChangeForm),name='password_change'),
 
-    path('passwordchangedone',auth_view.PasswordChangeView.as_view(template_name='user/password-change-done.html',),name='password_change_done'),
-    path('profile/', views.profile,name='profile')
+    path('passwordchangedone/',auth_view.PasswordChangeView.as_view(template_name='user/password-change-done.html',),name='password_change_done'),
+    path('profile/<slug:username>/', views.ProfileView.as_view(),name='profile'),
+    path('profile/delete/<int:pk>/',views.locationdelete,name='profile-delete'),
 ]
