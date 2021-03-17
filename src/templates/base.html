@@ -29,6 +29,11 @@
     <![endif]-->
   </head>
   <body>
+
+    {% block over-content %}
+      
+    {% endblock over-content %}
+
     <nav class="navbar navbar-default">
         <div class="container">
           <div class="navbar-header">
@@ -67,8 +72,8 @@
             
             {% if user.is_authenticated %}
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="{% url 'profile' request.user %}"> <i class="ion-android-person"></i> Profile</a></li>
-              <li><a href="{% url 'logout' %}"> <i class="ion-log-out"></i> Logout </a></li>
+              <li><a href="{% url 'profile' request.user %}"> <i class="ion-android-person"></i> Hello, {{user}} </a></li>
+              <li><a href="#logout"> Logout</a></li>
             </ul>
             {% else %}
             <ul class="nav navbar-nav navbar-right">
@@ -331,6 +336,6 @@
   
       <script type="text/javascript" src="{% static 'assets/js/jquery-ui-1.11.4.js' %}"></script>
       <script type="text/javascript" src="{% static 'assets/js/jquery.ui.touch-punch.js' %}"></script>
-  
+      {% block script %}{% endblock script %}
     </body>
   </html>
