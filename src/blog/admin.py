@@ -4,7 +4,7 @@ from .models import Post, PostComment
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['Posuser','post_img','Postitle','Possubject','Posadd','Posupdate']
+    list_display = ['Posuser','post_img','short_title','short_subject','Posadd','Posupdate']
     
 
 @admin.register(PostComment)

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Blog &middot; Unistore{% endblock title %}
+
+{% block content %}
+    <hr class="offset-lg">
+
+    <div class="container tags">
+        <p>Search by tags</p>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default btn-xs active">
+            <input type="radio" name="options" id="option1" checked> All items
+          </label>
+          <label class="btn btn-default btn-xs">
+            <input type="radio" name="options" id="option2"> Newest
+          </label>
+          <label class="btn btn-default btn-xs">
+            <input type="radio" name="options" id="option3"> Popular
+          </label>
+          <label class="btn btn-default btn-xs">
+            <input type="radio" name="options" id="option4"> News
+          </label>
+          <label class="btn btn-default btn-xs">
+            <input type="radio" name="options" id="option5"> Articles
+          </label>
+          <label class="btn btn-default btn-xs">
+            <input type="radio" name="options" id="option6"> Reviews
+          </label>
+        </div>
+    </div>
+    <hr class="offset-sm">
+
+    <div class="blog">
+      <div class="container">
+        <div class="row">
+
+  
+
+  
+        {% for post in post_list %}
+          <div class="col-sm-6 col-md-6 item">
+
+            <div class="body">
+              <a href="{% url 'blog-item-photo' post.id %}" class="view"><i class="ion-ios-book-outline"></i></a>
+
+              <a href="{% url 'blog-item-photo' post.id %}">
+                <img src="{{post.PostImg.url}}" title="Apple Devices" alt="Apple Devices">
+              </a>
+
+              <div class="caption">
+                <h1 class="h3">{{post.Postitle}}</h1>
+                <label> {{post.Posadd|date:"Y-m-d"}}</label>
+                <hr class="offset-sm">
+
+                <p>
+                  {{post.Possubject}}
+                </p>
+                <hr class="offset-sm">
+
+                <a href="{% url 'blog-item-photo' post.id %}"> View article <i class="ion-ios-arrow-right"></i> </a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+
+
+        {% include "blog/pagination.html" %}
+      </div>
+    </div>
+    <hr class="offset-lg">
+    <hr class="offset-lg">
+{%endblock  %}
