@@ -29,14 +29,3 @@ def catalog_product(request):
 def cart(request):
     return render(request,'ecommerce/cart.html')
 
-def blog(request):
-    return render(request,'ecommerce/blog.html')
-
-def blog_item_video(request):
-    return render(request,'ecommerce/blog-item-video.html')
-
-def blog_item_review(request):
-    return render(request,'ecommerce/blog-item-review.html')
-
-def blog_item_photo(request):
-    return render(request,'ecommerce/blog-item-photo.html')
