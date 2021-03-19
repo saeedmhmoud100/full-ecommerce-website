@@ -9,4 +9,4 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(PostComment)
 class PostCommentAdmin(admin.ModelAdmin):
-    list_display = ['PCompost','PComuser','PComtitle','PComessage','PComadd','PComupdate']
+    list_display = ['PCompost','PComuser','short_message','PComadd','PComupdate']

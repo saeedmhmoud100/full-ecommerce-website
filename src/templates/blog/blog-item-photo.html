@@ -2,61 +2,113 @@
 {% load static %}
 
 
-{% block title %}{% endblock title %}
+{% block title %}Blog &middot; Unistore{% endblock title %}
 
 {% block content %}
+
+<!-- 
+
+	message before delete comment
+<div class="">
+	<div class="message" id="message" style="position: fixed;width: 100%;height: 100vh;background-color: rgba(0, 0, 0, 0.7);top: 0;display: none;">
+
+			<div id="messagec" style="position: fixed;top: 47%;left: 50%;transform: translate(-50%,-50%);background-color: rgb(255, 255, 255);border-radius: 7px;width: 300px;height: 150px;padding: 10px;">
+			<h2 style="margin-bottom: 35px;margin-top: 10px;">are you sure?</h2>
+			<a href="" class="btn btn-danger" style="margin-left: 5px;margin-right: 13px;">Delete</a>
+			<button class="btn btn-success" onclick="hidemessage()">Cancle</button>
+		</div>
+	</div>
+</div> -->
+<div class="cntainer">
+	{% if messages %}
+		{% for message in messages %}
+			<div class="alert alert-{{message.tags}}">{{message}}</div>
+		{% endfor %}
+	{% endif %}
+</div>
     <div class="blog-item">
-    	<img src="{% static 'assets/img/blog/item-photo.jpg' %}" alt="Apple 3D Touch"/>
+    	<img src="{{post.PostImg.url}}" alt="Apple 3D Touch"/>
       <div class="container">
     		<br><br>
 
 	    	<div class="row">
 	    		<div class="col-sm-8 col-sm-offset-2">
-	    			<h1>Apple Introduces 3D Touch, The Next Generation Of Multitouch For The iPhone 6S</h1>
+	    			<h1>{{post.Postitle}}</h1>
 		    		 <br>
 
 		    		 <p>
-		    		 	In an effort to deliver the next generation of what Apple CEO Tim Cook called "the most-loved phone in the world," the iPhone 6S has created the next generation of its industry-shattering multitouch screen: the 3D Touch, which Chief Design Officer Jony Ive called "a tremendous breakthrough in interacting with our devices" in the company's demo video.
-		    		 	<br><br>
-
-		    		 	Deemed "a whole new dimension to the way you experience your iPhone" by Apple, 3D Touch recognizes a user's wanted action via finger pressure and force, rather than a mere gesture like the traditional swipe or pinch.
-		    		 	<br><br>
-
-		    		 	But how exactly does this work? The explanation is somewhat simple, even if the technology is more extensive than meets the eye. To wit: sensors within the smartphone measure the force of finger pressure, which then translates, letting the iPhone know the users needs and wants.
-		    		 	<br><br>
-
-		    		 	For example, if a user applies a light pressure to the screen when selecting an option to view content, the preview for said content pops up; if the user presses harder on the option for the content, it will open automatically.
-		    		 	<br><br>
-
-		    		 	Apple's Craig Federighi, senior vice president of software engineering, who conducted a live demo at the Apple event, also demonstrated how the new interactive interface eliminates going "in and out" of windows in certain apps, like mail apps – with 3D Touch, pressure dictates whether the user wants a sneak peek of a message, or to fully view it.
-		    		 </p>
+		    		 	{{post.Possubject}}
+					</p>
 		    		 <br>
 
 		    		 <button class="btn btn-primary btn-sm facebook"> <i class="ion-social-facebook"></i> Share </button>
 		    		 <button class="btn btn-primary btn-sm twitter"> <i class="ion-social-twitter"></i> Retweet</button>
 		    		 <button class="btn btn-primary btn-sm googleplus"> <i class="ion-social-googleplus"></i> Plus </button>
-
+						{% if post.Posuser == request.user %}
+						<div style="float: right;">
+							<a href="{% url 'delete-post-item-photo' post.id %}" class="btn btn-danger">Delete Post</a>
+							<a href="{% url 'update-post-item-photo' post.id %}" style="margin-left: 9px;" class="btn btn-success">Update Post</a>
+						</div>
+						{% endif %}
 		    		 <hr>
 		    		 <div class="comments">
-		    		 	<h2 class="h3">What do you think? (#2)</h2>
+						 
+						 
+							 
+						 
+						 {% if changecomment %}			
+						 <h1>Update Comment</h1>			 
+		    		 	<div class="card card-body" style="margin-top: 20px;">
+							<form method='POST'>
+								{% csrf_token %}
+								  <h5>Update Your Comment</h5>
+								  
+								  {% for fm in form %}
+									  {{fm}}{{fm.errors}}
+								  {% endfor %}
+								  <button type="submit" class="btn btn-success" style="margin-top: 10px;"> {% if changecomment %}{{changecomment}} {% else %}Add comment{% endif %}</button>
+							</form>
+						</div>
+					  </div>
+						 {%else%}
+						 <h2 class="h3">What do you think? (#{{post.comment.count}})</h2>
 		    		 	<br>
-
-
-		    		 	<h3>Anne Hathaway</h3>
-		    		 	<label>2 years ago</label>
+						 <button class="btn btn-default btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> <i class="ion-chatbox-working"></i> Add comment </button>
+						 <div class="collapse " id="collapseExample" >
+							<div class="card card-body" style="margin-top: 20px;">
+								<form method='POST'>
+									{% csrf_token %}
+									  <h5>Enter Your Comment</h5>
+									  
+									  {% for fm in form %}
+										  {{fm}}{{fm.errors}}
+									  {% endfor %}
+									  <button type="submit" class="btn btn-success" style="margin-top: 10px;"> {% if changecomment %}{{changecomment}} {% else %}Add comment{% endif %}</button>
+								</form>
+							</div>
+						  </div>
+						 {% endif %}
+						 
+						  <hr>
+						{% for comment in comments %}
+						 <div style="display: block;">
+							<h3 style="display: inline;">{{comment.PComuser}}{% if comment.PComuser == request.user %} (You){% endif %} </h3>
+							{% if comment.PComuser == request.user %}
+								<div style="float: right;">
+								<a href="{% url 'blog-item-photo-update' comment.id %}"><button class="btn btn-success float-right">Update</button></a>
+							    <a href="{% url 'blog-item-photo-delete' comment.id %}"><button id="comment-delete" style="margin-left: 10px;" class="btn btn-danger float-right deletecomment">Delete</button></a>
+								</div>
+							{% endif %}
+							
+						 </div>
+		    		 	<label>{{ comment.PComadd|timesince }} ago</label>
 		    		 	<p>
-		    		 		Apple Music brings iTunes music streaming to the UK. But is it worth paying for? In our Apple Music review, we examine the service's features, UK pricing, audio quality and music library
-		    		 	</p>
-
-
-		    		 	<h3>Chris Hemsworth</h3>
-		    		 	<label>Today</label>
-		    		 	<p>
-		    		 		Samsung's Galaxy S7 smartphone is getting serious hype. Here's what it does better than Apple's iPhone 6s.
-		    		 	</p>
-		    		 	<br>
-
-		    		 	<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#Modal-Comment"> <i class="ion-chatbox-working"></i> Add comment </button>
+		    		 		{{comment.PComessage}}
+						 </p>
+						 <br>
+						 <br>
+						{% endfor %}
+		    		 	
 		    		 </div>
 	    		</div>
 	    	</div>
@@ -64,3 +116,18 @@
     </div>
     <br><br>
 {% endblock %}
+
+{% block script %}
+  <!-- <script>
+	  message before delete comment
+function showmessage(){
+
+	var message = document.getElementById('message')
+	message.style.display = ' Block'
+	}
+function hidemessage(){
+	var message = document.getElementById('message')
+	message.style.display = ' Block'
+}
+  </script> -->
+{% endblock script %}

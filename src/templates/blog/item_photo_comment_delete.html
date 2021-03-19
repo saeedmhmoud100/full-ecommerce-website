@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Unistore|Delete {{item}}{% endblock title %}
+
+{% block content %}
+    <hr class="offset-lg">
+<div class="container">
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="card border" style="border: 1px solid #333;padding: 10px;">
+            <h2 style="margin-bottom: 15px;">Are you sure You want to delete thit {{item}}?</h2>
+            <button type="submit" class="btn btn-danger" style="margin-right: 7px;">Delete</button>
+            <a href="{% url 'blog-item-photo' post.id %}" class='btn btn-success'>Cancle</a>
+        </div>
+    </form>
+</div>
+
+{%endblock  %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Blog|{{title}} &middot; Unistore{% endblock title %}
+
+{% block content %}
+
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <h1>{{h1}}</h1>
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        {% for fm in form %}
+                            {{fm.label|safe}}
+                            {{fm}}
+                            {{fm.errors}}
+                        {% endfor %}
+                            <button class="btn btn-success" style="margin-top: 8px;">{{button}}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+{% endblock %}

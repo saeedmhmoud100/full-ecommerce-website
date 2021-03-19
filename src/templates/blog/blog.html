@@ -5,7 +5,16 @@
 
 {% block content %}
     <hr class="offset-lg">
-
+    
+    {% if messages %}
+    {% for message in messages %}
+      <div class="container">
+        <div class="alert alert-{{message.tags}}">{{message}}</div>
+      </div>
+    {% endfor %}
+    {% endif %}
+      
+    
     <div class="container tags">
         <p>Search by tags</p>
         <div class="btn-group" data-toggle="buttons">
@@ -28,6 +37,7 @@
             <input type="radio" name="options" id="option6"> Reviews
           </label>
         </div>
+        <a href="{% url 'add-post-item-photo' %}" style="float: right;"><button class="btn btn-default btn-sm"> Add New Post</button></a>
     </div>
     <hr class="offset-sm">
 
