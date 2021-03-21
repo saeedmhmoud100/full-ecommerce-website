@@ -11,7 +11,14 @@
         <div class="card border" style="border: 1px solid #333;padding: 10px;">
             <h2 style="margin-bottom: 15px;">Are you sure You want to delete thit {{item}}?</h2>
             <button type="submit" class="btn btn-danger" style="margin-right: 7px;">Delete</button>
-            <a href="{% url 'blog-item-photo' post.id %}" class='btn btn-success'>Cancle</a>
+            
+            {% if post.PostImg %}
+                <a href="{% url 'blog-item-photo' post.id %}" class='btn btn-success'>Cancle</a>
+                {% elif post.Posvtitle %}
+                <a href="{% url 'blog-item-video' post.id %}" class='btn btn-success'>Cancle</a>
+            {% endif %}
+                
+            
         </div>
     </form>
 </div>

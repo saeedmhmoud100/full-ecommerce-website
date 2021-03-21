@@ -21,16 +21,16 @@
     	<div class="container marketing">
         <div class="row">
           <div class="col-sm-12 align-center">
-            <h1>HP Chromebook laptops</h1>
-            <p>With the HP Chromebook running lightning-fast Chrome OS, <br> the best of Google is at hand on a colorfully sleek and stylish notebook.</p>
+            <h1>{{item.headertext}}</h1>
+            <p>{{item.headertitle}}</p>
             <a href="#video" data-gallery="#video" data-source="youtube" data-id="AqUjIs0pw_U" data-title="HP Chromebook review" data-description="Detailed unboxing and review of the new Google designed 11-inch HP Chromebook. 239$">
               Video unboxing & review <i class="ion-ios-play"></i>
             </a>
             <br><br>
           </div>
           <div class="col-sm-6 col-sm-offset-3 align-center">
-            <img src="../assets/img/blog/item-review.jpg" alt="HP Chromebook" class="image" />
-            <h2>Starting at $199.99</h2>
+            <img src="{{item.headerimg.url}}" alt="HP Chromebook" class="image" />
+            <h2>Starting at ${{item.price}}</h2>
 
             <a href="#first-featurette" class="scroll-to"> <i class="ion-android-arrow-down"></i> <br> Scroll for more </a>
           </div>
@@ -39,15 +39,13 @@
 
         <div class="row featurette" id="first-featurette">
           <div class="col-md-7">
-            <h2 class="featurette-heading">Anywhere, anytime mobility. <span class="text-muted"> Fast, simple, secure. </span></h2>
+            <h2 class="featurette-heading">{{item.reviewtitle1}}</h2>
             <p class="lead">
-              School, home, or on the road, the slim design, and latest Intel® processor give you everything you need to take on the world.
-              Conveniently store up to 100GB of your files and content with the included 2-years of Google Drive access.
-              With up to 9.5 hours of long lasting battery, search, stream, chat, and more for hours without recharging.
+              {{item.reviewdescription1}}
             </p>
           </div>
           <div class="col-md-5">
-            <img class="featurette-image img-responsive center-block" alt="500x500" src="../assets/img/blog/review-2.jpg">
+            <img class="featurette-image img-responsive center-block" alt="500x500" src="{{item.reviewimg1.url}}">
           </div>
         </div>
 
@@ -55,14 +53,13 @@
 
         <div class="row featurette" id="second-featurette">
           <div class="col-md-7 col-md-push-5">
-            <h2 class="featurette-heading">Entertainment at your fingertips. <span class="text-muted"> HP TrueVision.</span></h2>
+            <h2 class="featurette-heading">{{item.reviewtitle2}}</h2>
             <p class="lead">
-              Capture all the details with vibrant clarity, even in low light. Enjoy the nuances of face-to-face conversations, thanks to the HP TrueVision HD Webcam.
-              Lay back and get comfortable with your favorite movies and shows. The 11.6-inch diagonal HD IPS screen (optional) delivers your entertainment in stunning quality, from any angle
+              {{item.reviewdescription2}}
             </p>
           </div>
           <div class="col-md-5 col-md-pull-7">
-            <img class="featurette-image img-responsive center-block" alt="500x500" src="../assets/img/blog/review-1.jpg">
+            <img class="featurette-image img-responsive center-block" alt="500x500" src="{{item.reviewimg2.url}}">
           </div>
         </div>
 
@@ -70,14 +67,13 @@
 
         <div class="row featurette" id="third-featurette">
           <div class="col-md-7">
-            <h2 class="featurette-heading">Sleek and colorful. <span class="text-muted">Checkmate.</span></h2>
+            <h2 class="featurette-heading">{{item.reviewtitle3}}</h2>
             <p class="lead">
-              With the HP Chromebook running lightning-fast Chrome OS, the best of Google is at hand on a colorfully sleek and stylish notebook.
-              Express yourself with an HD 29.5 cm (11.6") diagonal screen in a slim package, styled in smoke silver or sky blue.
+              {{item.reviewdescription3}}
             </p>
           </div>
           <div class="col-md-5">
-            <img class="featurette-image img-responsive center-block" alt="500x500" src="../assets/img/blog/review-3.jpg">
+            <img class="featurette-image img-responsive center-block" alt="500x500" src="{{item.reviewimg3.url}}">
           </div>
         </div>
       </div>
@@ -100,7 +96,7 @@
         <div class="row">
           <div class="col-sm-6 col-md-3 col-md-offset-3 product">
                 <a href="#favorites" class="favorites" data-favorite="inactive"><i class="ion-ios-heart-outline"></i></a>
-                <a href="./"><img src="../assets/img/products/chrome-book-11.jpg" alt="HP Chromebook 11"/></a>
+                <a href="./"><img src="{% static 'assets/img/products/chrome-book-11.jpg' %}" alt="HP Chromebook 11"/></a>
 
                 <div class="content">
                   <h1 class="h4">HP Chromebook 11</h1>
@@ -114,7 +110,7 @@
 
               <div class="col-sm-6 col-md-3 product">
                 <a href="#favorites" class="favorites" data-favorite="inactive"><i class="ion-ios-heart-outline"></i></a>
-                <a href="./"><img src="../assets/img/products/chrome-book-14.jpg" alt="HP Chromebook 14"/></a>
+                <a href="./"><img src="{% static 'assets/img/products/chrome-book-14.jpg' %}" alt="HP Chromebook 14"/></a>
 
                 <div class="content">
                   <h1 class="h4">HP Chromebook 14</h1>
@@ -130,3 +126,7 @@
       </div>
     </div>
 {% endblock content %}
+
+{% block script %}
+  
+{% endblock script %}

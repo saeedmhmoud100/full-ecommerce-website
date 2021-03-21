@@ -3,8 +3,9 @@ from django.urls import reverse
 from django.views.generic import UpdateView,ListView,DetailView,UpdateView,DeleteView,CreateView,FormView
 from django.views.generic.edit import FormMixin
 from django.contrib import messages
-from .models import Post,PostComment
-from .forms import ItemPhotoPostForm,ItemPhotoCommentForm
+from django.core.paginator import Paginator
+from .models import Post,PostComment,video,PostVideoComment,BlogReview
+from .forms import ItemPhotoPostForm,ItemPhotoCommentForm,ItemVideoCommentForm,ItemvideoPostForm
 # Create your views here.
 
 
@@ -14,43 +15,21 @@ class HomeBlogView(ListView):
     template_name = 'blog/blog.html'
     paginate_by = 2
 
-
-#try create with class based view
-# class ItemPhotoCreatePostView(FormView,FormMixin):
-#     model = Post
-#     form_class = ItemPhotoPostForm
-#     template_name = 'blog/Create_update_post.html'
-
-#     def get_context_data(self, **kwargs):
-#         context = super(ItemPhotoCreatePostView, self).get_context_data(**kwargs)
-#         context['title'] = 'New Post'
-#         context['h1'] = 'Add New Post'
-#         context['button'] = 'Add Post'
-#         return context
-
-#     def form_valid(self, form):
-#         print(self.object)
-#         print(self.object.id)
-#         form.save()
-#         messages.success(request,'added post successfuly!!')
-#         return super(ItemPhotoCreatePostView, self).form_valid(form)
-
-# def post(self, request, *args, **kwargs):
-#     self.object = self.get_object()
-#     form = self.get_form()
-#     if form.is_valid():
-#         return self.form_valid(form)
-#     else:
-#         return self.form_invalid(form)
-
-#     def get(self, request, *args, **kwargs):
-#         self.object = self.get_object()
-#         return super().get(request, *args, **kwargs)
-
-#     def get_success_url(self):
-        
-#         return reverse('blog')
-
+def blogfilter(request,data=None):
+    if data == 'photo':
+        contact_list = Post.objects.all()
+    elif data == 'video':
+        contact_list = video.objects.all()
+    elif data == 'review':
+        contact_list = BlogReview.objects.all()
+    paginator = Paginator(contact_list, 2) 
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context ={
+        'page_obj': page_obj,
+        'post_list':contact_list
+    }
+    return render(request,'blog/blog.html',context)
 def itemphotocreatepost(request):
     if request.method == 'POST':
         new_post = ItemPhotoPostForm(request.POST, request.FILES)
@@ -161,10 +140,106 @@ class ItemPhotoDeleteCommentView(DeleteView):
     def get_success_url(self):
         return reverse('blog-item-photo',args=[self.object.PCompost.id])
 
+class VideoBlogView(DetailView, FormMixin):
+    model = video
+    template_name = 'blog/blog-item-video.html'
+    context_object_name = 'video'
+    form_class = ItemPhotoCommentForm
 
-def blog_item_review(request):
-    return render(request,'ecommerce/blog-item-review.html')
+    def get_context_data(self, **kwargs):
+        context = super(VideoBlogView, self).get_context_data(**kwargs)
+        context['comments'] = PostVideoComment.objects.filter(PVCompost=self.object.id)
+        context['form'] = ItemVideoCommentForm()
+        context['post'] = self.object
+        return context
+
+    
+    def get_success_url(self):
+        return reverse('blog-item-video',args=[self.object.id])
+
+    def post(self, request, *args, **kwargs):
+
+        self.object = self.get_object()
+        form = ItemVideoCommentForm(request.POST)
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+    
+    def form_valid(self, form):
+        form_save = form.save(commit=False)
+        form_save.PVCompost = self.object
+        form_save.PVComuser = self.request.user
+        form_save.save()
+
+        messages.success(self.request,'Yor message added successfully!!')
+        return super(VideoBlogView, self).form_valid(form)
+
+class UpdateVideoCommentView(UpdateView):
+    template_name = 'blog/blog-item-video.html'
+    model = PostVideoComment
+    form_class = ItemVideoCommentForm
+    def get_context_data(self, **kwargs):
+        context = super(UpdateVideoCommentView, self).get_context_data(**kwargs)
+        context['video'] = video.objects.get(pk=self.object.PVCompost.id)
+        context['comments'] = PostVideoComment.objects.filter(PVCompost=self.object.PVCompost.id)
+        context['changecomment']= 'Update Comment'
+        return context
+
+class DeleteVideoCommentView(DeleteView):
+    model = PostVideoComment
+    template_name = 'blog/item_photo_comment_delete.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(DeleteVideoCommentView, self).get_context_data(**kwargs)
+        context['post'] = video.objects.get(pk=self.object.PVCompost.id)
+        context['item'] = 'Comment'
+        return context
+
+    def get_success_url(self):
+        return reverse('blog-item-video',args=[self.object.PVCompost.id])
+
+def blog_item_review(request,id):
+    item_review = BlogReview.objects.get(id=id)
+    context={
+        'item':item_review
+    }
+    return render(request,'blog/blog-item-review.html',context)
+
+class UpdatePostvideoView(UpdateView):
+    model = video
+    form_class= ItemvideoPostForm
+    template_name = 'blog/Create_update_post.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(UpdatePostvideoView, self).get_context_data(**kwargs)
+        context['title'] = 'Update Post'
+        context['h1'] = 'Update Post'
+        context['button'] = 'Update Post'
+        return context
+    
+    def form_valid(self,form):
+        form.instance.Posvuser = self.request.user
+        form.save()
+        messages.success(self.request,'updated post successfuly!!')
+        return redirect(reverse('blog-item-video',kwargs={'pk':form.instance.pk}))
+
+class DeletePostItemVideoView(DeleteView):
+    model = video
+    template_name = 'blog/item_photo_comment_delete.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(DeletePostItemVideoView, self).get_context_data(**kwargs)
+        context['post'] = video.objects.get(pk=self.object.id)
+        context['item'] = 'Post'
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        messages.success(self.request,'Deleted Post successfully!!')
+        return super().post(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse('blog-item', kwargs={'data':'video'})
 
 
-def blog_item_video(request):
-    return render(request,'ecommerce/blog-item-video.html')

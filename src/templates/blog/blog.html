@@ -17,28 +17,27 @@
     
     <div class="container tags">
         <p>Search by tags</p>
-        <div class="btn-group" data-toggle="buttons">
-          <label class="btn btn-default btn-xs active">
-            <input type="radio" name="options" id="option1" checked> All items
+        <div class="btn-group" data-toggle="">
+          <label class="btn btn-default btn-xs">
+             <a href="{% url 'blog-item' 'photo' %}">
+              Photo
+            </a>
           </label>
           <label class="btn btn-default btn-xs">
-            <input type="radio" name="options" id="option2"> Newest
+            <a href="{% url 'blog-item' 'video' %}">
+              Video
+            </a>
           </label>
           <label class="btn btn-default btn-xs">
-            <input type="radio" name="options" id="option3"> Popular
-          </label>
-          <label class="btn btn-default btn-xs">
-            <input type="radio" name="options" id="option4"> News
-          </label>
-          <label class="btn btn-default btn-xs">
-            <input type="radio" name="options" id="option5"> Articles
-          </label>
-          <label class="btn btn-default btn-xs">
-            <input type="radio" name="options" id="option6"> Reviews
+            <a href="{% url 'blog-item' 'review' %}">
+              Review
+            </a>
           </label>
         </div>
+        {% if post.Postitle %}
         <a href="{% url 'add-post-item-photo' %}" style="float: right;"><button class="btn btn-default btn-sm"> Add New Post</button></a>
-    </div>
+        {% endif %}
+      </div>
     <hr class="offset-sm">
 
     <div class="blog">
@@ -49,29 +48,67 @@
 
   
         {% for post in post_list %}
+        
+        {% if post.Postitle %}
           <div class="col-sm-6 col-md-6 item">
-
             <div class="body">
               <a href="{% url 'blog-item-photo' post.id %}" class="view"><i class="ion-ios-book-outline"></i></a>
-
               <a href="{% url 'blog-item-photo' post.id %}">
                 <img src="{{post.PostImg.url}}" title="Apple Devices" alt="Apple Devices">
               </a>
-
               <div class="caption">
-                <h1 class="h3">{{post.Postitle}}</h1>
+                <h1 class="h3">{{post.Postitle|safe}}</h1>
                 <label> {{post.Posadd|date:"Y-m-d"}}</label>
                 <hr class="offset-sm">
-
                 <p>
                   {{post.Possubject}}
                 </p>
                 <hr class="offset-sm">
-
                 <a href="{% url 'blog-item-photo' post.id %}"> View article <i class="ion-ios-arrow-right"></i> </a>
               </div>
             </div>
           </div>
+          {% elif post.posvimg %}
+          <div class="col-sm-6 col-md-6 item">
+            <div class="body">
+              <a href="{% url 'blog-item-video' post.id %}" class="view"><i class="ion-ios-book-outline"></i></a>
+              <a href="{% url 'blog-item-video' post.id %}">
+                <img src="{{post.posvimg.url}}" title="Apple Devices" alt="Apple Devices">
+              </a>
+              <div class="caption">
+                <h1 class="h3">{{post.Posvtitle|safe}}</h1>
+                <label> {{post.Posvadd|date:"Y-m-d"}}</label>
+                <hr class="offset-sm">
+                <p>
+                  {{post.Posvsubject}}
+                </p>
+                <hr class="offset-sm">
+                <a href="{% url 'blog-item-video' post.id %}"> View article <i class="ion-ios-arrow-right"></i> </a>
+              </div>
+            </div>
+          </div>
+          {% elif post.headerimg %}
+          <div class="col-sm-6 col-md-6 item">
+            <div class="body">
+              <a href="{% url 'blog-item-review' post.id %}" class="view"><i class="ion-ios-book-outline"></i></a>
+              <a href="{% url 'blog-item-review' post.id %}">
+                <img src="{{post.headerimg.url}}" title="Apple Devices" alt="Apple Devices">
+              </a>
+              <div class="caption">
+                <h1 class="h3">{{post.headertitle|safe}}</h1>
+                <label> {{post.createat|date:"Y-m-d"}}</label>
+                <hr class="offset-sm">
+                <p>
+                  {{post.reviewdescription1}}
+                </p>
+                <hr class="offset-sm">
+                <a href="{% url 'blog-item-review' post.id %}"> View article <i class="ion-ios-arrow-right"></i> </a>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+          
+          
         {% endfor %}
         </div>
 

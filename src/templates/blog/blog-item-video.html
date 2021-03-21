@@ -1,21 +1,30 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}{% endblock title %}
+{% block title %}Blog &middot; Unistore{% endblock title %}
 
 {% block content %}
 
+<div class="container">
+	{% if messages %}
+		{% for message in messages %}
+			<div class="alert alert-{{message.tags}}">{{message}}</div>
+		{% endfor %}
+	{% endif %}
+</div>
+
+
     <div class="blog-item">
       <div class="tiles">
-        <a href="#video" data-gallery="#video" data-source="youtube" data-id="uf7U3Y2DFCA" data-title="MacBook Pro - brand new day for business" data-description="So capable, you won’t want to put it down. So thin and light, you won’t have to.">
-            <img src="../assets/img/blog/item-video.jpg" alt="MacBook Pro"/>
+        <a href="#video" data-gallery="#video" data-source="youtube" data-id="{{video.PosvId}}" data-title="MacBook Pro - brand new day for business" data-description="So capable, you won’t want to put it down. So thin and light, you won’t have to.">
+            <img src="{{video.posvimg.url}}" alt="MacBook Pro"/>
 
           <div class="overlay"></div>
           <div class="content">
             <div class="content-outside">
               <div class="content-inside">
                 <i class="ion-ios-play"></i>
-                <h1>MacBook Pro <br> brand new day for business</h1>
+                {{video.Posvtitle|safe}}
               </div>
             </div>
           </div>
@@ -29,41 +38,76 @@
 	    	<div class="row">
 	    		<div class="col-sm-8 col-sm-offset-2">
 		    		 <p>
-		    		 	Organizations everywhere are realizing the potential that Mac brings to their employees by giving them the freedom to use the tools they already know and love.
-		    		 	<br><br>
-
-		    		 	Software and hardware made for each other. Because Apple designs both the software and hardware, every Mac delivers the best possible experience for employees. OS X works seamlessly with hardware in every Mac, like the super-responsive trackpad in Mac notebooks that make Multi-Touch gestures feel natural to use. And thanks to multicore Intel processors and fast flash storage, a Mac wakes instantly from sleep, ready to perform any task.
-		    		 	<br><br>
-
-		    		 	New ways for employees to get work done. With OS X and the built-in apps that come with every Mac, employees can be productive right away — on a platform they love. And with innovative new types of business apps, employees are able to collaborate in new ways and manage their work like never before.
+		    		 	{{video.Posvsubject}}
 		    		 </p>
 		    		 <br>
 
 		    		 <button class="btn btn-primary btn-sm facebook"> <i class="ion-social-facebook"></i> Share </button>
 		    		 <button class="btn btn-primary btn-sm twitter"> <i class="ion-social-twitter"></i> Retweet</button>
 		    		 <button class="btn btn-primary btn-sm googleplus"> <i class="ion-social-googleplus"></i> Plus </button>
-
+					 {% if post.Posvuser == request.user %}
+						<div style="float: right;">
+							<a href="{% url 'delete-post-item-video' post.id %}" class="btn btn-danger">Delete Post</a>
+							<a href="{% url 'update-post-item-video' post.id %}" style="margin-left: 9px;" class="btn btn-success">Update Post</a>
+						</div>
+						{% endif %}
 		    		 <hr>
 		    		 <div class="comments">
-		    		 	<h2 class="h3">What do you think? (#2)</h2>
-		    		 	<br>
+						<h2 class="h3">What do you think? (#{{video.videocomment.count}})</h2>
+						<hr><br>
+						{% if changecomment %}			
+						<h1>Update Comment</h1>			 
+						<div class="card card-body" style="margin-top: 20px;">
+						   <form method='POST'>
+							   {% csrf_token %}
+								 <h5>Update Your Comment</h5>
+								 
+								 {% for fm in form %}
+									 {{fm}}{{fm.errors}}
+								 {% endfor %}
+								 <button type="submit" class="btn btn-success" style="margin-top: 10px;"> {% if changecomment %}{{changecomment}} {% else %}Add comment{% endif %}</button>
+						   </form>
+					   </div>
+					 </div>
+					 <hr><br><br>
+					 {% endif %}
 
+						{% for comment in comments %}
+						 <div style="display: block;">
+							<h3 style="display: inline;">{{comment.PVComuser}}{% if comment.PVComuser == request.user %} (You){% endif %} </h3>
+							{% if comment.PVComuser == request.user %}
+								<div style="float: right;">
+								<a href="{% url 'update-video-item' comment.id %}"><button class="btn btn-success float-right">Update</button></a>
+							    <a href="{% url 'delete-video-item' comment.id %}"><button id="comment-delete" style="margin-left: 10px;" class="btn btn-danger float-right deletecomment">Delete</button></a>
+								</div>
+							{% endif %}
+						</div>
+						<label>{{ comment.PVComadd|timesince }} ago</label>
+						<p>
+							{{comment.PVComessage}}
+						</p>
+						<br>
+						<br>
+						{% endfor  %}
 
-		    		 	<h3>Anne Hathaway</h3>
-		    		 	<label>2 years ago</label>
-		    		 	<p>
-		    		 		Apple Music brings iTunes music streaming to the UK. But is it worth paying for? In our Apple Music review, we examine the service's features, UK pricing, audio quality and music library
-		    		 	</p>
-
-
-		    		 	<h3>Chris Hemsworth</h3>
-		    		 	<label>Today</label>
-		    		 	<p>
-		    		 		Samsung's Galaxy S7 smartphone is getting serious hype. Here's what it does better than Apple's iPhone 6s.
-		    		 	</p>
-		    		 	<br>
-
-		    		 	<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#Modal-Comment"> <i class="ion-chatbox-working"></i> Add comment </button>
+						
+						{% if not changecomment %}
+						<br>
+						<button class="btn btn-default btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> <i class="ion-chatbox-working"></i> Add comment </button>
+						<div class="collapse " id="collapseExample" >
+						   <div class="card card-body" style="margin-top: 20px;">
+							   <form method='POST'>
+								   {% csrf_token %}
+									 <h5>Enter Your Comment</h5>
+									 
+									 {% for fm in form %}
+										 {{fm}}{{fm.errors}}
+									 {% endfor %}
+									 <button type="submit" class="btn btn-success" style="margin-top: 10px;"> {% if changecomment %}{{changecomment}} {% else %}Add comment{% endif %}</button>
+							   </form>
+						   </div>
+						 </div>
+						{% endif %}
 		    		 </div>
 	    		</div>
 	    	</div>
