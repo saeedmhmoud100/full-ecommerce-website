@@ -4,9 +4,9 @@ from django.utils import timezone
 # Create your models here.
 
 PRODUCT_TYPE =  (
-    ('lap','Laptops'),
-    ('tap','Taplet'),
-    ('hyp','Hybrid')
+    ('laptop','Laptops'),
+    ('taplet','Taplet'),
+    ('hybrid','Hybrid')
 )
 PRODUCT_BRAND = (
     ('hp','HP'),
@@ -36,23 +36,35 @@ class Product(models.Model):
     tag1 = models.CharField(max_length=20,choices=PRODUCT_MADE_FOR,verbose_name='Tags')
     tag2 = models.CharField(max_length=20,choices=PRODUCT_MADE_FOR,verbose_name='Tags',blank=True, null=True)
     tag3 = models.CharField(max_length=20,choices=PRODUCT_MADE_FOR,verbose_name='Tags',blank=True, null=True)
-    selling_price = models.IntegerField(default=0,verbose_name='Selling Price')
-    discount_price = models.IntegerField(default=0,verbose_name='Discount Price')
+    selling_price = models.FloatField(default=0,verbose_name='Selling Price')
+    discount_price = models.FloatField(default=0,verbose_name='Discount Price',blank=True, null=True)
     created_at= models.DateTimeField(default=timezone.now,verbose_name='Created At')
     update_at = models.DateTimeField(auto_now_add=True,verbose_name='Update At')
 
-class Product_img(models.Model):
+
+    def __str__(self):
+        return self.title
+
+class ProductImg(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE,related_name='imgs')
     img = models.ImageField(upload_to='product_img',verbose_name='Img')
 
-class Product_property(models.Model):
+
+    def __str__(self):
+        return f'{self.product.title} img'
+class ProductProperty(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='property')
     prop = models.CharField(max_length=25,verbose_name='Property')
     prop_discrption = models.CharField(max_length=250,verbose_name='discrption of the Proprty')
-
-class product_comments(models.Model):
+    
+    def __str__(self):
+        return f'{self.product.title} property'
+    
+class productComment(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     product = models.ForeignKey(Product,on_delete=models.CASCADE,related_name='comment')
     message = models.TextField(verbose_name='Message')
     created_at= models.DateTimeField(default=timezone.now,verbose_name='Created At')
 
+    def __str__(self):
+        return f'comment of {self.user.username} on {self.product.title} product'
