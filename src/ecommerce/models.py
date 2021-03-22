@@ -26,6 +26,7 @@ class Product(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     title = models.CharField(max_length=30,verbose_name='Title')
     discrption = models.TextField(verbose_name='Discrption')
+    img = models.ImageField(upload_to='product_img',verbose_name='Img')
     Brand = models.CharField(max_length=20,choices=PRODUCT_BRAND,verbose_name='Brand')
     prodtype = models.CharField(max_length=15,choices=PRODUCT_TYPE,verbose_name='Product type')
     os = models.CharField(max_length=20,verbose_name='Operating system')
@@ -40,13 +41,18 @@ class Product(models.Model):
     created_at= models.DateTimeField(default=timezone.now,verbose_name='Created At')
     update_at = models.DateTimeField(auto_now_add=True,verbose_name='Update At')
 
+class Product_img(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE,related_name='imgs')
+    img = models.ImageField(upload_to='product_img',verbose_name='Img')
+
 class Product_property(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='prop')
-    prop = models.CharField(max_length=25,verbose_name='Proprty')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='property')
+    prop = models.CharField(max_length=25,verbose_name='Property')
     prop_discrption = models.CharField(max_length=250,verbose_name='discrption of the Proprty')
 
 class product_comments(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    product = models.ForeignKey(Product,on_delete=models.CASCADE)
+    product = models.ForeignKey(Product,on_delete=models.CASCADE,related_name='comment')
     message = models.TextField(verbose_name='Message')
     created_at= models.DateTimeField(default=timezone.now,verbose_name='Created At')
+
