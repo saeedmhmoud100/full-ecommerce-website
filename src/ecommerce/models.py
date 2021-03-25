@@ -38,6 +38,7 @@ class Product(models.Model):
     tag3 = models.CharField(max_length=20,choices=PRODUCT_MADE_FOR,verbose_name='Tags',blank=True, null=True)
     selling_price = models.FloatField(default=0,verbose_name='Selling Price')
     discount_price = models.FloatField(default=0,verbose_name='Discount Price',blank=True, null=True)
+    favourites = models.ManyToManyField(User,default=None,blank=True,related_name='favourite')
     created_at= models.DateTimeField(default=timezone.now,verbose_name='Created At')
     update_at = models.DateTimeField(auto_now_add=True,verbose_name='Update At')
 

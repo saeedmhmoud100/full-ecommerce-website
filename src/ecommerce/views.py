@@ -1,4 +1,5 @@
 from django.shortcuts import render,get_object_or_404
+from django.http import JsonResponse
 from django.views.generic import View
 from.models import Product
 # Create your views here.
@@ -23,9 +24,19 @@ class CatalogProductView(View):
         product = get_object_or_404(Product,pk=pk)
         return render(request,'ecommerce/catalog-product.html')
 
-# def catalog_product(request):
-#     return render(request,'ecommerce/catalog-product.html')
-
+def favorite_or_unfavorite(request):
+    id = request.GET.get('id',None)
+    user = request.user
+    product = Product.objects.get(id=id)
+    
+    if user in product.favourites.all():
+        product.favourites.remove(user)
+    else:
+        product.favourites.add(user)
+    data={
+        'id':id
+    }
+    return JsonResponse(data)
 
 def gallery(request):
     return render(request,'ecommerce/gallery.html')

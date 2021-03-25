@@ -434,7 +434,14 @@
             
             {% for product in products %}
               <div class="col-sm-6 col-md-4 product">
-              <a href="#favorites" class="favorites" data-favorite="inactive"><i class="ion-ios-heart-outline"></i></a>
+              
+              {% if request.user in product.favourites.all %}
+                <a href="#" class="favorites" data-favorite="inactive" data-id='{{product.id}}' id="fav"><i class="ion-ios-heart"></i></a>
+              {% else %}
+              <a href="#" class="favorites" data-favorite="inactive" data-id='{{product.id}}' id="fav"><i class="ion-ios-heart-outline"></i></a>
+              {% endif %}
+                
+              
               <a href="./"><img src="{{product.img.url}}" alt="{{product.title}}"/></a>
 
               <div class="content">
@@ -477,3 +484,31 @@
     </div>
     <br><br>
     {% endblock content %}
+
+    {% block script %}
+    <script>
+      $('.favorites').click(function(e){
+        let item = $(this)
+        let id = $(this).data('id')
+        const el = "<i class='ion-ios-heart'></i>"
+        const el2 = "<i class='ion-ios-heart-outline'></i>"
+        $.ajax({
+          url:"{% url 'fav' %}",
+          data:{
+            'id':id
+          },
+          dataType:'json',
+          success:function(data){
+            if(item.children().hasClass('ion-ios-heart-outline')){
+            item.children().remove()
+            item.append(el)
+            }else{
+              item.children().remove()
+              item.append(el2)
+            }
+          }
+        })
+      })
+    </script>
+     
+    {% endblock script %}
