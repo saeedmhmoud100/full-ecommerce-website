@@ -1,5 +1,6 @@
 from django.shortcuts import render,get_object_or_404
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpResponse
+from django.template.loader import render_to_string
 from django.views.generic import View
 from.models import Product
 # Create your views here.
@@ -19,10 +20,6 @@ class CatalogView(View):
         }
         return render(request,'ecommerce/catalog.html',context)
 
-class CatalogProductView(View):
-    def get(self,request,pk):
-        product = get_object_or_404(Product,pk=pk)
-        return render(request,'ecommerce/catalog-product.html')
 
 def favorite_or_unfavorite(request):
     id = request.GET.get('id',None)
@@ -37,6 +34,32 @@ def favorite_or_unfavorite(request):
         'id':id
     }
     return JsonResponse(data)
+
+def product_type_filter(request):
+    types = request.GET.getlist('type[]')
+    screens = request.GET.getlist('screen[]')
+    scr = request.GET.getlist('scrManufacturereen[]')
+    allproducts = Product.objects.all().order_by('-id')
+    if len(types)>0:
+        allproducts = allproducts.filter(prodtype__in=types).distinct()
+    if len(screens)>0:
+        allproducts = allproducts.filter(screen_size__in=screens).distinct()
+    if len(scr)>0:
+        allproducts = allproducts.filter(Brand__in=scr).distinct()
+
+    context={
+        'products':allproducts,
+    }
+    t = render_to_string('ecommerce/products.html',context)
+    data = {
+        'data':t
+    }
+    return JsonResponse(data)
+
+class CatalogProductView(View):
+    def get(self,request,pk):
+        product = get_object_or_404(Product,pk=pk)
+        return render(request,'ecommerce/catalog-product.html')
 
 def gallery(request):
     return render(request,'ecommerce/gallery.html')

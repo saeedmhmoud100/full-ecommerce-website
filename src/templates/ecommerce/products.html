@@ -1,0 +1,53 @@
+<div id="products">
+  <div class="col-sm-9 products">
+      <div class="row">
+
+        
+        {% for product in products %}
+          <div class="col-sm-6 col-md-4 product">
+          
+          {% if request.user in product.favourites.all %}
+            <a href="#" class="favorites" data-favorite="inactive" data-id='{{product.id}}' id="fav"><i class="ion-ios-heart"></i></a>
+          {% else %}
+          <a href="#" class="favorites" data-favorite="inactive" data-id='{{product.id}}' id="fav"><i class="ion-ios-heart-outline"></i></a>
+          {% endif %}
+            
+          
+          <a href="{% url 'catalog-product' product.id %}"><img src="{{product.img.url}}" alt="{{product.title}}"/></a>
+
+          <div class="content">
+            <h1 class="h4">{{product.title}}</h1>
+            <p class="price">{{product.selling_price}}</p>
+            <label>{{product.prodtype}}</label>
+
+            <a href="{% url 'catalog-product' product.id %}" class="btn btn-link"> Details</a>
+            <button class="btn btn-primary btn-rounded btn-sm"> <i class="ion-bag"></i> Add to cart</button>
+          </div>
+        </div>
+        {% endfor %}
+          
+        
+
+      </div>
+
+      <nav>
+        <ul class="pagination">
+          <li>
+            <a href="#" aria-label="Previous">
+              <span aria-hidden="true"><i class="ion-ios-arrow-left"></i></span>
+            </a>
+          </li>
+          <li class="active"><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li class="disabled"><a href="#">..</a></li>
+          <li><a href="#">10</a></li>
+          <li>
+            <a href="#" aria-label="Next">
+              <span aria-hidden="true"><i class="ion-ios-arrow-right"></i></span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+</div>

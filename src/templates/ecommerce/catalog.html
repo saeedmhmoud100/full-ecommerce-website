@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
+{% block title %}
+&middot; Unistore|catalog
+{% endblock title %}
 
 
 {% block over-content %}
@@ -281,22 +283,22 @@
               </div>
 
               <div class="controls">
-                <div class="checkbox-group" data-status="inactive">
+                <div class="checkbox-group" id='lap' data-status="inactive">
                     <div class="checkbox"><i class="ion-android-done"></i></div>
-                    <div class="label" data-value="Laptops">Laptops</div>
-                    <input type="checkbox" name="checkbox" value="">
+                    <div class="label" data-value="laptop">Laptops</div>
+                    <input type="checkbox" name="checkbox" value="laptop" data-filter="type" class="filter-checkbox">
                 </div>
 
-                <div class="checkbox-group" data-status="inactive">
+                <div class="checkbox-group" id='tap' data-status="inactive">
                     <div class="checkbox"><i class="ion-android-done"></i></div>
-                    <div class="label" data-value="Tablets">Tablets</div>
-                    <input type="checkbox" name="checkbox" value="">
+                    <div class="label" data-value="taplet">Tablets</div>
+                    <input type="checkbox" name="checkbox" value="taplet" data-filter="type" class="filter-checkbox">
                 </div>
 
-                <div class="checkbox-group" data-status="inactive">
+                <div class="checkbox-group" id='hyp' data-status="inactive">
                     <div class="checkbox"><i class="ion-android-done"></i></div>
-                     <div class="label" data-value="Hybrid">Hybrids</div>
-                    <input type="checkbox" name="checkbox" value="">
+                     <div class="label" data-value="hybrid">Hybrids</div>
+                    <input type="checkbox" name="checkbox" value="hybrid" data-filter="type" class="filter-checkbox">
                 </div>
               </div>
           </div>
@@ -314,37 +316,37 @@
                 <div class="checkbox-group" data-status="inactive">
                     <div class="checkbox"><i class="ion-android-done"></i></div>
                     <div class="label" data-value="7 in">7 in</div>
-                    <input type="checkbox" name="checkbox" value="">
+                    <input type="checkbox" name="checkbox" value="7" data-filter="screen" class="filter-checkbox">
                 </div>
 
                 <div class="checkbox-group" data-status="inactive">
                     <div class="checkbox"><i class="ion-android-done"></i></div>
                     <div class="label" data-value="10 in">10 in</div>
-                    <input type="checkbox" name="checkbox" value="">
+                    <input type="checkbox" name="checkbox" value="10" data-filter="screen" class="filter-checkbox">
                 </div>
 
                 <div class="checkbox-group" data-status="inactive">
                     <div class="checkbox"><i class="ion-android-done"></i></div>
                      <div class="label" data-value="11 in">11 in</div>
-                    <input type="checkbox" name="checkbox" value="">
+                    <input type="checkbox" name="checkbox" value="11" data-filter="screen" class="filter-checkbox">
                 </div>
 
                 <div class="checkbox-group" data-status="inactive">
                     <div class="checkbox"><i class="ion-android-done"></i></div>
                     <div class="label" data-value="14 in">14 in</div>
-                    <input type="checkbox" name="checkbox" value="">
+                    <input type="checkbox" name="checkbox" value="14" data-filter="screen" class="filter-checkbox">
                 </div>
 
                 <div class="checkbox-group" data-status="inactive">
                     <div class="checkbox"><i class="ion-android-done"></i></div>
                     <div class="label" data-value="15 in">15 in</div>
-                    <input type="checkbox" name="checkbox" value="">
+                    <input type="checkbox" name="checkbox" value="15" data-filter="screen" class="filter-checkbox">
                 </div>
 
                 <div class="checkbox-group" data-status="inactive">
                     <div class="checkbox"><i class="ion-android-done"></i></div>
                      <div class="label" data-value="17 in">17 in</div>
-                    <input type="checkbox" name="checkbox" value="">
+                    <input type="checkbox" name="checkbox" value="17" data-filter="screen" class="filter-checkbox">
                 </div>
               </div>
           </div>
@@ -378,49 +380,49 @@
                 <div class="checkbox-group" data-status="inactive">
                     <div class="checkbox"><i class="ion-android-done"></i></div>
                     <div class="label" data-value="Hp">Hp</div>
-                    <input type="checkbox" name="checkbox" value="">
+                    <input type="checkbox" name="checkbox" value="hp" data-filter="scrManufacturereen" class="filter-checkbox">
                 </div>
 
                 <div class="checkbox-group" data-status="inactive">
                     <div class="checkbox"><i class="ion-android-done"></i></div>
                     <div class="label" data-value="ASUS">ASUS</div>
-                    <input type="checkbox" name="checkbox" value="">
+                    <input type="checkbox" name="checkbox" value="asus" data-filter="scrManufacturereen" class="filter-checkbox">
                 </div>
 
                 <div class="checkbox-group" data-status="inactive">
                     <div class="checkbox"><i class="ion-android-done"></i></div>
                      <div class="label" data-value="Acer">Acer</div>
-                    <input type="checkbox" name="checkbox" value="">
+                    <input type="checkbox" name="checkbox" value="acer" data-filter="scrManufacturereen" class="filter-checkbox">
                 </div>
 
                 <div class="checkbox-group" data-status="inactive">
                     <div class="checkbox"><i class="ion-android-done"></i></div>
                      <div class="label" data-value="Dell">Dell</div>
-                    <input type="checkbox" name="checkbox" value="">
+                    <input type="checkbox" name="checkbox" value="dell" data-filter="scrManufacturereen" class="filter-checkbox">
                 </div>
 
                 <div class="checkbox-group" data-status="inactive">
                     <div class="checkbox"><i class="ion-android-done"></i></div>
                      <div class="label" data-value="Sony">Sony</div>
-                    <input type="checkbox" name="checkbox" value="">
+                    <input type="checkbox" name="checkbox" value="sony" data-filter="scrManufacturereen" class="filter-checkbox">
                 </div>
 
                 <div class="checkbox-group" data-status="inactive">
                     <div class="checkbox"><i class="ion-android-done"></i></div>
                      <div class="label" data-value="Apple">Apple</div>
-                    <input type="checkbox" name="checkbox" value="">
+                    <input type="checkbox" name="checkbox" value="apple" data-filter="scrManufacturereen" class="filter-checkbox">
                 </div>
 
                 <div class="checkbox-group" data-status="inactive">
                     <div class="checkbox"><i class="ion-android-done"></i></div>
                      <div class="label" data-value="Lenovo">Lenovo</div>
-                    <input type="checkbox" name="checkbox" value="">
+                    <input type="checkbox" name="checkbox" value="lenovo" data-filter="scrManufacturereen" class="filter-checkbox">
                 </div>
 
                 <div class="checkbox-group" data-status="inactive">
                     <div class="checkbox"><i class="ion-android-done"></i></div>
                      <div class="label" data-value="Microsoft">Microsoft</div>
-                    <input type="checkbox" name="checkbox" value="">
+                    <input type="checkbox" name="checkbox" value="microsoft" data-filter="scrManufacturereen" class="filter-checkbox">
                 </div>
               </div>
           </div>
@@ -428,57 +430,7 @@
         <!-- /// -->
 
         <!-- Products -->
-        <div class="col-sm-9 products">
-          <div class="row">
-
-            
-            {% for product in products %}
-              <div class="col-sm-6 col-md-4 product">
-              
-              {% if request.user in product.favourites.all %}
-                <a href="#" class="favorites" data-favorite="inactive" data-id='{{product.id}}' id="fav"><i class="ion-ios-heart"></i></a>
-              {% else %}
-              <a href="#" class="favorites" data-favorite="inactive" data-id='{{product.id}}' id="fav"><i class="ion-ios-heart-outline"></i></a>
-              {% endif %}
-                
-              
-              <a href="./"><img src="{{product.img.url}}" alt="{{product.title}}"/></a>
-
-              <div class="content">
-                <h1 class="h4">{{product.title}}</h1>
-                <p class="price">{{product.selling_price}}</p>
-                <label>{{product.prodtype}}</label>
-
-                <a href="{% url 'catalog-product' product.id %}" class="btn btn-link"> Details</a>
-                <button class="btn btn-primary btn-rounded btn-sm"> <i class="ion-bag"></i> Add to cart</button>
-              </div>
-            </div>
-            {% endfor %}
-              
-            
-
-          </div>
-
-          <nav>
-            <ul class="pagination">
-              <li>
-                <a href="#" aria-label="Previous">
-                  <span aria-hidden="true"><i class="ion-ios-arrow-left"></i></span>
-                </a>
-              </li>
-              <li class="active"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li class="disabled"><a href="#">..</a></li>
-              <li><a href="#">10</a></li>
-              <li>
-                <a href="#" aria-label="Next">
-                  <span aria-hidden="true"><i class="ion-ios-arrow-right"></i></span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+        {% include "ecommerce/products.html" %}
         <!-- /// -->
       </div>
     </div>
@@ -487,6 +439,7 @@
 
     {% block script %}
     <script>
+      $(document).ready(function(){
       $('.favorites').click(function(e){
         let item = $(this)
         let id = $(this).data('id')
@@ -508,7 +461,36 @@
             }
           }
         })
+      });
+    });
+
+
+    $('.checkbox-group').on('click',function(){
+      var filterobj = {}
+      if($(this).children()[2].checked ==false){
+        $(this).children()[2].checked = true
+      }else{
+        $(this).children()[2].checked = false
+      }
+      $('.filter-checkbox').each(function(index,ele){
+        var filterval = $(this).val()
+        var filterkey = $(this).data('filter')
+        filterobj[filterkey]=Array.from(document.querySelectorAll('input[data-filter='+ filterkey +']:checked')).map(function(el){
+          return el.value;
+        })
+      console.log(filterobj)
       })
+
+    $.ajax({
+      url:"{% url 'catalog-filter' %}",
+      data:filterobj,
+      dataType:'json',
+      success:function(res){
+        $('#products').html(res.data)
+      }
+    })
+  })
+  
     </script>
-     
+  
     {% endblock script %}
