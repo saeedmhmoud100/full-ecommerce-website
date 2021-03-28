@@ -41,6 +41,7 @@ def product_type_filter(request):
     screens = request.GET.getlist('screen[]')
     scr = request.GET.getlist('scrManufacturereen[]')
     tags = request.GET.get('tags' or None)
+    price = request.GET.get('price')
     allproducts = Product.objects.all().order_by('-id')
     if len(types)>0:
         allproducts = allproducts.filter(prodtype__in=types).distinct()
@@ -50,6 +51,8 @@ def product_type_filter(request):
         allproducts = allproducts.filter(Brand__in=scr).distinct()
     if tags:
         allproducts = allproducts.filter(tag1=tags)
+    if price:
+        allproducts = allproducts.filter(selling_price__lte=price)
     context={
         'products':allproducts,
     }

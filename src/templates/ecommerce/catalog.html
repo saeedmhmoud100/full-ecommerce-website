@@ -356,15 +356,15 @@
           <div class="item">
             <div class="title">
                 <a href="#clear" data-action="open" class="down"> <i class="ion-android-arrow-dropdown"></i> Open</a>
-                <a data-action="clear-price" style="cursor: pointer;"> <i class="ion-ios-trash-outline"></i> Clear</a>
+                <a data-clear="clear" style="cursor: pointer;" class="checkbox-group"> <i class="ion-ios-trash-outline"></i> Clear</a>
                 <h1 class="h4">Price</h1>
             </div>
-
+            <label id="rangePrimary"></label>
             <div class="controls">
                 <br>
-                <div id="slider-price"></div>
+                <input class="checkbox-group" type="range" min="1" max="3000" value="1000" class="slider" id="myRange" data-slider="price" style="display:block">
                 <br>
-                <p id="amount"></p>
+                <p>1 $ -  <span id="demo"></span></p>
             </div>
           </div>
           <br>
@@ -440,6 +440,13 @@
     {% block script %}
     <script>
       $(document).ready(function(){
+        var slider = document.getElementById("myRange");
+        var slipoutput = document.getElementById("demo");
+        slipoutput.innerHTML = slider.value + ' $';
+        slider.oninput = function() {
+        slipoutput.innerHTML = this.value +' $';
+        }
+        
       $('.favorites').click(function(e){
         let item = $(this)
         let id = $(this).data('id')
@@ -467,7 +474,6 @@
 
     $('.checkbox-group').on('click',function(){
       var filterobj = {}
-      
       if($(this).children()[2]){
         if($(this).children()[2].checked ==false){
           $(this).children()[2].checked = true
@@ -490,6 +496,17 @@
           return el.value;
         })
       })
+      if($(this).data('clear')){
+        var slider = document.getElementById("myRange");
+        var slipoutput = document.getElementById("demo");
+        slider.value = 1000
+        slipoutput.innerHTML = slider.value + ' $';
+        
+      }
+        var slider = document.getElementById("myRange");
+        sliderval = slider.value
+        filterobj['price'] = sliderval
+
       
       if($(this).data('tags')){
         tagval = $(this).data('val')

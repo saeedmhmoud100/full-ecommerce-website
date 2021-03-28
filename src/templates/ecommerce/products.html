@@ -17,7 +17,17 @@
 
           <div class="content">
             <h1 class="h4">{{product.title}}</h1>
-            <p class="price">{{product.selling_price}}</p>
+            
+            {% if product.discount_price %}
+              <p class="sale">${{product.discount_price}}</p>
+            <p class="price through">${{product.selling_price}}</p>
+            {% else %}
+            <p class="price">${{product.selling_price}}</p>
+            {% endif %}
+              
+            
+
+            
             <label>{{product.prodtype}}</label>
 
             <a href="{% url 'catalog-product' product.id %}" class="btn btn-link"> Details</a>
