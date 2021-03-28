@@ -1,228 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}
+&middot; Unistore|{{product.title}}
+{% endblock title %}
 
     {% block over-content %}
-    <div class="cart" data-toggle="inactive">
-      <div class="label">
-        <i class="ion-bag"></i> 7
-      </div>
 
-      <div class="overlay"></div>
-
-      <div class="window">
-        <div class="title">
-          <button type="button" class="close"><i class="ion-android-close"></i></button>
-          <h1 class="h3 info">Shopping cart</h1>
-        </div>
-
-        <div class="content">
-
-          <div class="media">
-            <div class="media-left">
-              <a href="#">
-                <img class="media-object" src="../assets/img/products/chrome-book-11.jpg" alt="HP Chromebook 11"/>
-              </a>
-            </div>
-            <div class="media-body">
-              <h2 class="h4 media-heading">HP Chromebook 11</h2>
-              <label>Laptops</label>
-              <p class="price">$199.99</p>
-            </div>
-            <div class="controls">
-              <div class="input-group">
-                <span class="input-group-btn">
-                  <button class="btn btn-default btn-sm" type="button" data-action="minus"><i class="ion-minus-round"></i></button>
-                </span>
-                <input type="text" class="form-control input-sm" placeholder="Qty" value="1" readonly="">
-                <span class="input-group-btn">
-                  <button class="btn btn-default btn-sm" type="button" data-action="plus"><i class="ion-plus-round"></i></button>
-                </span>
-              </div><!-- /input-group -->
-
-              <a href="#remove"> <i class="ion-trash-b"></i> Remove </a>
-            </div>
-          </div>
-
-          <div class="media">
-            <div class="media-left">
-              <a href="#">
-                <img class="media-object" src="../assets/img/products/chrome-book-14.jpg" alt="HP Chromebook 11"/>
-              </a>
-            </div>
-            <div class="media-body">
-              <h2 class="h4 media-heading">HP Chromebook 14</h2>
-              <label>Laptops</label>
-              <p class="price">$209.99</p>
-            </div>
-            <div class="controls">
-              <div class="input-group">
-                <span class="input-group-btn">
-                  <button class="btn btn-default btn-sm" type="button" data-action="minus"><i class="ion-minus-round"></i></button>
-                </span>
-                <input type="text" class="form-control input-sm" placeholder="Qty" value="1" readonly="">
-                <span class="input-group-btn">
-                  <button class="btn btn-default btn-sm" type="button" data-action="plus"><i class="ion-plus-round"></i></button>
-                </span>
-              </div><!-- /input-group -->
-
-              <a href="#remove"> <i class="ion-trash-b"></i> Remove </a>
-            </div>
-          </div>
-
-          <div class="media">
-            <div class="media-left">
-              <a href="#">
-                <img class="media-object" src="../assets/img/products/ipad-air.jpg" alt="iPad Air"/>
-              </a>
-            </div>
-            <div class="media-body">
-              <h2 class="h4 media-heading">iPad Air</h2>
-              <label>Tablets</label>
-              <p class="price">$449.99</p>
-            </div>
-            <div class="controls">
-              <div class="input-group">
-                <span class="input-group-btn">
-                  <button class="btn btn-default btn-sm" type="button" data-action="minus"><i class="ion-minus-round"></i></button>
-                </span>
-                <input type="text" class="form-control input-sm" placeholder="Qty" value="1" readonly="">
-                <span class="input-group-btn">
-                  <button class="btn btn-default btn-sm" type="button" data-action="plus"><i class="ion-plus-round"></i></button>
-                </span>
-              </div><!-- /input-group -->
-
-              <a href="#remove"> <i class="ion-trash-b"></i> Remove </a>
-            </div>
-          </div>
-
-          <div class="media">
-            <div class="media-left">
-              <a href="#">
-                <img class="media-object" src="../assets/img/products/mi-pad-2.jpg" alt="HP Chromebook 11"/>
-              </a>
-            </div>
-            <div class="media-body">
-              <h2 class="h4 media-heading">Mi Pad 2</h2>
-              <label>Tablets</label>
-              <p class="price">$199.99</p>
-            </div>
-            <div class="controls">
-              <div class="input-group">
-                <span class="input-group-btn">
-                  <button class="btn btn-default btn-sm" type="button" data-action="minus"><i class="ion-minus-round"></i></button>
-                </span>
-                <input type="text" class="form-control input-sm" placeholder="Qty" value="1" readonly="">
-                <span class="input-group-btn">
-                  <button class="btn btn-default btn-sm" type="button" data-action="plus"><i class="ion-plus-round"></i></button>
-                </span>
-              </div><!-- /input-group -->
-
-              <a href="#remove"> <i class="ion-trash-b"></i> Remove </a>
-            </div>
-          </div>
-
-          <div class="media">
-            <div class="media-left">
-              <a href="#">
-                <img class="media-object" src="../assets/img/products/lenovo-yoga.jpg" alt="Lenovo Yoga"/>
-              </a>
-            </div>
-            <div class="media-body">
-              <h2 class="h4 media-heading">Lenovo Yoga</h2>
-              <label>Hybrid</label>
-              <p class="price">$199.99</p>
-            </div>
-            <div class="controls">
-              <div class="input-group">
-                <span class="input-group-btn">
-                  <button class="btn btn-default btn-sm" type="button" data-action="minus"><i class="ion-minus-round"></i></button>
-                </span>
-                <input type="text" class="form-control input-sm" placeholder="Qty" value="1" readonly="">
-                <span class="input-group-btn">
-                  <button class="btn btn-default btn-sm" type="button" data-action="plus"><i class="ion-plus-round"></i></button>
-                </span>
-              </div><!-- /input-group -->
-
-              <a href="#remove"> <i class="ion-trash-b"></i> Remove </a>
-            </div>
-          </div>
-
-          <div class="media">
-            <div class="media-left">
-              <a href="#">
-                <img class="media-object" src="../assets/img/products/surface-pro.jpg" alt="HP Chromebook 11"/>
-              </a>
-            </div>
-            <div class="media-body">
-              <h2 class="h4 media-heading">Surface Pro</h2>
-              <label>Hybrid</label>
-              <p class="price">$199.99</p>
-            </div>
-            <div class="controls">
-              <div class="input-group">
-                <span class="input-group-btn">
-                  <button class="btn btn-default btn-sm" type="button" data-action="minus"><i class="ion-minus-round"></i></button>
-                </span>
-                <input type="text" class="form-control input-sm" placeholder="Qty" value="1" readonly="">
-                <span class="input-group-btn">
-                  <button class="btn btn-default btn-sm" type="button" data-action="plus"><i class="ion-plus-round"></i></button>
-                </span>
-              </div><!-- /input-group -->
-
-              <a href="#remove"> <i class="ion-trash-b"></i> Remove </a>
-            </div>
-          </div>
-
-          <div class="media">
-            <div class="media-left">
-              <a href="#">
-                <img class="media-object" src="../assets/img/products/asus-transformer.jpg" alt="HP Chromebook 11"/>
-              </a>
-            </div>
-            <div class="media-body">
-              <h2 class="h4 media-heading">ASUS Transformer</h2>
-              <label>Hybrid</label>
-              <p class="price">$199.99</p>
-            </div>
-            <div class="controls">
-              <div class="input-group">
-                <span class="input-group-btn">
-                  <button class="btn btn-default btn-sm" type="button" data-action="minus"><i class="ion-minus-round"></i></button>
-                </span>
-                <input type="text" class="form-control input-sm" placeholder="Qty" value="1" readonly="">
-                <span class="input-group-btn">
-                  <button class="btn btn-default btn-sm" type="button" data-action="plus"><i class="ion-plus-round"></i></button>
-                </span>
-              </div><!-- /input-group -->
-
-              <a href="#remove"> <i class="ion-trash-b"></i> Remove </a>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="checkout container-fluid">
-          <div class="row">
-            <div class="col-xs-3 col-sm-2">
-              <div>
-                <p>Subtotal:</p>
-                <h3 class="h4">Total:</h3>
-              </div>
-            </div>
-            <div class="col-xs-3 col-sm-4">
-              <div class="total">
-                <p>$1 200</p>
-                <h3 class="h4">$1 200</h3>
-              </div>
-            </div>
-
-            <div class="col-xs-6 col-sm-6">
-              <a class="btn btn-primary" href="../checkout/"> Checkout order </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
     {% endblock over-content %}
 
 
@@ -239,25 +22,27 @@
               <!-- <button class="btn btn-control"></button> -->
 
               <div class="items">
-                <div class="item active" data-marker="1">
-                  <img src="../assets/img/product/1.jpg" alt="ChromeBook 11"/>
+                
+                {% for img in images %}
+                
+                {% if forloop.first %}
+                <div class="item active" data-marker="{{forloop.counter}}">
+                  <img src="{{img.img.url}}" alt="{{img.product.title}}"/>
                 </div>
-                <div class="item" data-marker="2">
-                  <img src="../assets/img/product/2.jpg" alt="ChromeBook 11"/>
+                  {% else %}
+                  <div class="item" data-marker="{{forloop.counter}}">
+                  <img src="{{img.img.url}}" alt="{{img.product.title}}"/>
                 </div>
-                <div class="item" data-marker="3">
-                  <img src="../assets/img/product/3.jpg" alt="ChromeBook 11"/>
-                </div>
-                <div class="item" data-marker="4">
-                  <img src="../assets/img/product/4.jpg" alt="ChromeBook 11"/>
-                </div>
-                <div class="item" data-marker="5">
-                  <img src="../assets/img/product/5.jpg" alt="ChromeBook 11"/>
-                </div>
+                {% endif %}
+                {% endfor %}
+                  
+                
+                
+
                 <div class="item" data-marker="6">
                   <div class="tiles">
                     <a href="#video" data-gallery="#video" data-source="youtube" data-id="hED0N4CFoqs" data-title="An upscale new Chromebook from HP" data-description="The new HP Chromebook 13 runs a Core M CPU inside a slim aluminum body.">
-                      <img src="../assets/img/product/video.jpg" alt="ChromeBook 11">
+                      <img src="{% static 'assets/img/product/video.jpg' %}" alt="ChromeBook 11">
 
                       <div class="overlay"></div>
                       <div class="content">
@@ -274,26 +59,36 @@
               </div>
 
               <ul class="markers">
-                <li data-marker="1" class="active"><img src="../assets/img/product/1.jpg" alt="Background"/></li>
-                <li data-marker="2"><img src="../assets/img/product/2.jpg" alt="Background"/></li>
-                <li data-marker="3"><img src="../assets/img/product/3.jpg" alt="Background"/></li>
-                <li data-marker="4"><img src="../assets/img/product/4.jpg" alt="Background"/></li>
-                <li data-marker="5"><img src="../assets/img/product/5.jpg" alt="Background"/></li>
-                <li data-marker="6"><img src="../assets/img/product/video.jpg" alt="Background"/></li>
+                
+                {% for img in images %}
+                
+                {% if forloop.first %}
+                <li class="active" data-marker="{{forloop.counter}}"><img src="{{img.img.url}}" alt="Background"/></li>
+                  {% else %}
+                <li data-marker="{{forloop.counter}}"><img src="{{img.img.url}}" alt="Background"/></li>
+                {% endif %}
+                {% endfor %}
+                  
               </ul>
             </div>
           </div>
           <div class="col-sm-5 col-md-5">
-            <img src="../assets/img/brands/hp.png" alt="HP" class="brand hidden-xs" />
+            <img src="{% static 'assets/img/brands/hp.png' %}" alt="HP" class="brand hidden-xs" />
 
-            <h1>HP Chromebook 11</h1>
+            <h1>{{product.title}}</h1>
 
-            <p> &middot; Chrome OS™</p>
-            <p> &middot; Intel® Celeron® processor</p>
-            <p> &middot; Intel HD Graphics</p>
-
-            <p class="price">$209.99</p>
-            <p class="price through">$249.99</p>
+            <p> &middot; {{product.os}}</p>
+            <p> &middot; {{product.Process_type}}</p>
+            <p> &middot; {{product.Graphic_quality}}</p>
+            
+            {% if product.discount_price %}
+              <p class="price">${{product.discount_price}}</p>
+              <p class="price through">${{product.selling_price}}</p>
+            {% else %}
+              <p class="price through">${{product.selling_price}}</p>
+            {% endif %}
+              
+            
             <br><br>
 
             <button class="btn btn-primary btn-rounded"> <i class="ion-bag"></i> Add to cart</button>
@@ -304,11 +99,11 @@
 
 	    	<div class="row">
 	    		<div class="col-sm-7">
-	    			<h1>HP Chromebook 11</h1>
+	    			<h1>{{product.title}}</h1>
 		    		 <br>
 
 		    		 <p>
-		    		 	The stylish HP Chromebook provides a speedy connection to your protected online content and automatically updated apps, all within an ultra-thin full-sized notebook, providing a comfortable gateway to surf, socialize and play.
+		    		 	{{product.discrption}}
 		    		 </p>
 		    		 <br>
 
