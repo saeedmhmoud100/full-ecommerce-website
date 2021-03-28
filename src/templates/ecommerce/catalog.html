@@ -277,8 +277,8 @@
         <div class="col-sm-3 filter">
           <div class="item">
               <div class="title">
-                  <a href="#clear" data-action="open" class="down"> <i class="ion-android-arrow-dropdown"></i> Open</a>
-                  <a href="#clear" data-action="clear"> <i class="ion-ios-trash-outline"></i> Clear</a>
+                  <a href="#" data-action="open" class="down"> <i class="ion-android-arrow-dropdown"></i> Open</a>
+                  <a href="#" data-action="type" class="checkbox-group"> <i class="ion-ios-trash-outline"></i> Clear</a>
                   <h1 class="h4">Type</h1>
               </div>
 
@@ -308,7 +308,7 @@
           <div class="item">
               <div class="title">
                   <a href="#clear" data-action="open" class="down"> <i class="ion-android-arrow-dropdown"></i> Open</a>
-                  <a href="#clear" data-action="clear"> <i class="ion-ios-trash-outline"></i> Clear</a>
+                  <a href="#" data-action="screen" class="checkbox-group"> <i class="ion-ios-trash-outline"></i> Clear</a>
                   <h1 class="h4">Screen</h1>
               </div>
 
@@ -372,7 +372,7 @@
           <div class="item lite">
               <div class="title">
                   <a href="#clear" data-action="open" class="down"> <i class="ion-android-arrow-dropdown"></i> Open</a>
-                  <a href="#clear" data-action="clear"> <i class="ion-ios-trash-outline"></i> Clear</a>
+                  <a href="#" data-action="scrManufacturereen" class="checkbox-group"> <i class="ion-ios-trash-outline"></i> Clear</a>
                   <h1 class="h4">Manufacturer</h1>
               </div>
 
@@ -467,10 +467,20 @@
 
     $('.checkbox-group').on('click',function(){
       var filterobj = {}
-      if($(this).children()[2].checked ==false){
-        $(this).children()[2].checked = true
-      }else{
-        $(this).children()[2].checked = false
+      filkey = $(this).data('action')
+      if($(this).children()[2]){
+        if($(this).children()[2].checked ==false){
+          $(this).children()[2].checked = true
+        }else{
+          $(this).children()[2].checked = false
+        }
+      }
+      if($(this).data('action')){
+        var leng = document.querySelectorAll('input[data-filter='+ filkey +']:checked')
+       for(var i=0;i<leng.length;i++){
+          leng[i].checked = false
+          leng[i].parentNode.dataset.status = 'inactive'
+       }
       }
       $('.filter-checkbox').each(function(index,ele){
         var filterval = $(this).val()
@@ -478,9 +488,8 @@
         filterobj[filterkey]=Array.from(document.querySelectorAll('input[data-filter='+ filterkey +']:checked')).map(function(el){
           return el.value;
         })
-      console.log(filterobj)
       })
-
+      
     $.ajax({
       url:"{% url 'catalog-filter' %}",
       data:filterobj,
@@ -490,7 +499,7 @@
       }
     })
   })
-  
+
     </script>
   
     {% endblock script %}
