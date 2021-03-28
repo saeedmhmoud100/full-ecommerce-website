@@ -124,31 +124,20 @@
           </div>
           <div class="col-sm-5">
             <div class="comments">
-              <h2 class="h3">What do you think? (#3)</h2>
+              <h2 class="h3">What do you think? (#{{product.comment.count}})</h2>
               <br>
 
 
               <div class="wrapper">
                 <div class="content">
-                  <h3>Anne Hathaway</h3>
-                  <label>2 years ago</label>
+
+                  {% for comment in comments %}
+                    <h3>{{comment.user.username}}</h3>
+                  <label>{{ comment.created_at|timesince }} ago</label>
                   <p>
-                    Apple Music brings iTunes music streaming to the UK. But is it worth paying for? In our Apple Music review, we examine the service's features, UK pricing, audio quality and music library
+                    {{comment.message}}
                   </p>
-
-
-                  <h3>Chris Hemsworth</h3>
-                  <label>Today</label>
-                  <p>
-                    Samsung's Galaxy S7 smartphone is getting serious hype. Here's what it does better than Apple's iPhone 6s.
-                  </p>
-
-
-                  <h3>Anne Hathaway</h3>
-                  <label>2 years ago</label>
-                  <p>
-                    Apple Music brings iTunes music streaming to the UK. But is it worth paying for? In our Apple Music review, we examine the service's features, UK pricing, audio quality and music library
-                  </p>
+                  {% endfor %}
                 </div>
               </div>
               <br>
