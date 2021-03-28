@@ -124,6 +124,12 @@
           </div>
           <div class="col-sm-5">
             <div class="comments">
+              
+              {% if messages %}
+                {% for message in messages %}
+                  <div class="alert alert-{{message.tags}}">{{message}}</div>
+                {% endfor %}
+              {% endif %}
               <h2 class="h3">What do you think? (#{{product.comment.count}})</h2>
               <br>
 
@@ -142,7 +148,21 @@
               </div>
               <br>
 
-              <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#Modal-Comment"> <i class="ion-chatbox-working"></i> Add comment </button>
+              <button class="btn btn-default btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> <i class="ion-chatbox-working"></i> Add comment </button>
+              <div class="collapse " id="collapseExample" >
+                <div class="card card-body" style="margin-top: 20px;">
+                  <form method='POST'>
+                    {% csrf_token %}
+                    <h5>Enter Your Comment</h5>
+                    
+                    {% for fm in form %}
+                      {{fm}}{{fm.errors}}
+                    {% endfor %}
+                    <button type="submit" class="btn btn-success" style="margin-top: 10px;"> {% if changecomment %}{{changecomment}} {% else %}Add comment{% endif %}</button>
+                  </form>
+                </div>
+              </div>
+              
             </div>
             <br><br>
 

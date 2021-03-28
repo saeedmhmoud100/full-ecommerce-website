@@ -1,10 +1,12 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect
 from django.http import JsonResponse,HttpResponse
 from django.template.loader import render_to_string
 from django.core.paginator import Paginator
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib import messages
 from django.views.generic import View,ListView
 from .models import Product,ProductImg,ProductProperty,productComment
+from .forms import ProductComment
 # Create your views here.
 
 def home(request):
@@ -81,15 +83,27 @@ class CatalogProductView(View):
         props = ProductProperty.objects.filter(product=pk)
         comments = productComment.objects.filter(product=pk)
         recom = Product.objects.all().order_by('-id')[:4]
-        print(recom)
+        form = ProductComment()
         context = {
             'product':product,
             'images':images,
             'props':props,
             'comments':comments,
             'recom':recom,
+            'form':form
         }
         return render(request,'ecommerce/catalog-product.html',context)
+    def post(self,request,pk):
+        product = Product.objects.get(pk=pk)
+        user = request.user
+        form = ProductComment(request.POST)
+        if form.is_valid():
+            form_save = form.save(commit=False)
+            form_save.user = user
+            form_save.product = product
+            form_save.save()
+            messages.success(request,'added comment successfully!!')
+            return redirect('catalog-product',pk=product.pk)
 
 def gallery(request):
     return render(request,'ecommerce/gallery.html')
