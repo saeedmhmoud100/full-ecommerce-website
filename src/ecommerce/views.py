@@ -4,7 +4,7 @@ from django.template.loader import render_to_string
 from django.core.paginator import Paginator
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import View,ListView
-from .models import Product,ProductImg
+from .models import Product,ProductImg,ProductProperty
 # Create your views here.
 
 def home(request):
@@ -78,10 +78,11 @@ class CatalogProductView(View):
     def get(self,request,pk):
         product = get_object_or_404(Product,pk=pk)
         images = ProductImg.objects.filter(product=pk)
-        print(images)
+        props = ProductProperty.objects.filter(product=pk)
         context = {
             'product':product,
-            'images':images
+            'images':images,
+            'props':props
         }
         return render(request,'ecommerce/catalog-product.html',context)
 
