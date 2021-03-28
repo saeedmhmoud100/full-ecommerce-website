@@ -300,7 +300,8 @@
         listval = $(this).data('list')
         filterobj['listby'] = listval
       }
-      
+      filterobj['pag'] = '{{page_obj.number}}'
+      console.log(filterobj)
     $.ajax({
       url:"{% url 'catalog-filter' %}",
       data:filterobj,

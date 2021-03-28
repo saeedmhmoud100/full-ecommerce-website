@@ -58,12 +58,19 @@ class ProductFilterView(ListView):
             allproducts = allproducts.filter(tag1=tags)
         if price:
             allproducts = allproducts.filter(selling_price__lte=price)
+        
+        paginator = Paginator(allproducts, 6)
+
+        page_number = request.GET.get('pag')
+        page_obj = paginator.get_page(page_number)
         context = {
         'products':allproducts,
+        'page_obj':page_obj
         }
         t = render_to_string('ecommerce/products.html',context)
         data = {
-            'data':t
+            'data':t,
+            
         }
         return JsonResponse(data)
 
