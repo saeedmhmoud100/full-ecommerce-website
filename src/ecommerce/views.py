@@ -80,11 +80,14 @@ class CatalogProductView(View):
         images = ProductImg.objects.filter(product=pk)
         props = ProductProperty.objects.filter(product=pk)
         comments = productComment.objects.filter(product=pk)
+        recom = Product.objects.all().order_by('-id')[:4]
+        print(recom)
         context = {
             'product':product,
             'images':images,
             'props':props,
-            'comments':comments
+            'comments':comments,
+            'recom':recom,
         }
         return render(request,'ecommerce/catalog-product.html',context)
 
