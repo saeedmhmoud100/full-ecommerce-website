@@ -1,9 +1,10 @@
 from django.shortcuts import render,get_object_or_404
 from django.http import JsonResponse,HttpResponse
 from django.template.loader import render_to_string
-from django.db.models import Q
-from django.views.generic import View
-from.models import Product
+from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic import View,ListView
+from .models import Product
 # Create your views here.
 
 def home(request):
@@ -13,13 +14,13 @@ def index(request):
     return render(request,'ecommerce/index.html')
 
 
-class CatalogView(View):
-    def get(self,request):
-        products = Product.objects.all()
-        context = {
-            'products':products
-        }
-        return render(request,'ecommerce/catalog.html',context)
+class CatalogView(ListView):
+    model = Product
+    template_name = 'ecommerce/catalog.html'
+    context_object_name = 'products'
+    paginate_by = 6
+    
+    
 
 
 def favorite_or_unfavorite(request):
@@ -36,35 +37,35 @@ def favorite_or_unfavorite(request):
     }
     return JsonResponse(data)
 
-def product_type_filter(request):
-    types = request.GET.getlist('type[]')
-    screens = request.GET.getlist('screen[]')
-    scr = request.GET.getlist('scrManufacturereen[]')
-    tags = request.GET.get('tags' or None)
-    price = request.GET.get('price')
-    listby = request.GET.get('listby')
-    allproducts = Product.objects.all()
-    if listby:
-        allproducts = allproducts.order_by(listby).distinct()
-    if len(types)>0:
-        allproducts = allproducts.filter(prodtype__in=types).distinct()
-    if len(screens)>0:
-        allproducts = allproducts.filter(screen_size__in=screens).distinct()
-    if len(scr)>0:
-        allproducts = allproducts.filter(Brand__in=scr).distinct()
-    if tags:
-        allproducts = allproducts.filter(tag1=tags)
-    if price:
-        allproducts = allproducts.filter(selling_price__lte=price)
-    
-    context={
+class ProductFilterView(ListView):
+    def get(self, request, *args, **kwargs):
+        types = request.GET.getlist('type[]')
+        screens = request.GET.getlist('screen[]')
+        scr = request.GET.getlist('scrManufacturereen[]')
+        tags = request.GET.get('tags' or None)
+        price = request.GET.get('price')
+        listby = request.GET.get('listby')
+        allproducts = Product.objects.all()
+        if listby:
+            allproducts = allproducts.order_by(listby).distinct()
+        if len(types)>0:
+            allproducts = allproducts.filter(prodtype__in=types).distinct()
+        if len(screens)>0:
+            allproducts = allproducts.filter(screen_size__in=screens).distinct()
+        if len(scr)>0:
+            allproducts = allproducts.filter(Brand__in=scr).distinct()
+        if tags:
+            allproducts = allproducts.filter(tag1=tags)
+        if price:
+            allproducts = allproducts.filter(selling_price__lte=price)
+        context = {
         'products':allproducts,
-    }
-    t = render_to_string('ecommerce/products.html',context)
-    data = {
-        'data':t
-    }
-    return JsonResponse(data)
+        }
+        t = render_to_string('ecommerce/products.html',context)
+        data = {
+            'data':t
+        }
+        return JsonResponse(data)
 
 class CatalogProductView(View):
     def get(self,request,pk):

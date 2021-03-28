@@ -211,6 +211,9 @@
 
         <!-- Products -->
         {% include "ecommerce/products.html" %}
+          
+        
+        
         <!-- /// -->
       </div>
     </div>
@@ -218,6 +221,7 @@
     {% endblock content %}
 
     {% block script %}
+    {% csrf_token %}
     <script>
       $(document).ready(function(){
         var slider = document.getElementById("myRange");
@@ -296,8 +300,7 @@
         listval = $(this).data('list')
         filterobj['listby'] = listval
       }
-
-      console.log(filterobj)
+      
     $.ajax({
       url:"{% url 'catalog-filter' %}",
       data:filterobj,
@@ -307,6 +310,7 @@
       }
     })
   })
+  
 
     </script>
   
