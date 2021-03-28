@@ -250,22 +250,22 @@
 
         <p>Search by tags</p>
         <div class="btn-group" data-toggle="buttons">
-          <label class="btn btn-default btn-xs active">
-            <input type="radio" name="options" id="option1" checked> All products
+          <label class="btn btn-default btn-xs active checkbox-group" data-tags="tags" data-val=''>
+            <input type="radio" name="options" id="option1" checked>All products
           </label>
-          <label class="btn btn-default btn-xs">
+          <label class="btn btn-default btn-xs checkbox-group" data-tags="tags" data-val='Business'>
             <input type="radio" name="options" id="option2"> Business
           </label>
-          <label class="btn btn-default btn-xs">
+          <label class="btn btn-default btn-xs checkbox-group" data-tags="tags" data-val='Home'>
             <input type="radio" name="options" id="option3"> Home
           </label>
-          <label class="btn btn-default btn-xs">
+          <label class="btn btn-default btn-xs checkbox-group" data-tags="tags" data-val='Mobility'>
             <input type="radio" name="options" id="option4"> Mobility
           </label>
-          <label class="btn btn-default btn-xs">
+          <label class="btn btn-default btn-xs checkbox-group" data-tags="tags" data-val='Powerfull'>
             <input type="radio" name="options" id="option5"> Powerfull
           </label>
-          <label class="btn btn-default btn-xs">
+          <label class="btn btn-default btn-xs checkbox-group" data-tags="tags" data-val='Gaming'>
             <input type="radio" name="options" id="option6"> Gaming
           </label>
         </div>
@@ -278,7 +278,7 @@
           <div class="item">
               <div class="title">
                   <a href="#" data-action="open" class="down"> <i class="ion-android-arrow-dropdown"></i> Open</a>
-                  <a href="#" data-action="type" class="checkbox-group"> <i class="ion-ios-trash-outline"></i> Clear</a>
+                  <a data-action="type" class="checkbox-group" style="cursor: pointer;"> <i class="ion-ios-trash-outline"></i> Clear</a>
                   <h1 class="h4">Type</h1>
               </div>
 
@@ -308,7 +308,7 @@
           <div class="item">
               <div class="title">
                   <a href="#clear" data-action="open" class="down"> <i class="ion-android-arrow-dropdown"></i> Open</a>
-                  <a href="#" data-action="screen" class="checkbox-group"> <i class="ion-ios-trash-outline"></i> Clear</a>
+                  <a data-action="screen" class="checkbox-group" style="cursor: pointer;"> <i class="ion-ios-trash-outline"></i> Clear</a>
                   <h1 class="h4">Screen</h1>
               </div>
 
@@ -356,7 +356,7 @@
           <div class="item">
             <div class="title">
                 <a href="#clear" data-action="open" class="down"> <i class="ion-android-arrow-dropdown"></i> Open</a>
-                <a href="#clear" data-action="clear-price"> <i class="ion-ios-trash-outline"></i> Clear</a>
+                <a data-action="clear-price" style="cursor: pointer;"> <i class="ion-ios-trash-outline"></i> Clear</a>
                 <h1 class="h4">Price</h1>
             </div>
 
@@ -371,8 +371,8 @@
 
           <div class="item lite">
               <div class="title">
-                  <a href="#clear" data-action="open" class="down"> <i class="ion-android-arrow-dropdown"></i> Open</a>
-                  <a href="#" data-action="scrManufacturereen" class="checkbox-group"> <i class="ion-ios-trash-outline"></i> Clear</a>
+                  <a data-action="open" class="down" style="cursor: pointer;"> <i class="ion-android-arrow-dropdown"></i> Open</a>
+                  <a data-action="scrManufacturereen" class="checkbox-group" style="cursor: pointer;"> <i class="ion-ios-trash-outline"></i> Clear</a>
                   <h1 class="h4">Manufacturer</h1>
               </div>
 
@@ -467,7 +467,7 @@
 
     $('.checkbox-group').on('click',function(){
       var filterobj = {}
-      filkey = $(this).data('action')
+      
       if($(this).children()[2]){
         if($(this).children()[2].checked ==false){
           $(this).children()[2].checked = true
@@ -476,6 +476,7 @@
         }
       }
       if($(this).data('action')){
+        filkey = $(this).data('action')
         var leng = document.querySelectorAll('input[data-filter='+ filkey +']:checked')
        for(var i=0;i<leng.length;i++){
           leng[i].checked = false
@@ -490,6 +491,12 @@
         })
       })
       
+      if($(this).data('tags')){
+        tagval = $(this).data('val')
+        tagkey = $(this).data('tags')
+        filterobj[tagkey] = tagval
+      }
+      console.log(filterobj)
     $.ajax({
       url:"{% url 'catalog-filter' %}",
       data:filterobj,

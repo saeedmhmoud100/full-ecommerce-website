@@ -15,11 +15,11 @@ PRODUCT_BRAND = (
     ('apple','Apple')
 )
 PRODUCT_MADE_FOR = (
-    ('busi','Business'),
-    ('home','Home'),
-    ('mobil','Mobility'),
-    ('power','Powerfull'),
-    ('game','Gaming')
+    ('Business','Business'),
+    ('Home','Home'),
+    ('Mobility','Mobility'),
+    ('Powerfull','Powerfull'),
+    ('Gaming','Gaming')
 )
 
 class Product(models.Model):
@@ -34,8 +34,6 @@ class Product(models.Model):
     Graphic_quality = models.CharField(max_length=20,verbose_name='Graphics')
     screen_size = models.IntegerField(default=0,verbose_name='Screen Size')
     tag1 = models.CharField(max_length=20,choices=PRODUCT_MADE_FOR,verbose_name='Tags')
-    tag2 = models.CharField(max_length=20,choices=PRODUCT_MADE_FOR,verbose_name='Tags',blank=True, null=True)
-    tag3 = models.CharField(max_length=20,choices=PRODUCT_MADE_FOR,verbose_name='Tags',blank=True, null=True)
     selling_price = models.FloatField(default=0,verbose_name='Selling Price')
     discount_price = models.FloatField(default=0,verbose_name='Discount Price',blank=True, null=True)
     favourites = models.ManyToManyField(User,default=None,blank=True,related_name='favourite')
