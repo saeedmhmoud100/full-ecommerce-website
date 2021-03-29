@@ -23,60 +23,60 @@
 
               <div class="items">
                 
-                {% for img in images %}
                 
-                {% if forloop.first %}
-                <div class="item active" data-marker="{{forloop.counter}}">
-                  <img src="{{img.img.url}}" alt="{{img.product.title}}"/>
-                </div>
-                  {% else %}
-                  <div class="item" data-marker="{{forloop.counter}}">
-                  <img src="{{img.img.url}}" alt="{{img.product.title}}"/>
-                </div>
-                {% endif %}
+                
+                {% for img in images %}
+                  {% if forloop.first %}
+                    <div class="item active" data-marker="{{forloop.counter}}">
+                      <img src="{{img.img.url}}" alt="{{img.product.title}}"/>
+                    </div>
+                    {% else %}
+                    <div class="item" data-marker="{{forloop.counter}}">
+                      <img src="{{img.img.url}}" alt="{{img.product.title}}"/>
+                    </div>
+                  {% endif %}
                 {% endfor %}
                   
-                
-                
-
-                <div class="item" data-marker="6">
-                  <div class="tiles">
-                    <a href="#video" data-gallery="#video" data-source="youtube" data-id="hED0N4CFoqs" data-title="An upscale new Chromebook from HP" data-description="The new HP Chromebook 13 runs a Core M CPU inside a slim aluminum body.">
-                      <img src="{% static 'assets/img/product/video.jpg' %}" alt="ChromeBook 11">
-
-                      <div class="overlay"></div>
-                      <div class="content">
-                        <div class="content-outside">
-                          <div class="content-inside">
-                            <i class="ion-ios-play"></i>
-                            <h1>Watch video review</h1>
+                  
+                  {% if product.video_img %}
+                  <div class="item" data-marker="{{cou}}">
+                    <div class="tiles">
+                      <a href="#video" data-gallery="#video" data-source="youtube" data-id="hED0N4CFoqs" data-title="An upscale new Chromebook from HP" data-description="The new HP Chromebook 13 runs a Core M CPU inside a slim aluminum body.">
+                        <img src="{{product.video_img.url}}" alt="{{img.product.title}}">
+  
+                        <div class="overlay"></div>
+                        <div class="content">
+                          <div class="content-outside">
+                            <div class="content-inside">
+                              <i class="ion-ios-play"></i>
+                              <h1>Watch video review</h1>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </a>
+                      </a>
+                    </div>
                   </div>
+                
+                  {% endif %}
                 </div>
-              </div>
 
               <ul class="markers">
-                
                 {% for img in images %}
-                
-                {% if forloop.first %}
-                <li class="active" data-marker="{{forloop.counter}}"><img src="{{img.img.url}}" alt="Background"/></li>
+                  {% if forloop.first %}
+                    <li class="active" data-marker="{{forloop.counter}}"><img src="{{img.img.url}}" alt="Background"/></li>
                   {% else %}
-                <li data-marker="{{forloop.counter}}"><img src="{{img.img.url}}" alt="Background"/></li>
-                {% endif %}
+                  <li data-marker="{{forloop.counter}}"><img src="{{img.img.url}}" alt="Background"/></li>
+                  {% endif %}
                 {% endfor %}
-                  
+                  {% if product.video_img %}
+                  <li data-marker="{{cou}}"><img src="{{product.video_img.url}}" alt="Background"/></li>
+                  {% endif %}
               </ul>
             </div>
           </div>
           <div class="col-sm-5 col-md-5">
             <img src="{% static 'assets/img/brands/hp.png' %}" alt="HP" class="brand hidden-xs" />
-
             <h1>{{product.title}}</h1>
-
             <p> &middot; {{product.os}}</p>
             <p> &middot; {{product.Process_type}}</p>
             <p> &middot; {{product.Graphic_quality}}</p>
@@ -87,29 +87,22 @@
             {% else %}
               <p class="price through">${{product.selling_price}}</p>
             {% endif %}
-              
-            
             <br><br>
 
             <button class="btn btn-primary btn-rounded"> <i class="ion-bag"></i> Add to cart</button>
           </div>
         </div>
     		<br><br><br>
-
-
 	    	<div class="row">
 	    		<div class="col-sm-7">
 	    			<h1>{{product.title}}</h1>
 		    		 <br>
-
 		    		 <p>
 		    		 	{{product.discrption}}
 		    		 </p>
 		    		 <br>
-
              <h2>Product specifications</h2>
              <br>
-
              
              {% for prop in props %}
               <div class="row specification">
@@ -117,10 +110,6 @@
                 <div class="col-sm-6"> <p>{{prop.prop_discrption}}</p> </div>
               </div>
              {% endfor %}
-               
-              
-              
-              
           </div>
           <div class="col-sm-5">
             <div class="comments">
@@ -132,11 +121,8 @@
               {% endif %}
               <h2 class="h3">What do you think? (#{{product.comment.count}})</h2>
               <br>
-
-
               <div class="wrapper">
                 <div class="content">
-
                   {% for comment in comments %}
                     <h3>{{comment.user.username}}</h3>
                   <label>{{ comment.created_at|timesince }} ago</label>
@@ -147,7 +133,6 @@
                 </div>
               </div>
               <br>
-
               <button class="btn btn-default btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> <i class="ion-chatbox-working"></i> Add comment </button>
               <div class="collapse " id="collapseExample" >
                 <div class="card card-body" style="margin-top: 20px;">
@@ -165,11 +150,9 @@
               
             </div>
             <br><br>
-
             <div class="talk">
               <h2 class="h3">Do you have any questions?</h2>
               <p>Online chat with our manager</p>
-
               <button class="btn btn-default btn-sm"> <i class="ion-android-contact"></i> Lat's talk </button>
             </div>
 	    		</div>

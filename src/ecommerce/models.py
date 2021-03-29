@@ -27,6 +27,8 @@ class Product(models.Model):
     title = models.CharField(max_length=30,verbose_name='Title')
     discrption = models.TextField(verbose_name='Discrption')
     img = models.ImageField(upload_to='product_img',verbose_name='Img')
+    video_img = models.ImageField(upload_to='product_video_img',blank=True, null=True,verbose_name='Video Img')
+    video_id = models.CharField(max_length=20,blank=True, null=True,verbose_name='Youtube Video Id')
     Brand = models.CharField(max_length=20,choices=PRODUCT_BRAND,verbose_name='Brand')
     prodtype = models.CharField(max_length=15,choices=PRODUCT_TYPE,verbose_name='Product type')
     os = models.CharField(max_length=20,verbose_name='Operating system')
