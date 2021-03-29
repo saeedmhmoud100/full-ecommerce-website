@@ -75,7 +75,9 @@
             </div>
           </div>
           <div class="col-sm-5 col-md-5">
-            <img src="{% static 'assets/img/brands/hp.png' %}" alt="HP" class="brand hidden-xs" />
+            <div style="height: 70px;">
+              <img src="{% static 'assets/img/brands/hp.png' %}" alt="HP" class="brand hidden-xs" style="display: none;" />
+            </div>
             <h1>{{product.title}}</h1>
             <p> &middot; {{product.os}}</p>
             <p> &middot; {{product.Process_type}}</p>
