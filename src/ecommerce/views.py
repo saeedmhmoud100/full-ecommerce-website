@@ -5,7 +5,7 @@ from django.core.paginator import Paginator
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
 from django.views.generic import View,ListView
-from .models import Product,ProductImg,ProductProperty,productComment
+from .models import Product,ProductImg,ProductProperty,productComment,Cart
 from .forms import ProductComment
 # Create your views here.
 
@@ -15,16 +15,12 @@ def home(request):
 def index(request):
     return render(request,'ecommerce/index.html')
 
-
 class CatalogView(ListView):
     model = Product
     template_name = 'ecommerce/catalog.html'
     context_object_name = 'products'
     paginate_by = 6
     
-    
-
-
 def favorite_or_unfavorite(request):
     id = request.GET.get('id',None)
     user = request.user
@@ -107,6 +103,22 @@ class CatalogProductView(View):
             messages.success(request,'added comment successfully!!')
             return redirect('catalog-product',pk=product.pk)
 
+class CartView(View):
+    def get(self,request):
+        if request.user.is_authenticated:
+            user = request.user
+            carts = Cart.objects.filter(user=user)
+            context = {
+                'carts':carts
+            }
+        else:
+            return redirect('login')
+        return render(request,'ecommerce/cart.html',context)
+
+
+# def cart(request):
+#     
+
 def gallery(request):
     return render(request,'ecommerce/gallery.html')
 
@@ -119,7 +131,4 @@ def contacts(request):
 def checkout(request):
     return render(request,'ecommerce/checkout.html')
 
-
-def cart(request):
-    return render(request,'ecommerce/cart.html')
 

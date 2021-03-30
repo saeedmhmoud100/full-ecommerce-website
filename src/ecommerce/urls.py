@@ -7,9 +7,9 @@ urlpatterns = [
     path('catalogproduct/<int:pk>',views.CatalogProductView.as_view(),name='catalog-product'),
     path('favorunfav/',views.favorite_or_unfavorite,name='fav'),
     path('catalog/fil', views.ProductFilterView.as_view(), name='catalog-filter'),
+    path('cart/',views.CartView.as_view(),name='cart'),
     path('gallery/',views.gallery,name='gallery'),
     path('faq/',views.faq,name='faq'),
     path('contacts/',views.contacts,name='contacts'),
     path('checkout/',views.checkout,name='checkout'),
-    path('cart/',views.cart,name='cart'),
 ]
