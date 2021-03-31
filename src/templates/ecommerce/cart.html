@@ -36,9 +36,9 @@
                               <label>{{cart.product.Brand}}</label>
                               
                               {% if cart.product.discount_price %}
-                                <p class="price">{{cart.product.discount_price}}</p>
+                                <p class="price">${{cart.product.discount_price}}</p>
                                 {% else %}
-                                <p class="price">{{cart.product.selling_price}}</p>
+                                <p class="price">${{cart.product.selling_price}}</p>
                               {% endif %}
                                 
                               
@@ -46,15 +46,15 @@
                             <div class="controls">
                               <div class="input-group">
                                 <span class="input-group-btn">
-                                  <button class="btn btn-default btn-sm" type="button" data-action="minus" cid='{{cart.id}}'><i class="ion-minus-round"></i></button>
+                                  <button class="btn btn-default btn-sm" type="button" data-action="minus" cid='{{cart.id}}' id={{forloop.counter}}><i class="ion-minus-round"></i></button>
                                 </span>
                                 <input type="text" class="form-control input-sm" placeholder="Qty" value="{{cart.quantity}}" readonly="">
                                 <span class="input-group-btn">
-                                  <button class="btn btn-default btn-sm" type="button" data-action="plus" cid='{{cart.id}}'><i class="ion-plus-round"></i></button>
+                                  <button class="btn btn-default btn-sm" type="button" data-action="plus" cid='{{cart.id}}' id={{forloop.counter}}><i class="ion-plus-round"></i></button>
                                 </span>
                               </div><!-- /input-group -->
 
-                              <a href="#remove"> <i class="ion-trash-b"></i> Remove </a>
+                              <a data-remove={{cart.id}} style="cursor: pointer;"> <i class="ion-trash-b"></i> Remove </a>
                             </div>
                           </div>
                         {% endfor %}
@@ -76,10 +76,20 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-xs-6">
-                                <p>Subtotal ({{carts.count}} items)</p>
+                                <p style="display: block;border-bottom: 1.5px solid #b6b6b6;">Subtotal ({{carts.count}} items)</p>
+                                {% for cart in carts %}
+                                <div id="left{{cart.id}}">
+                                  <p>{{cart.product.title}}</p>
+                                </div>
+                                {% endfor %}
                             </div>
                             <div class="col-xs-6">
-                                <p><b>$1499</b></p>
+                                <p style="padding-top: 20px;"><b> </b></p>
+                                {% for cart in carts %}
+                                  <div id="left{{cart.id}}">
+                                    <p id={{forloop.counter}}>${{cart.amount}}</p>
+                                  </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -122,6 +132,7 @@
       let state = ''
       data = {}
       elm = this.parentNode.parentNode.children[1]
+      fl = $(this).attr('id')
       $(this).data('action')=='plus' ? state ='plus' : state ='minus'
       data['state'] = state
       data['id'] = $(this).attr('cid')
@@ -132,6 +143,26 @@
         data:data,
         success:function(res){
           elm.value = res.cart_quantity
+          $('p[id='+ fl +']').text('$' + res.cart_amount)
+        }
+      })
+    });
+
+    $('a[data-remove]').on('click', function(){
+      id = $(this).data('remove')
+      elm = this.parentNode.parentNode
+      mitem = $(`div[id=left${id}]`)
+      console.log(elm)
+      $.ajax({
+        type:'GET',
+        url:"{% url 'remove-cart' %}",
+        dataType:'json',
+        data:{
+          'id':id
+        },
+        success:function(res){
+          elm.remove()
+          mitem.remove()
         }
       })
     })

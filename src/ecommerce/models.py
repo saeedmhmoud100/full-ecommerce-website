@@ -75,3 +75,16 @@ class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
+    amount = models.FloatField(blank=True)
+
+    def save(self,*args,**kwargs):
+        total = 0
+        if self.product.discount_price:
+            total = self.product.discount_price * self.quantity
+        else:
+            total = self.product.selling_price * self.quantity
+        self.amount = total
+        super(Cart,self).save(*args,**kwargs)
+    def __str__(self):
+        return f'{self.product.title} product of {self.user.username} user'
+

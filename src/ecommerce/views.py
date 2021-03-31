@@ -129,10 +129,19 @@ def plus_or_minus_cart(request):
             cart.quantity -= 1
             cart.save()
     data = {
-        'cart_quantity':cart.quantity
+        'cart_quantity':cart.quantity,
+        'cart_amount':cart.amount
+
     }
     return JsonResponse(data)
 
+def remove_cart(request):
+    cart_id = request.GET.get('id')
+    Cart.objects.get(pk=cart_id,user=request.user).delete()
+    data = {
+        'yes':'yes'
+    }
+    return JsonResponse(data)
 def gallery(request):
     return render(request,'ecommerce/gallery.html')
 
