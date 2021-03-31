@@ -116,8 +116,22 @@ class CartView(View):
         return render(request,'ecommerce/cart.html',context)
 
 
-# def cart(request):
-#     
+def plus_or_minus_cart(request):
+    state =request.GET.get('state')
+    cart_id = request.GET.get('id')
+    user = request.user
+    cart = Cart.objects.get(pk=cart_id,user=user)
+    if state == 'plus':
+        cart.quantity += 1
+        cart.save()
+    if state == 'minus':
+        if not cart.quantity == 1:
+            cart.quantity -= 1
+            cart.save()
+    data = {
+        'cart_quantity':cart.quantity
+    }
+    return JsonResponse(data)
 
 def gallery(request):
     return render(request,'ecommerce/gallery.html')

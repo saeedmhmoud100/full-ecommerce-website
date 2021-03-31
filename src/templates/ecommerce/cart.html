@@ -46,11 +46,11 @@
                             <div class="controls">
                               <div class="input-group">
                                 <span class="input-group-btn">
-                                  <button class="btn btn-default btn-sm" type="button" data-action="minus"><i class="ion-minus-round"></i></button>
+                                  <button class="btn btn-default btn-sm" type="button" data-action="minus" cid='{{cart.id}}'><i class="ion-minus-round"></i></button>
                                 </span>
                                 <input type="text" class="form-control input-sm" placeholder="Qty" value="{{cart.quantity}}" readonly="">
                                 <span class="input-group-btn">
-                                  <button class="btn btn-default btn-sm" type="button" data-action="plus"><i class="ion-plus-round"></i></button>
+                                  <button class="btn btn-default btn-sm" type="button" data-action="plus" cid='{{cart.id}}'><i class="ion-plus-round"></i></button>
                                 </span>
                               </div><!-- /input-group -->
 
@@ -76,7 +76,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-xs-6">
-                                <p>Subtotal (7 items)</p>
+                                <p>Subtotal ({{carts.count}} items)</p>
                             </div>
                             <div class="col-xs-6">
                                 <p><b>$1499</b></p>
@@ -116,3 +116,24 @@
     <hr class="offset-lg">
     <hr class="offset-lg">
 {% endblock %}
+{% block script %}
+  <script>
+    $('button[data-action]').on('click', function(){
+      let state = ''
+      data = {}
+      elm = this.parentNode.parentNode.children[1]
+      $(this).data('action')=='plus' ? state ='plus' : state ='minus'
+      data['state'] = state
+      data['id'] = $(this).attr('cid')
+      $.ajax({
+        type:'GET',
+        url:"{% url 'prus-or-minus' %}",
+        dataType:'json',
+        data:data,
+        success:function(res){
+          elm.value = res.cart_quantity
+        }
+      })
+    })
+  </script>
+{% endblock script %}

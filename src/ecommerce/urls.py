@@ -8,6 +8,7 @@ urlpatterns = [
     path('favorunfav/',views.favorite_or_unfavorite,name='fav'),
     path('catalog/fil', views.ProductFilterView.as_view(), name='catalog-filter'),
     path('cart/',views.CartView.as_view(),name='cart'),
+    path('prusorminus',views.plus_or_minus_cart,name='prus-or-minus'),
     path('gallery/',views.gallery,name='gallery'),
     path('faq/',views.faq,name='faq'),
     path('contacts/',views.contacts,name='contacts'),
