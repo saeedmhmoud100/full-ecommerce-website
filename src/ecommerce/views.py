@@ -81,6 +81,8 @@ class CatalogProductView(View):
         recom = Product.objects.all().order_by('-id')[:4]
         cou = images.count() + 1
         form = ProductComment()
+        cart = Cart.objects.filter(user=request.user,product=product).exists()
+        print(cart)
         context = {
             'product':product,
             'images':images,
@@ -88,7 +90,8 @@ class CatalogProductView(View):
             'comments':comments,
             'recom':recom,
             'cou':cou,
-            'form':form
+            'form':form,
+            'item_in_cart':cart
         }
         return render(request,'ecommerce/catalog-product.html',context)
     def post(self,request,pk):
@@ -102,6 +105,13 @@ class CatalogProductView(View):
             form_save.save()
             messages.success(request,'added comment successfully!!')
             return redirect('catalog-product',pk=product.pk)
+
+def add_to_cart(request):
+    if request.method =='POST':
+        user= request.user
+        product = Product.objects.get(pk=request.POST.get('id'))
+        Cart.objects.create(user=user,product=product)
+        return redirect('catalog-product',pk=product.pk)
 
 class CartView(View):
     def get(self,request):
@@ -157,6 +167,7 @@ def remove_cart(request):
         'cart_count':cart_count,
     }
     return JsonResponse(data)
+
 def gallery(request):
     return render(request,'ecommerce/gallery.html')
 

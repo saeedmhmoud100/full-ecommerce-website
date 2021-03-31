@@ -89,8 +89,19 @@
               <p class="price through">${{product.selling_price}}</p>
             {% endif %}
             <br><br>
-
-            <button class="btn btn-primary btn-rounded"> <i class="ion-bag"></i> Add to cart</button>
+            
+            {% if item_in_cart %}
+              <a href="{% url 'cart' %}"><button class="btn btn-warning btn-rounded"> <i class="ion-bag"></i> Go To Cart</button></a>
+            {% else %}
+            <form method="POST" action="/addtocart/">
+              {% csrf_token %}
+              <input type="hidden" value="{{product.id}}" name='id'>
+              <button class="btn btn-primary btn-rounded" type="submit"> <i class="ion-bag"></i> Add to cart</button>
+            </form>
+            {% endif %}
+              
+            
+            
           </div>
         </div>
     		<br><br><br>

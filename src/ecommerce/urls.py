@@ -5,6 +5,7 @@ urlpatterns = [
     path('home/',views.home,name='home'),
     path('catalog/',views.CatalogView.as_view(),name='catalog'),
     path('catalogproduct/<int:pk>',views.CatalogProductView.as_view(),name='catalog-product'),
+    path('addtocart/',views.add_to_cart,name='add-to-cart'),
     path('favorunfav/',views.favorite_or_unfavorite,name='fav'),
     path('catalog/fil', views.ProductFilterView.as_view(), name='catalog-filter'),
     path('cart/',views.CartView.as_view(),name='cart'),
