@@ -108,8 +108,13 @@ class CartView(View):
         if request.user.is_authenticated:
             user = request.user
             carts = Cart.objects.filter(user=user)
+            cartlist = [p for p in Cart.objects.all() if p.user == user]
+            total_amount = 0.0
+            for p in cartlist:
+                    total_amount += p.amount
             context = {
-                'carts':carts
+                'carts':carts,
+                'total_amount':total_amount
             }
         else:
             return redirect('login')
@@ -128,18 +133,28 @@ def plus_or_minus_cart(request):
         if not cart.quantity == 1:
             cart.quantity -= 1
             cart.save()
+    cartlist = [p for p in Cart.objects.all() if p.user == user]
+    total_amount = 0.0
+    for p in cartlist:
+            total_amount += p.amount
     data = {
         'cart_quantity':cart.quantity,
-        'cart_amount':cart.amount
-
+        'cart_amount':cart.amount,
+        'total_amount':total_amount
     }
     return JsonResponse(data)
 
 def remove_cart(request):
     cart_id = request.GET.get('id')
     Cart.objects.get(pk=cart_id,user=request.user).delete()
+    cart_count = Cart.objects.filter(user=request.user).count()
+    cartlist = [p for p in Cart.objects.all() if p.user == request.user]
+    total_amount = 0.0
+    for p in cartlist:
+        total_amount += p.amount
     data = {
-        'yes':'yes'
+        'total_amount':total_amount,
+        'cart_count':cart_count,
     }
     return JsonResponse(data)
 def gallery(request):

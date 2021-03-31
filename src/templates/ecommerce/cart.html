@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}{% endblock title %}
+{% block title %} Cart &middot; Unistore {% endblock title %}
 
 {% block content %}
     <hr class="offset-md">
@@ -21,9 +21,9 @@
                 <div class="panel panel-default">
                   <div class="panel-body">
                     <div class="checkout-cart">
+                      
+                      {% if carts %}
                       <div class="content">
-
-                        
                         {% for cart in carts %}
                           <div class="media">
                             <div class="media-left">
@@ -58,10 +58,13 @@
                             </div>
                           </div>
                         {% endfor %}
-                          
-                          
-
                       </div>
+                      {% else %}
+                      <div class="content">
+                        <h3>You don't have any cart yet</h3>
+                      </div>
+                      {% endif %}
+                        
                     </div>
                   </div>
                 </div>
@@ -76,7 +79,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-xs-6">
-                                <p style="display: block;border-bottom: 1.5px solid #b6b6b6;">Subtotal ({{carts.count}} items)</p>
+                                <p id="cart_count" style="display: block;border-bottom: 1.5px solid #b6b6b6;">Subtotal ({{carts.count}} items)</p>
                                 {% for cart in carts %}
                                 <div id="left{{cart.id}}">
                                   <p>{{cart.product.title}}</p>
@@ -101,7 +104,7 @@
                                 <h3 class="no-margin">Total sum</h3>
                             </div>
                             <div class="col-xs-6">
-                                <h3 class="no-margin">$1499</h3>
+                                <h3 class="no-margin" id="total_amount">${{total_amount}}</h3>
                             </div>
                         </div>
                     </div>
@@ -144,6 +147,7 @@
         success:function(res){
           elm.value = res.cart_quantity
           $('p[id='+ fl +']').text('$' + res.cart_amount)
+          $("h3[id='total_amount']").text("$"+res.total_amount)
         }
       })
     });
@@ -163,6 +167,8 @@
         success:function(res){
           elm.remove()
           mitem.remove()
+          document.getElementById('cart_count').innerText = `Subtotal (${res.cart_count} items)`
+          $("h3[id='total_amount']").text("$"+res.total_amount)
         }
       })
     })
