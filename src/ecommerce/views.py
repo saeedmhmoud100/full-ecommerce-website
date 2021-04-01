@@ -20,6 +20,11 @@ class CatalogView(ListView):
     template_name = 'ecommerce/catalog.html'
     context_object_name = 'products'
     paginate_by = 6
+    def get_context_data(self, **kwargs):
+        item_in_cart = Product.objects.filter(cart__user =self.request.user)
+        context = super(CatalogView, self).get_context_data(**kwargs)
+        context['item_in_cart'] = item_in_cart
+        return context
     
 def favorite_or_unfavorite(request):
     id = request.GET.get('id',None)
@@ -81,8 +86,7 @@ class CatalogProductView(View):
         recom = Product.objects.all().order_by('-id')[:4]
         cou = images.count() + 1
         form = ProductComment()
-        cart = Cart.objects.filter(user=request.user,product=product).exists()
-        print(cart)
+        item_in_cart = Cart.objects.filter(user=request.user,product=product).exists()
         context = {
             'product':product,
             'images':images,
@@ -91,7 +95,7 @@ class CatalogProductView(View):
             'recom':recom,
             'cou':cou,
             'form':form,
-            'item_in_cart':cart
+            'item_in_cart':item_in_cart
         }
         return render(request,'ecommerce/catalog-product.html',context)
     def post(self,request,pk):

@@ -31,7 +31,16 @@
             <label>{{product.prodtype}}</label>
 
             <a href="{% url 'catalog-product' product.id %}" class="btn btn-link"> Details</a>
-            <button class="btn btn-primary btn-rounded btn-sm"> <i class="ion-bag"></i> Add to cart</button>
+            
+            {% if product in item_in_cart %}
+              <a href="{% url 'cart' %}" style="padding-right: 20px;"><button class="btn btn-warning btn-rounded btn-sm"> <i class="ion-bag"></i> Go To Cart</button></a>
+            {% else %}
+            <form method="POST" action="/addtocart/" style="display: inline-block;">
+              {% csrf_token %}
+              <input type="hidden" value="{{product.id}}" name='id'>
+              <button class="btn btn-primary btn-rounded btn-sm" type="submit"> <i class="ion-bag"></i> Add to cart</button>
+            </form>
+            {% endif %}
           </div>
         </div>
         {% endfor %}
