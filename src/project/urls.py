@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/',include('user.urls')),
     path('',include('ecommerce.urls')),
-    path('blog/',include('blog.urls'))
+    path('/blog/',include('blog.urls'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

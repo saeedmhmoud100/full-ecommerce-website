@@ -62,13 +62,15 @@ class ProductFilterView(ListView):
         if price:
             allproducts = allproducts.filter(selling_price__lte=price)
         
+        item_in_cart = Product.objects.filter(cart__user =self.request.user)
         paginator = Paginator(allproducts, 6)
 
         page_number = request.GET.get('pag')
         page_obj = paginator.get_page(page_number)
         context = {
         'products':allproducts,
-        'page_obj':page_obj
+        'item_in_cart':item_in_cart,
+        'page_obj':page_obj,
         }
         t = render_to_string('ecommerce/products.html',context)
         data = {
