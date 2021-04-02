@@ -181,13 +181,6 @@ class GalleryView(View):
         }
         return render(request,'ecommerce/gallery.html',context)
 
-def faq(request):
-    return render(request,'ecommerce/faq.html')
-
-def contacts(request):
-    return render(request,'ecommerce/contacts.html')
 
 def checkout(request):
     return render(request,'ecommerce/checkout.html')
-
-

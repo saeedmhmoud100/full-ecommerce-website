@@ -43,26 +43,26 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../"> <i class="ion-cube"></i> Unistore</a>
+            <a class="navbar-brand" href="{% url 'index' %}"> <i class="ion-cube"></i> Unistore</a>
           </div>
 
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li><a href="../">Home</a></li>
-              <li><a href="../catalog/">Catalog</a></li>
-              <li><a href="{% url 'blog' %}">Blog</a></li>
-              <li><a href="../gallery/">Gallery</a></li>
+              <li><a href="{% url 'home' %}">Home</a></li>
+              <li><a href="{% url 'catalog' %}">Catalog</a></li>
+              <li><a href="/blog/">Blog</a></li>
+              <li><a href="/gallery/">Gallery</a></li>
               <li class="dropdown">
-                <a href="../catalog/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="../catalog/product.html">Product</a></li>
-                  <li><a href="../cart/">Cart</a></li>
+                  <li><a href="{% url 'catalog' %}">Product</a></li>
+                  <li><a href="{% url 'cart' %}">Cart</a></li>
                   <li><a href="../checkout/">Checkout</a></li>
                   <li><a href="../faq/">FAQ</a></li>
                   <li><a href="../contacts/">Contacts</a></li>
                   <li role="separator" class="divider"></li>
                   <li class="dropdown-header">Variations</li>
-                  <li><a href="../home">Home</a></li>
+                  <li><a href="{% url 'home' %}">Home</a></li>
                   <li><a href="{% url 'blog-item' 'photo' %}">Article Photo</a></li>
                   <li><a href="{% url 'blog-item' 'video' %}">Article Video</a></li>
                   <li><a href="{% url 'blog-item' 'review' %}">Article Review</a></li>
@@ -184,9 +184,9 @@
               <h1 class="h4">Products <i class="ion-plus-round hidden-sm hidden-md hidden-lg"></i> </h1>
   
               <div class="list-group">
-                <a href="#" class="list-group-item">Laptops</a>
-                <a href="#" class="list-group-item">Tablets</a>
-                <a href="#" class="list-group-item">Servers</a>
+                <a href="{% url 'catalog' %}" class="list-group-item">Laptops</a>
+                <a href="{% url 'catalog' %}" class="list-group-item">Tablets</a>
+                <a href="{% url 'catalog' %}" class="list-grou-item">Servers</a>
               </div>
             </div>
             <div class="col-sm-3 col-md-2">
