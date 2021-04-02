@@ -5,7 +5,7 @@ from django.core.paginator import Paginator
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
 from django.views.generic import View,ListView
-from .models import Product,ProductImg,ProductProperty,productComment,Cart
+from .models import Product,ProductImg,ProductProperty,productComment,Cart,Gallery
 from .forms import ProductComment
 # Create your views here.
 
@@ -136,7 +136,6 @@ class CartView(View):
             return redirect('login')
         return render(request,'ecommerce/cart.html',context)
 
-
 def plus_or_minus_cart(request):
     state =request.GET.get('state')
     cart_id = request.GET.get('id')
@@ -174,8 +173,13 @@ def remove_cart(request):
     }
     return JsonResponse(data)
 
-def gallery(request):
-    return render(request,'ecommerce/gallery.html')
+class GalleryView(View):
+    def get(self,request):
+        gallerys = Gallery.objects.all()
+        context={
+            'gallerys':gallerys
+        }
+        return render(request,'ecommerce/gallery.html',context)
 
 def faq(request):
     return render(request,'ecommerce/faq.html')

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone 
+from PIL import Image  
 # Create your models here.
 
 PRODUCT_TYPE =  (
@@ -88,3 +89,20 @@ class Cart(models.Model):
     def __str__(self):
         return f'{self.product.title} product of {self.user.username} user'
 
+
+
+VIDEO_SOURCE = (
+    ('youtube','youtube'),
+    ('vimeo','Vimeo')
+)
+class Gallery(models.Model):
+    title = models.CharField(max_length=50,verbose_name='Title')
+    description = models.TextField(verbose_name='Description')
+    img = models.ImageField(upload_to='gellary_img',verbose_name='Image')
+    video = models.CharField(max_length=50,verbose_name='or Video Id',default=' ')
+    source = models.CharField(max_length=10,choices=VIDEO_SOURCE,default='youtube',verbose_name='Video source')
+    @property
+    def img_url(self):
+        return self.img.url
+    def __str__(self):
+        return self.title
