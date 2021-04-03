@@ -12,5 +12,5 @@ urlpatterns = [
     path('prusorminus/',views.plus_or_minus_cart,name='prus-or-minus'),
     path('removecart/',views.remove_cart,name='remove-cart'),
     path('gallery/',views.GalleryView.as_view(),name='gallery'),
-    path('checkout/',views.checkout,name='checkout'),
+    path('checkout/',views.CheckoutView.as_view(),name='checkout'),
 ]

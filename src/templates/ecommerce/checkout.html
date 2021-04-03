@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}
+&middot; Unistore|Checkout order
+
+{% endblock title %}
+
 {% block content %}
 
 <hr class="offset-md">
@@ -478,39 +483,33 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xs-6">
-                        <p>Subtotal (7 items)</p>
+                        <p>Subtotal ({{cart.count}} items)</p>
                         <p>Discount</p>
                         <p>Delivery</p>
                     </div>
                     <div class="col-xs-6">
                         <p><b>$1499</b></p>
                         <p><b>$0</b></p>
-                        <p><b>$0</b></p>
+                        <p><b>${{Delivery}}</b></p>
                     </div>
                 </div>
             </div>
 
             <div class="checkboxes">
                 <div class="radio">
-                    <label>
-                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                        Promotional Codes
+                    <label id="lab"   style="padding-left: 0px;">
+                        <input type="checkbox" name="optionsRadios" id="optionsRadios1" value="option1" style="margin-right: 5px;">
+                        <span>Coupon</span>
                     </label>
                     <hr class="offset-xs">
 
-                    <div class="input-group">
+                    <div class="input-group" id="collapseOne" style="display:none">
                       <input type="text" class="form-control input-sm" placeholder="Insert code">
                       <span class="input-group-btn">
                         <button class="btn btn-primary btn-sm" type="button">Apply</button>
                       </span>
                     </div><!-- /input-group -->
                     <hr class="offset-sm">
-                </div>
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                    Coupon
-                  </label>
                 </div>
             </div>
             <hr>
@@ -521,7 +520,7 @@
                         <h3 class="no-margin">Total sum</h3>
                     </div>
                     <div class="col-xs-6">
-                        <h3 class="no-margin">$1499</h3>
+                        <h3 class="no-margin">${{total_amount}}</h3>
                     </div>
                 </div>
             </div>
@@ -537,3 +536,15 @@
 <hr class="offset-lg">
 {% endblock content %}
 
+{% block script %}
+  <script>
+      $('#optionsRadios1').change(function(){
+        if(document.getElementById('collapseOne').style.display == 'table'){
+            
+            document.getElementById('collapseOne').style.display = 'none'
+        }else{
+            document.getElementById('collapseOne').style.display = 'table'
+        }
+      })
+  </script>
+{% endblock script %}

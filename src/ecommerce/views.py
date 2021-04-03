@@ -182,5 +182,16 @@ class GalleryView(View):
         return render(request,'ecommerce/gallery.html',context)
 
 
-def checkout(request):
-    return render(request,'ecommerce/checkout.html')
+class CheckoutView(View):
+    def get(sellf,request):
+        cart = Cart.objects.filter(user=request.user)
+        Delivery = 10
+        total_amount = 10
+        for p in cart:
+            total_amount += p.amount
+        context = {
+            'cart':cart,
+            'Delivery':Delivery,
+            'total_amount':total_amount
+        }
+        return render(request,'ecommerce/checkout.html',context)
