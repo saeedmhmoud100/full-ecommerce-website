@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone 
 from PIL import Image  
+from user.models import Customer
 # Create your models here.
 
 PRODUCT_TYPE =  (
@@ -106,3 +107,25 @@ class Gallery(models.Model):
         return self.img.url
     def __str__(self):
         return self.title
+
+ORDER_STATE = (
+    ('Accepted','Accepted'),
+    ('Packed','Packed'),
+    ('On The Way','On The Way'),
+    ('Delivered','Delivered'),
+    ('Cansel','Cansel'),
+)
+
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    location = models.ForeignKey(Customer,on_delete=models.CASCADE)
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+    delevery_option= models.CharField(max_length=50) 
+    payment = models.CharField(max_length=40)
+    remark = models.TextField(blank=True, null=True)
+    order_data = models.DateTimeField(auto_now_add=True)
+    state = models.CharField(max_length=30,choices=ORDER_STATE,default='panding')
+
+    def __str__(self):
+        return f'order of {self.user} user'

@@ -6,7 +6,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
 from django.views.generic import View,ListView
 from user.models import Customer
-from .models import Product,ProductImg,ProductProperty,productComment,Cart,Gallery
+from .models import Product,ProductImg,ProductProperty,productComment,Cart,Gallery,Order
 from .forms import ProductComment,AddNewAddressForm
 # Create your views here.
 
@@ -210,4 +210,16 @@ class CheckoutView(View):
                 form_save.user = request.user
                 form_save.save()
                 return redirect('checkout')
-        print(request.POST)
+        
+
+def payment_done(request):
+    cart = Cart.objects.filter(user=request.user)
+    address = request.POST['address']
+    option = request.POST['option']
+    payment = request.POST['payment']
+    remark = request.POST['remark']
+    cusom = Customer.objects.get(pk=address)
+    for c in cart:
+        Order(user=request.user,product=c.product,quantity=c.quantity,location=cusom,delevery_option=option,payment=payment,remark=remark).save()
+        c.delete()
+    return redirect('profile',username=request.user)
