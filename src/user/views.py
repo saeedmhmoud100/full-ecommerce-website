@@ -58,7 +58,7 @@ class ProfileView(View):
             form_save.user = request.user
             form_save.save()
             messages.success(request, 'add location successfully!! ')
-            return HttpResponseRedirect(f'/profile/{user}')
+            return HttpResponseRedirect(f'/account/profile/{user}')
 
         return render(request, 'user/profile.html',{'profile':proform,'locform':AddLocationForm,'locations':locations})
 

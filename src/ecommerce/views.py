@@ -5,8 +5,9 @@ from django.core.paginator import Paginator
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
 from django.views.generic import View,ListView
+from user.models import Customer
 from .models import Product,ProductImg,ProductProperty,productComment,Cart,Gallery
-from .forms import ProductComment
+from .forms import ProductComment,AddNewAddressForm
 # Create your views here.
 
 def home(request):
@@ -186,12 +187,27 @@ class CheckoutView(View):
     def get(sellf,request):
         cart = Cart.objects.filter(user=request.user)
         Delivery = 10
-        total_amount = 10
+        total_amount = 0
         for p in cart:
             total_amount += p.amount
+        form = AddNewAddressForm()
+        customer = Customer.objects.filter(user=request.user)
         context = {
             'cart':cart,
             'Delivery':Delivery,
-            'total_amount':total_amount
+            'all_amount':total_amount,
+            'total_amount':total_amount + Delivery,
+            'cart':cart,
+            'form':form,
+            'customer':customer
         }
         return render(request,'ecommerce/checkout.html',context)
+    def post(self,request):
+        if 'CustCountry' in request.POST:
+            form = AddNewAddressForm(request.POST)
+            if form.is_valid():
+                form_save = form.save(commit=False)
+                form_save.user = request.user
+                form_save.save()
+                return redirect('checkout')
+        print(request.POST)
