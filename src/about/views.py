@@ -1,12 +1,15 @@
 from django.shortcuts import render
-
+from django.views.generic import View
 # Create your views here.
 
 
-def faq(request):
-    return render(request,'ecommerce/faq.html')
+
+class FAQView(View):
+    def get(self, request,*arge,**kwargs):
+        return render(request,'about/faq.html')
+
 
 def contacts(request):
-    return render(request,'ecommerce/contacts.html')
+    return render(request,'about/contacts.html')
 
 
