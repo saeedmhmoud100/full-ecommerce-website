@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views.generic import View
 from django.core.paginator import Paginator
+from django.contrib import messages
+from django.contrib.auth.models import User
 from .models import FaqQuestion
 # Create your views here.
 
@@ -22,7 +24,19 @@ class FAQView(View):
             'last_question':lastquestion
         }
         return render(request,'about/faq.html',context)
-
+    def post(self,request,*args,**kwargs):
+        message = request.POST['message']
+        email = request.POST['email']
+        if request.user.is_authenticated:
+            if User.objects.filter(email=email).exists():
+                FaqQuestion(user=request.user,question=message).save()
+                messages.success(request,'added question successfully!!')
+            else:
+                messages.warning(request,'the email is not valid')
+                return redirect('faq')
+        else:
+            return redirect('login')
+        return redirect('faq')
 
 def contacts(request):
     return render(request,'about/contacts.html')

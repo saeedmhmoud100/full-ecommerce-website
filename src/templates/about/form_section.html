@@ -1,12 +1,22 @@
 <div class="gray">
     <div class="container align-center">
+      
+      {% if messages %}
+        
+        {% for message in messages %}
+          <div class='alert alert-{{message.tags}}'>{{message}}</div>
+        {% endfor %}
+          
+      {% endif %}
+        
       <hr class="offset-md">
         <h1> Need our assistance? </h1>
         <p> Please select a question above first so we can connect you <br class="visible-md visible-lg"> to the right agent. </p>
 
       <div class="row">
         <div class="col-sm-4 col-sm-offset-4">
-          <form class="contact" action="index.php" method="post">
+          <form class="contact" method="post">
+            {% csrf_token %} 
             <textarea class="form-control" name="message" placeholder="Message" required="" rows="5"></textarea>
             <br>
 

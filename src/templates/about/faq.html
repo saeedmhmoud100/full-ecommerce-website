@@ -37,12 +37,15 @@
               <a class="" role="button" data-toggle="collapse" href="#question{{forloop.counter}}{{lq.id}}" aria-expanded="true" aria-controls="question{{forloop.counter}}{{lq.id}}">
               <h1 class="h3">{{lq.question}}</h1>
             </a>
-
             <div class="collapse" id="question{{forloop.counter}}{{lq.id}}">
               <div class="well">
-                <p>
+                {% if lq.answer.answer %}
+                  <p>
                   {{lq.answer.answer}}
                 </p>
+                {% else %}
+                <h3>Not aneswer Yet</h3>
+                {% endif %}
               </div>
             </div>
             <br>
@@ -72,7 +75,7 @@
     </div>
 
     <hr class="offset-lg">
-    {% include "about/email_section.html" %}
+    {% include "about/form_section.html" %}
     <hr class="offset-lg">
     <hr class="offset-lg">
 
