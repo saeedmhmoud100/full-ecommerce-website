@@ -144,4 +144,3 @@ EMAIL_HOST_PASSWORD = 'your password'
 # EMAIL_HOST = 'localhost'
 # EMAIL_PORT = 1025
 
-POSTMAN_DISALLOW_ANONYMOUS = True
