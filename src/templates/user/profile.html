@@ -6,7 +6,6 @@
 {% block content %}
     <div class="container">
       
-      
         
       <div class="row">
         
@@ -24,10 +23,16 @@
             <form method="POST">
               {% csrf_token %}
               {% for fm in locform %}
+              {% if forloop.first %}
+              Country
+              {{fm}}
+              {{fm.errors}}
+              {% else %}
                 <div class="">
                   {{fm.label}}
                 {{fm}}{{fm.errors}}
                 </div>
+                {% endif %}
               {% endfor %}
               <button type="submit" class="btn btn-primary" style="margin:10px;">add Location</button>
             </form>
@@ -35,7 +40,7 @@
         </div>
         <div class=" col-md-offset-1 col-md-4">
           {% if messages %}
-          {% for message in massages %}
+          {% for message in messages %}
             <div class="alert alert-{{message.tags}}">{{message}}</div>
           {% endfor %}
           {% endif %}
@@ -43,7 +48,11 @@
             {% for location in locations %}
               <div style="border: 1px solid #777777;padding-left: 18px;margin-bottom: 10px;overflow: hidden;">
                 <h3 style="border-bottom: 1px solid #777;display: inline-block;">Location: {{forloop.counter}}</h3>
+                {% if location.CustCountry.name %}
+                <p>countryt: {{location.CustCountry.name}},</p>
+                {% else %}
                 <p>countryt: {{location.CustCountry}},</p>
+                {% endif %}
                 <p>city: {{location.CustCity}},</p>
                 <p>Locality: {{location.CustLocality}},</p>
                 <p>Zipcode: {{location.CustZipcode}},</p>

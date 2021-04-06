@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordResetForm,SetPasswordForm,PasswordChangeForm
+from django_countries.widgets import CountrySelectWidget
 from .models import UserProfile,Customer
 class RegisterForm(forms.ModelForm):
     username = forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class':'form-control','name':'username','placeholder':'User Name'}))
@@ -65,10 +66,12 @@ class MyPasswordChangeForm(PasswordChangeForm):
 
 
 class AddLocationForm(forms.ModelForm):
-    CustCountry = forms.CharField(label='Country ',widget=forms.TextInput(attrs={'class':' mr-3','name':'country','placeholder':'Country','style':'margin-left:15px;margin-bottom:5px'}))
     CustCity = forms.CharField(label='City',widget=forms.TextInput(attrs={'class':' mr-3','name':'city','placeholder':'City','style':'margin-left:39px;margin-bottom:5px'}))
     CustLocality = forms.CharField(label='Locality',widget=forms.TextInput(attrs={'class':' mr-3','name':'locality','placeholder':'Locality','style':'margin-left:16px;margin-bottom:5px'}))
     CustZipcode = forms.CharField(max_length=10,label='Zipcode ',widget=forms.NumberInput(attrs={'class':' mr-3','name':'Zipcode','placeholder':'zipcode','style':'margin-left:15px;margin-bottom:5px'}))
     class Meta:
         model = Customer
         fields = ('CustCountry','CustCity','CustLocality','CustZipcode')
+        widgets = {
+            'CustCountry': CountrySelectWidget(attrs={'class':' mr-3','name':'country','placeholder':'Country','style':'margin-left:15px;margin-bottom:5px;width: 60%;'}),
+        }

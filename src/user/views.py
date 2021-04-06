@@ -44,9 +44,11 @@ def login(request):
 
 class ProfileView(View):
     def get(self,request,username):
-        proform = UserProfile.objects.get(user=request.user)
+        if username != request.user.username:
+            return redirect('profile',username=request.user)
+        proform = UserProfile.objects.get(user__username=username)
         locationform = AddLocationForm()
-        locations = Customer.objects.filter(user=request.user)
+        locations = Customer.objects.filter(user__username=username)
         return render(request, 'user/profile.html',{'profile':proform,'locform':AddLocationForm,'locations':locations})
     def post(self,request,username):
         proform = UserProfile.objects.get(user=request.user)

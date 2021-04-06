@@ -135,11 +135,13 @@ EMAIL_PORT= 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' 
-EMAIL_HOST_USER = 'saeedtest109@gmail.com'
-EMAIL_HOST_PASSWORD = '01272260394'
+EMAIL_HOST_USER = 'email@gmail.com'
+EMAIL_HOST_PASSWORD = 'your password'
 
 # EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 # EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
 
 # EMAIL_HOST = 'localhost'
 # EMAIL_PORT = 1025
+
+POSTMAN_DISALLOW_ANONYMOUS = True
