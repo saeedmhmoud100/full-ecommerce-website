@@ -21,7 +21,8 @@ class FAQView(View):
         context= {
             'page_obj':page_obj,
             'first_question':firstquestion,
-            'last_question':lastquestion
+            'last_question':lastquestion,
+            'head':'assistance'
         }
         return render(request,'about/faq.html',context)
     def post(self,request,*args,**kwargs):

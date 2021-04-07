@@ -12,6 +12,8 @@
               <h3 style="border-bottom: 2px solid #777;display: inline;">Older questions</h3>
             </div>
             {% for fq in first_question %}
+              
+              {% if fq.answer.answer %}
               <a class="" role="button" data-toggle="collapse" href="#question{{forloop.counter}}{{fq.id}}" aria-expanded="true" aria-controls="question{{forloop.counter}}{{fq.id}}">
                 <h1 class="h3">{{fq.question}}</h1>
               </a>
@@ -24,6 +26,8 @@
               </div>
             </div>
             <br>
+              {% endif %}
+                
             {% endfor %}
             <!-- //// -->
 
@@ -34,21 +38,23 @@
             </div>
             
             {% for lq in last_question %}
-              <a class="" role="button" data-toggle="collapse" href="#question{{forloop.counter}}{{lq.id}}" aria-expanded="true" aria-controls="question{{forloop.counter}}{{lq.id}}">
-              <h1 class="h3">{{lq.question}}</h1>
-            </a>
-            <div class="collapse" id="question{{forloop.counter}}{{lq.id}}">
-              <div class="well">
-                {% if lq.answer.answer %}
-                  <p>
-                  {{lq.answer.answer}}
-                </p>
-                {% else %}
-                <h3>Not aneswer Yet</h3>
-                {% endif %}
-              </div>
-            </div>
-            <br>
+              {% if lq.answer.answer %}
+                <a class="" role="button" data-toggle="collapse" href="#question{{forloop.counter}}{{lq.id}}" aria-expanded="true" aria-controls="question{{forloop.counter}}{{lq.id}}">
+                  <h1 class="h3">{{lq.question}}</h1>
+                </a>
+                <div class="collapse" id="question{{forloop.counter}}{{lq.id}}">
+                  <div class="well">
+                    {% if lq.answer.answer %}
+                      <p>
+                      {{lq.answer.answer}}
+                    </p>
+                    {% else %}
+                    <h3>Not aneswer Yet</h3>
+                    {% endif %}
+                  </div>
+                </div>
+                <br>
+              {% endif %}
             {% endfor %}
               
           </div>
