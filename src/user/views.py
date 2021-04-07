@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect,HttpResponseRedirect,reverse
+from django.http import JsonResponse
 from django.views import View
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -48,7 +49,7 @@ class ProfileView(View):
             return redirect('profile',username=request.user)
         proform = UserProfile.objects.get(user__username=username)
         locationform = AddLocationForm()
-        locations = Customer.objects.filter(user__username=username)
+        locations = Customer.objects.filter(user__username=username).order_by('-id')
         return render(request, 'user/profile.html',{'profile':proform,'locform':AddLocationForm,'locations':locations})
     def post(self,request,username):
         proform = UserProfile.objects.get(user=request.user)
@@ -64,9 +65,10 @@ class ProfileView(View):
 
         return render(request, 'user/profile.html',{'profile':proform,'locform':AddLocationForm,'locations':locations})
 
-def locationdelete(request,pk,):
-    cust= Customer.objects.get(id=pk)
-    cust.delete()
-    return redirect(reverse('profile',kwargs={'username':request.user}))
-    return HttpResponseRedirect((f'profile/delete/{pk}'))
+
+def delete_location(request,pk):
+    loc_id = request.GET.get('id')
+    Customer.objects.filter(id=loc_id).delete()
+    return JsonResponse({'data':'yes'})
+
 

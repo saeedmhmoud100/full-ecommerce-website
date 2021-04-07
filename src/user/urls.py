@@ -23,5 +23,5 @@ urlpatterns = [
 
     path('passwordchangedone/',auth_view.PasswordChangeView.as_view(template_name='user/password-change-done.html',),name='password_change_done'),
     path('profile/<slug:username>/', views.ProfileView.as_view(),name='profile'),
-    path('profile/delete/<int:pk>/',views.locationdelete,name='profile-delete'),
+    path('profile/delete/<int:pk>/',views.delete_location,name='profile-delete'),
 ]

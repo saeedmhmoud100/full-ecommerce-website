@@ -37,14 +37,14 @@
                 </div>
                 {% endif %}
               {% endfor %}
-              <button type="submit" class="btn btn-primary" style="margin:10px;">add Location</button>
+              <button id="add-location" type="submit" class="btn btn-primary" style="margin:10px;">add Location</button>
             </form>
             </div>
         </div>
         <div class=" col-md-offset-1 col-md-4">
           {% if locations %}
             {% for location in locations %}
-              <div style="border: 1px solid #777777;padding-left: 18px;margin-bottom: 10px;overflow: hidden;">
+              <div class="par" style="border: 1px solid #777777;padding-left: 18px;margin-bottom: 10px;overflow: hidden;">
                 <h3 style="border-bottom: 1px solid #777;display: inline-block;">Location: {{forloop.counter}}</h3>
                 {% if location.CustCountry.name %}
                 <p>countryt: {{location.CustCountry.name}},</p>
@@ -54,7 +54,7 @@
                 <p>city: {{location.CustCity}},</p>
                 <p>Locality: {{location.CustLocality}},</p>
                 <p>Zipcode: {{location.CustZipcode}},</p>
-                <a href="{% url 'profile-delete' location.id %}" style="float: right;" class="btn btn-secondary"><button>Remove</button></a>
+                <a class='remove-location' style="float: right;margin: 10px;" class="btn btn-secondary"><button id="{{location.id}}">Remove</button></a>
               </div>
             {% endfor %}
           {% else %}
@@ -66,3 +66,29 @@
 
       
 {% endblock content %}
+
+
+{% block script %}
+<script>
+
+  $(function(){
+    $('.remove-location').on('click',function(e){
+      var id = e.currentTarget.children[0].id
+      var elm = this.parentNode
+      console.log(elm)
+      $.ajax({
+        dataType:'json',
+        data:{
+          'id':id
+        },
+        url:"/account/profile/delete/"+ id +"/",
+        success:function(e){
+          elm.remove()
+        }
+      })
+    })
+  });
+
+</script>
+{% endblock script %}
+  
