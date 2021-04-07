@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.views.generic import View
 from django.core.paginator import Paginator
 from django.contrib import messages
+from django.core.mail import EmailMessage
 from django.contrib.auth.models import User
 from .models import FaqQuestion
 # Create your views here.
@@ -40,6 +41,23 @@ class FAQView(View):
         return redirect('faq')
 
 def contacts(request):
-    return render(request,'about/contacts.html')
+    if request.method == 'POST':
+        email = request.POST['email']
+        message = request.POST['message']
+        email_message = EmailMessage(
+            subject='Unistore message',
+            body=message,
+            from_email=email,
+            to=['your email@gmail.com'],
+            headers={'Reply.To': email},
+            reply_to=[email],
+        )
+        email_message.send()
+        messages.success(request,'sendet email successfully!!')
+        return redirect('contact')
+    context= {
+        'head':'help'
+    }
+    return render(request,'about/contacts.html',context)
 
 
