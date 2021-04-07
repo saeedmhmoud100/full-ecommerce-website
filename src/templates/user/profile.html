@@ -8,8 +8,11 @@
       
         
       <div class="row">
-        
-        
+        {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-{{message.tags}} text-center">{{message}}</div>
+          {% endfor %}
+        {% endif %}
         <div class="col-md-4 col-md-offset-2" style="border: 1px solid #777;">
           
           <h1 style="border-bottom: 1px solid #777;display: inline-block;margin-bottom: 10px;" > Profile </h1>
@@ -39,11 +42,6 @@
             </div>
         </div>
         <div class=" col-md-offset-1 col-md-4">
-          {% if messages %}
-          {% for message in messages %}
-            <div class="alert alert-{{message.tags}}">{{message}}</div>
-          {% endfor %}
-          {% endif %}
           {% if locations %}
             {% for location in locations %}
               <div style="border: 1px solid #777777;padding-left: 18px;margin-bottom: 10px;overflow: hidden;">

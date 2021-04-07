@@ -61,3 +61,18 @@ def contacts(request):
     return render(request,'about/contacts.html',context)
 
 
+
+def send_email(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        email_message = EmailMessage(
+            subject='Unistore message',
+            body=f'{email} is want join us',
+            from_email=email,
+            to=['your email@gmail.com'],
+            headers={'Reply.To': email},
+            reply_to=[email],
+        )
+        email_message.send()
+        messages.success(request,'sendet email successfully!!')
+    return redirect('profile',username=request.user)

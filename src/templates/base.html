@@ -139,7 +139,8 @@
               <p>Get more information and receive special discounts for our products.</p>
               <hr class="offset-sm">
   
-              <form action="index.php" method="post">
+              <form action="{% url 'send_email' %}" method="post">
+                {% csrf_token %}
                 <div class="input-group">
                   <input type="email" name="email" value="" placeholder="E-mail" required="" class="form-control">
                   <span class="input-group-btn">
