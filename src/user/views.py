@@ -1,9 +1,11 @@
 from django.shortcuts import render,redirect,HttpResponseRedirect,reverse
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpResponseRedirect
 from django.views import View
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from ecommerce.models import Order
 from.forms import RegisterForm,ProfileRegisterForm,LoginForm,AddLocationForm
 from .models import Customer,UserProfile
@@ -12,6 +14,8 @@ from .models import Customer,UserProfile
 
 class RegisterView(View):
     def get(self, request):
+        if request.user.is_authenticated:
+            return redirect('profile',username=request.user)
         form = RegisterForm()
         proform = ProfileRegisterForm()
         return render(request, 'user/signup.html',{'form':form,'proform':proform})
@@ -32,19 +36,26 @@ class RegisterView(View):
         return render(request,'user/signup.html',{'form':form,'proform':proform})
 
 def login(request):
+    if request.user.is_authenticated:
+        return redirect('profile',username=request.user)
     if request.method == 'POST':
         form = LoginForm()
         username = request.POST['username']
         password = request.POST['password1']
         user = authenticate(request, username=username,password=password)
+        red = request.GET.get('next')
+        
         if user is not None:
             auth_login(request,user)
-            return redirect(reverse('profile', kwargs={'username': username}))
+            if red:
+                return HttpResponseRedirect(red)
+            else:
+                return redirect(reverse('profile', kwargs={'username': username}))
     else:
         form = LoginForm()
     return render(request,'user/login.html',{'form':form})
 
-class ProfileView(View):
+class ProfileView(LoginRequiredMixin,View):
     def get(self,request,username):
         if username != request.user.username:
             return redirect('profile',username=request.user)
@@ -73,7 +84,7 @@ class ProfileView(View):
 
         return render(request, 'user/profile.html',{'profile':proform,'locform':AddLocationForm,'locations':locations})
 
-
+@login_required(login_url='login')
 def delete_location(request,pk):
     loc_id = request.GET.get('id')
     Customer.objects.filter(id=loc_id).delete()

@@ -1,10 +1,12 @@
 from django.shortcuts import render,get_object_or_404,redirect
-from django.http import JsonResponse,HttpResponse
+from django.http import JsonResponse,HttpResponse,HttpResponseRedirect
 from django.template.loader import render_to_string
 from django.core.paginator import Paginator
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
 from django.views.generic import View,ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from user.models import Customer
 from .models import Product,ProductImg,ProductProperty,productComment,Cart,Gallery,Order
 from .forms import ProductComment,AddNewAddressForm
@@ -22,11 +24,15 @@ class CatalogView(ListView):
     context_object_name = 'products'
     paginate_by = 6
     def get_context_data(self, **kwargs):
-        item_in_cart = Product.objects.filter(cart__user =self.request.user)
+        if self.request.user.is_authenticated:
+            item_in_cart = Product.objects.filter(cart__user =self.request.user)
+        else:
+            item_in_cart = []
         context = super(CatalogView, self).get_context_data(**kwargs)
         context['item_in_cart'] = item_in_cart
         return context
     
+@login_required(login_url='login')
 def favorite_or_unfavorite(request):
     id = request.GET.get('id',None)
     user = request.user
@@ -62,8 +68,10 @@ class ProductFilterView(ListView):
             allproducts = allproducts.filter(tag1=tags)
         if price:
             allproducts = allproducts.filter(selling_price__lte=price)
-        
-        item_in_cart = Product.objects.filter(cart__user =self.request.user)
+        if request.user.is_authenticated:
+            item_in_cart = Product.objects.filter(cart__user =self.request.user)
+        else:
+            item_in_cart =[]
         paginator = Paginator(allproducts, 6)
 
         page_number = request.GET.get('pag')
@@ -89,7 +97,10 @@ class CatalogProductView(View):
         recom = Product.objects.all().order_by('-id')[:4]
         cou = images.count() + 1
         form = ProductComment()
-        item_in_cart = Cart.objects.filter(user=request.user,product=product).exists()
+        if request.user.is_authenticated:
+            item_in_cart = Cart.objects.filter(user=request.user,product=product).exists()
+        else:
+            item_in_cart = False
         context = {
             'product':product,
             'images':images,
@@ -102,6 +113,8 @@ class CatalogProductView(View):
         }
         return render(request,'ecommerce/catalog-product.html',context)
     def post(self,request,pk):
+        if not request.user.is_authenticated:
+            return HttpResponseRedirect(f'/account/login/?next=/catalogproduct/{pk}')
         product = Product.objects.get(pk=pk)
         user = request.user
         form = ProductComment(request.POST)
@@ -113,6 +126,7 @@ class CatalogProductView(View):
             messages.success(request,'added comment successfully!!')
             return redirect('catalog-product',pk=product.pk)
 
+@login_required(login_url='login')
 def add_to_cart(request):
     if request.method =='POST':
         user= request.user
@@ -120,23 +134,21 @@ def add_to_cart(request):
         Cart.objects.create(user=user,product=product)
         return redirect('catalog-product',pk=product.pk)
 
-class CartView(View):
+class CartView(LoginRequiredMixin,View):
     def get(self,request):
-        if request.user.is_authenticated:
-            user = request.user
-            carts = Cart.objects.filter(user=user)
-            cartlist = [p for p in Cart.objects.all() if p.user == user]
-            total_amount = 0.0
-            for p in cartlist:
-                    total_amount += p.amount
-            context = {
-                'carts':carts,
-                'total_amount':total_amount
+        user = request.user
+        carts = Cart.objects.filter(user=user)
+        cartlist = [p for p in Cart.objects.all() if p.user == user]
+        total_amount = 0.0
+        for p in cartlist:
+                total_amount += p.amount
+        context = {
+            'carts':carts,
+            'total_amount':total_amount
             }
-        else:
-            return redirect('login')
         return render(request,'ecommerce/cart.html',context)
 
+@login_required(login_url='login')
 def plus_or_minus_cart(request):
     state =request.GET.get('state')
     cart_id = request.GET.get('id')
@@ -160,6 +172,7 @@ def plus_or_minus_cart(request):
     }
     return JsonResponse(data)
 
+@login_required(login_url='login')
 def remove_cart(request):
     cart_id = request.GET.get('id')
     Cart.objects.get(pk=cart_id,user=request.user).delete()
@@ -182,8 +195,7 @@ class GalleryView(View):
         }
         return render(request,'ecommerce/gallery.html',context)
 
-
-class CheckoutView(View):
+class CheckoutView(LoginRequiredMixin,View):
     def get(sellf,request):
         cart = Cart.objects.filter(user=request.user)
         Delivery = 10
@@ -211,7 +223,7 @@ class CheckoutView(View):
                 form_save.save()
                 return redirect('checkout')
         
-
+@login_required(login_url='login')
 def payment_done(request):
     cart = Cart.objects.filter(user=request.user)
     address = request.POST['address']
