@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.views.generic import UpdateView,ListView,DetailView,UpdateView,DeleteView,CreateView,FormView
 from django.views.generic.edit import FormMixin
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator
@@ -57,7 +57,7 @@ def itemphotocreatepost(request):
     }
     return render(request, 'blog/Create_update_post.html',context)
 
-class UpdatePostPhotItedView(LoginRequiredMixin,UpdateView):
+class UpdatePostPhotItedView(UserPassesTestMixin,LoginRequiredMixin,UpdateView):
     model = Post
     form_class= ItemPhotoPostForm
     template_name = 'blog/Create_update_post.html'
@@ -74,8 +74,14 @@ class UpdatePostPhotItedView(LoginRequiredMixin,UpdateView):
         form.save()
         messages.success(self.request,'updated post successfuly!!')
         return redirect(reverse('blog-item-photo',kwargs={'pk':form.instance.pk}))
+    def test_func(self):
+        if self.request.user == self.get_object().Posuser:
+            return True
+        else:   
+            return False
 
-class DeletePostItemPhotoView(LoginRequiredMixin,DeleteView):
+
+class DeletePostItemPhotoView(UserPassesTestMixin ,LoginRequiredMixin,DeleteView):
     model = Post
     template_name = 'blog/item_photo_comment_delete.html'
 
@@ -92,6 +98,12 @@ class DeletePostItemPhotoView(LoginRequiredMixin,DeleteView):
 
     def get_success_url(self):
         return reverse('blog')
+
+    def test_func(self):
+        if self.request.user == self.get_object().Posuser:
+            return True
+        else:   
+            return False
 
 class ItemPhotoBlogView(DetailView, FormMixin):
     model = Post
@@ -126,7 +138,7 @@ class ItemPhotoBlogView(DetailView, FormMixin):
         messages.success(self.request,'Yor message added successfully!!')
         return super(ItemPhotoBlogView, self).form_valid(form)
 
-class ItemPhotoUpdateCommentView(LoginRequiredMixin,UpdateView):
+class ItemPhotoUpdateCommentView(UserPassesTestMixin,LoginRequiredMixin,UpdateView):
     template_name = 'blog/blog-item-photo.html'
     model = PostComment
     form_class = ItemPhotoCommentForm
@@ -136,8 +148,13 @@ class ItemPhotoUpdateCommentView(LoginRequiredMixin,UpdateView):
         context['comments'] = PostComment.objects.filter(PCompost=self.object.PCompost.id)
         context['changecomment']= 'Update Comment'
         return context
+    def test_func(self):
+        if self.request.user == self.get_object().PComuser:
+            return True
+        else:   
+            return False
 
-class ItemPhotoDeleteCommentView(LoginRequiredMixin,DeleteView):
+class ItemPhotoDeleteCommentView(UserPassesTestMixin,LoginRequiredMixin,DeleteView):
     model = PostComment
     template_name = 'blog/item_photo_comment_delete.html'
 
@@ -149,6 +166,12 @@ class ItemPhotoDeleteCommentView(LoginRequiredMixin,DeleteView):
 
     def get_success_url(self):
         return reverse('blog-item-photo',args=[self.object.PCompost.id])
+
+    def test_func(self):
+        if self.request.user == self.get_object().PComuser:
+            return True
+        else:   
+            return False
 
 class VideoBlogView(DetailView, FormMixin):
     model = video
@@ -186,7 +209,7 @@ class VideoBlogView(DetailView, FormMixin):
         messages.success(self.request,'Yor message added successfully!!')
         return super(VideoBlogView, self).form_valid(form)
 
-class UpdateVideoCommentView(LoginRequiredMixin,UpdateView):
+class UpdateVideoCommentView(UserPassesTestMixin,LoginRequiredMixin,UpdateView):
     template_name = 'blog/blog-item-video.html'
     model = PostVideoComment
     form_class = ItemVideoCommentForm
@@ -197,7 +220,13 @@ class UpdateVideoCommentView(LoginRequiredMixin,UpdateView):
         context['changecomment']= 'Update Comment'
         return context
 
-class DeleteVideoCommentView(LoginRequiredMixin,DeleteView):
+    def test_func(self):
+        if self.request.user == self.get_object().PVComuser:
+            return True
+        else:   
+            return False
+
+class DeleteVideoCommentView(UserPassesTestMixin,LoginRequiredMixin,DeleteView):
     model = PostVideoComment
     template_name = 'blog/item_photo_comment_delete.html'
 
@@ -210,6 +239,12 @@ class DeleteVideoCommentView(LoginRequiredMixin,DeleteView):
     def get_success_url(self):
         return reverse('blog-item-video',args=[self.object.PVCompost.id])
 
+    def test_func(self):
+        if self.request.user == self.get_object().PVComuser:
+            return True
+        else:   
+            return False
+
 def blog_item_review(request,id):
     item_review = BlogReview.objects.get(id=id)
     context={
@@ -217,7 +252,7 @@ def blog_item_review(request,id):
     }
     return render(request,'blog/blog-item-review.html',context)
 
-class UpdatePostvideoView(LoginRequiredMixin,UpdateView):
+class UpdatePostvideoView(UserPassesTestMixin,LoginRequiredMixin,UpdateView):
     model = video
     form_class= ItemvideoPostForm
     template_name = 'blog/Create_update_post.html'
@@ -235,7 +270,13 @@ class UpdatePostvideoView(LoginRequiredMixin,UpdateView):
         messages.success(self.request,'updated post successfuly!!')
         return redirect(reverse('blog-item-video',kwargs={'pk':form.instance.pk}))
 
-class DeletePostItemVideoView(LoginRequiredMixin,DeleteView):
+    def test_func(self):
+        if self.request.user == self.get_object().Posvuser:
+            return True
+        else:   
+            return False
+
+class DeletePostItemVideoView(UserPassesTestMixin,LoginRequiredMixin,DeleteView):
     model = video
     template_name = 'blog/item_photo_comment_delete.html'
 
@@ -252,5 +293,11 @@ class DeletePostItemVideoView(LoginRequiredMixin,DeleteView):
 
     def get_success_url(self):
         return reverse('blog-item', kwargs={'data':'video'})
+
+    def test_func(self):
+        if self.request.user == self.get_object().Posvuser:
+            return True
+        else:   
+            return False
 
 
