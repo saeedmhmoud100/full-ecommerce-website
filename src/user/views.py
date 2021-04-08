@@ -4,6 +4,7 @@ from django.views import View
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login
+from ecommerce.models import Order
 from.forms import RegisterForm,ProfileRegisterForm,LoginForm,AddLocationForm
 from .models import Customer,UserProfile
 # Create your views here.
@@ -50,7 +51,14 @@ class ProfileView(View):
         proform = UserProfile.objects.get(user__username=username)
         locationform = AddLocationForm()
         locations = Customer.objects.filter(user__username=username).order_by('-id')
-        return render(request, 'user/profile.html',{'profile':proform,'locform':AddLocationForm,'locations':locations})
+        orders = Order.objects.filter(user=request.user)
+        context = {
+            'profile':proform,
+            'locform':AddLocationForm,
+            'locations':locations,
+            'orders':orders
+            }
+        return render(request, 'user/profile.html',context)
     def post(self,request,username):
         proform = UserProfile.objects.get(user=request.user)
         locationform = AddLocationForm(request.POST)

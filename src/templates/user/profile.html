@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 
 
 {% block title %} Profile {% endblock title %}
@@ -64,7 +64,61 @@
       </div>
     </div>
 
-      
+    <div class="container">
+      <div class="row">
+        <h2>
+          Your Orders
+        </h2>
+
+      <table class="table table-striped" style="border:1px solid #ddd;border-radius: 4px 4px 0 0;">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>The Cart</th>
+            <th>The numper</th>
+            <th>State</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {% for order in orders %}
+            <th scope="row" style="padding-top: 20px;">{{forloop.counter}}</th>
+              <td><img src="{{order.product.img.url}}" class="img-rounded" width="50" alt="{{order.product.title}} product"> {{order.product.title}}</td>
+            <td style="padding-top: 20px;">{{order.quantity}}</td>
+            <td>
+              Order Status: {{order.state}}
+              {% if order.state == 'Accepted'%}
+              <div class="progress">
+                <div class="progress-bar" rolr='progressbar' style="width:20%;" aria-valuenow='20' atia-valuemin='0' aria-valuemax='100'>20%</div>
+              </div>
+              {% endif %}
+              
+              {% if order.state == 'Packed'%}
+              <div class="progress">
+                <div class="progress-bar progress-bar-info" rolr='progressbar' style="width:40%;" aria-valuenow='40' atia-valuemin='0' aria-valuemax='100'>40%</div>
+              </div>
+              {% endif %}
+              
+              {% if order.state == 'On The Way'%}
+              <div class="progress">
+                <div class="progress-bar progress-bar-warning" rolr='progressbar' style="width:70%;" aria-valuenow='70' atia-valuemin='0' aria-valuemax='100'>70%</div>
+              </div>
+              {% endif %}
+              
+              {% if order.state == 'Delivered'%}
+              <div class="progress">
+                <div class="progress-bar progress-bar-success" rolr='progressbar' style="width:100%;" aria-valuenow='100' atia-valuemin='0' aria-valuemax='100'>100%</div>
+              </div>
+              {% endif %}
+
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    
+      </div>
+    </div>
 {% endblock content %}
 
 
