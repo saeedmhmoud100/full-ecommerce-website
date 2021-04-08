@@ -63,7 +63,8 @@
         </div>
       </div>
     </div>
-
+    
+    {% if orders %}
     <div class="container">
       <div class="row">
         <h2>
@@ -119,6 +120,36 @@
     
       </div>
     </div>
+    {% endif %}
+      
+
+{% if request.user.favourite.exists %}
+    <div class="container">
+      <div class="col-sm-12 products">
+      <div class="row" style="border:1px solid #ddd;border-radius: 4px 4px 0 0;">
+        <h1 class="text-center" style="border-bottom: 1px solid #ddd;margin-left: 17px;margin-right: 17px;padding-bottom: 7px;">My favourites</h1>
+      {% for fav in request.user.favourite.all %}
+        <div class="col-sm-6 col-md-4 product">
+          <a href="#favorites" class="favorites" data-favorite="inactive" fid='{{fav.id}}'><i class="ion-ios-heart"></i></a>
+          <a href="{% url 'catalog-product' fav.id %}"><img src="{{fav.img.url}}" alt="Mi Pad 2/"></a>
+          <div class="content">
+            <h1 class="h4">{{fav.title}}</h1>
+            {% if fav.discount_price %}
+              <p class="sale">${{fav.discount_price}}</p>
+              <p class="price through">${{fav.selling_price}}</p>
+            {% else %}
+            <p class="price">${{fav.selling_price}}</p>
+            {% endif %}
+            <label>{{fav.Brand}}</label>
+            <a href="{% url 'catalog-product' fav.id %}" class="btn btn-link"> Details</a>
+            <button class="btn btn-primary btn-rounded btn-sm"> <i class="ion-bag"></i> Add to cart</button>
+          </div>
+        </div>
+      {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
 {% endblock content %}
 
 
@@ -142,6 +173,24 @@
       })
     })
   });
+
+  $('.favorites').on('click',function(e){
+    var fa_id =e.currentTarget
+    var ico = fa_id.children[0]
+    var elm =fa_id.parentElement
+    $.ajax({
+      dataType:'json',
+      data:{
+        'id':fa_id.getAttribute('fid')
+      },
+      url:"{% url 'fav' %}",
+      success:function(res){
+        ico.classList = "ion-ios-heart-outline"
+        setTimeout(function(){elm.remove()},500)
+        
+      }
+    })
+  })
 
 </script>
 {% endblock script %}
