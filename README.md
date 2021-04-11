@@ -31,7 +31,8 @@ python manage.py runserver
 
 
 
-
+</br>
+</br>
 some screenshots for the project
 <p align="center">
   - home page
