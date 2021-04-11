@@ -3,18 +3,26 @@
 ## this is a full E-commerce project
 
 some screenshots for the project
-
--home page
-![alt text](https://github.com/Saeedmhmoud100/full-ecommerce-website/blob/main/src/screenshot/screenshot1.png.jpg?raw=true)
-
--catalog page
-![alt text](https://github.com/Saeedmhmoud100/full-ecommerce-website/blob/main/src/screenshot/screenshot2.png.jpg?raw=true)
-
--blog page
-![alt text](https://github.com/Saeedmhmoud100/full-ecommerce-website/blob/main/src/screenshot/screenshot3.png.jpg?raw=true)
-
--gallary page
 <p align="center">
+  - home page
+  <img width="800" alt="The Coding Train Logo" src="https://github.com/Saeedmhmoud100/full-ecommerce-website/blob/main/src/screenshot/screenshot1.png?raw=true">
+</p>
+</br>
+
+<p align="center">
+  - catalog page
+  <img width="800" alt="The Coding Train Logo" src="https://github.com/Saeedmhmoud100/full-ecommerce-website/blob/main/src/screenshot/screenshot2.png?raw=true">
+</p>
+</br>
+
+<p align="center">
+  - blog page
+  <img width="800" alt="The Coding Train Logo" src="https://github.com/Saeedmhmoud100/full-ecommerce-website/blob/main/src/screenshot/screenshot3.png?raw=true">
+</p>
+</br>
+
+<p align="center">
+  - gallary page
   <img width="800" alt="The Coding Train Logo" src="https://github.com/Saeedmhmoud100/full-ecommerce-website/blob/main/src/screenshot/screenshot4.png?raw=true">
 </p>
 </br>
