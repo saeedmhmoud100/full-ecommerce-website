@@ -14,7 +14,10 @@ some screenshots for the project
 ![alt text](https://github.com/Saeedmhmoud100/full-ecommerce-website/blob/main/src/screenshot/screenshot3.png.jpg?raw=true)
 
 -gallary page
-![alt text](https://github.com/Saeedmhmoud100/full-ecommerce-website/blob/main/src/screenshot/screenshot4.png.jpg?raw=true)
+<p align="center">
+  <img width="800" alt="The Coding Train Logo" src="https://github.com/Saeedmhmoud100/full-ecommerce-website/blob/main/src/screenshot/screenshot4.png?raw=true">
+</p>
+</br>
 
 ##To opet the project 
 ##First activate the virtual environment:
